@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كارت VIP الرقمي - قصر المحمدي</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #121212; color: #fff; text-align: center; padding: 20px; }
+        .card-form { background: #1a1a1a; padding: 20px; border-radius: 15px; max-width: 400px; margin: auto; border: 1px solid #d4af37; box-shadow: 0 4px 15px rgba(212,175,55,0.2); }
+        input, button { width: 90%; padding: 12px; margin: 10px 0; border-radius: 8px; border: none; font-size: 16px; }
+        input { background: #333; color: #fff; text-align: center; }
+        button { background: linear-gradient(45deg, #d4af37, #aa7c11); color: #000; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { transform: scale(1.02); }
+        /* تصميم الكارت الملكي الـ VIP */
+        .vip-card { display: none; background: linear-gradient(135deg, #1e1e1e 0%, #111111 100%); border: 2px solid #d4af37; padding: 25px; border-radius: 15px; max-width: 350px; margin: 20px auto; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.7); }
+        .card-title { color: #d4af37; font-size: 26px; font-weight: bold; margin-bottom: 5px; }
+        .card-subtitle { font-size: 12px; color: #888; letter-spacing: 2px; margin-bottom: 25px; }
+        .card-holder { font-size: 20px; color: #fff; margin-top: 20px; text-shadow: 1px 1px 2px #000; }
+        .card-number { font-size: 18px; letter-spacing: 3px; color: #d4af37; margin-top: 25px; font-family: 'Courier New', monospace; }
+        .card-footer { color: #aaa; font-size: 13px; margin-top: 20px; border-top: 1px dashed #333; padding-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <!-- استمارة إدخال بيانات الزبون -->
+    <div class="card-form" id="formContainer">
+        <h2 style="color: #d4af37; margin-bottom: 5px;">قصر المحمدي 👑</h2>
+        <p style="color: #ccc; font-size: 14px;">سجل بياناتك لتفعيل كارت الـ VIP الرقمي فوراً</p>
+        <input type="text" id="username" placeholder="الاسم بالكامل" required>
+        <input type="tel" id="phone" placeholder="رقم الهاتف" required>
+        <button onclick="generateVIPCard()">تفعيل الكارت الملكي</button>
+    </div>
+
+    <!-- كارت الـ VIP الرقمي الفخم (شكل الفيزا للولاء) -->
+    <div class="vip-card" id="vipCard">
+        <div class="card-title">قصر المحمدي 👑</div>
+        <div class="card-subtitle">VIP LOYALTY PASS</div>
+        <div style="text-align: right; padding-right: 20px; color: #d4af37; font-size: 12px;">حامل الكارت:</div>
+        <div class="card-holder" id="displayHolder"></div>
+        <div class="card-number" id="cardNumber"></div>
+        <div class="card-footer">
+            ✨ خصم 10% ثابت على كل الطلبات داخل المطعم ✨
+        </div>
+    </div>
+
+    <script>
+        function generateVIPCard() {
+            var name = document.getElementById('username').value.trim();
+            var phone = document.getElementById('phone').value.trim();
+            
+            if(name == "" || phone == "") { 
+                alert("برجاء إدخال الاسم ورقم الهاتف أولاً بشكل صحيح."); 
+                return; 
+            }
+            
+            // إخفاء الاستمارة وإظهار كارت الـ VIP الفخم
+            document.getElementById('formContainer').style.display = 'none';
+            document.getElementById('vipCard').style.display = 'block';
+            document.getElementById('displayHolder').innerText = name;
+            
+            // توليد رقم كارت عشوائي فخم يشبه أرقام الفيزا البنكية
+            var part1 = Math.floor(1000 + Math.random() * 9000);
+            var part2 = Math.floor(1000 + Math.random() * 9000);
+            var part3 = Math.floor(1000 + Math.random() * 9000);
+            document.getElementById('cardNumber').innerText = "7777 " + part1 + " " + part2 + " " + part3;
+            
+            // ملحوظة: في الخطوات القادمة سنضع هنا الكود المسؤول عن إرسال البيانات فوراً لجوجل شيت تلقائياً
+        }
+    </script>
+</body>
+</html>
