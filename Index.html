@@ -1,3 +1,4 @@
+https://script.google.com/macros/s/AKfycbwISB5zl3a9bhdkPCTyEpcIhk-C46dOoq4r-QcjAL5qwk_OysQCaE3UVd-5Wu4TyAMWlA/exec
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -11,7 +12,6 @@
         input { background: #333; color: #fff; text-align: center; }
         button { background: linear-gradient(45deg, #d4af37, #aa7c11); color: #000; font-weight: bold; cursor: pointer; transition: 0.3s; }
         button:hover { transform: scale(1.02); }
-        /* تصميم الكارت الملكي الـ VIP */
         .vip-card { display: none; background: linear-gradient(135deg, #1e1e1e 0%, #111111 100%); border: 2px solid #d4af37; padding: 25px; border-radius: 15px; max-width: 350px; margin: 20px auto; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.7); }
         .card-title { color: #d4af37; font-size: 26px; font-weight: bold; margin-bottom: 5px; }
         .card-subtitle { font-size: 12px; color: #888; letter-spacing: 2px; margin-bottom: 25px; }
@@ -22,7 +22,6 @@
 </head>
 <body>
 
-    <!-- استمارة إدخال بيانات الزبون -->
     <div class="card-form" id="formContainer">
         <h2 style="color: #d4af37; margin-bottom: 5px;">قصر المحمدي 👑</h2>
         <p style="color: #ccc; font-size: 14px;">سجل بياناتك لتفعيل كارت الـ VIP الرقمي فوراً</p>
@@ -31,16 +30,13 @@
         <button onclick="generateVIPCard()">تفعيل الكارت الملكي</button>
     </div>
 
-    <!-- كارت الـ VIP الرقمي الفخم (شكل الفيزا للولاء) -->
     <div class="vip-card" id="vipCard">
         <div class="card-title">قصر المحمدي 👑</div>
         <div class="card-subtitle">VIP LOYALTY PASS</div>
         <div style="text-align: right; padding-right: 20px; color: #d4af37; font-size: 12px;">حامل الكارت:</div>
         <div class="card-holder" id="displayHolder"></div>
         <div class="card-number" id="cardNumber"></div>
-        <div class="card-footer">
-            ✨ خصم 10% ثابت على كل الطلبات داخل المطعم ✨
-        </div>
+        <div class="card-footer">✨ خصم 10% ثابت على كل الطلبات داخل المطعم ✨</div>
     </div>
 
     <script>
@@ -49,22 +45,33 @@
             var phone = document.getElementById('phone').value.trim();
             
             if(name == "" || phone == "") { 
-                alert("برجاء إدخال الاسم ورقم الهاتف أولاً بشكل صحيح."); 
+                alert("برجاء إدخال البيانات أولاً."); 
                 return; 
             }
             
-            // إخفاء الاستمارة وإظهار كارت الـ VIP الفخم
-            document.getElementById('formContainer').style.display = 'none';
-            document.getElementById('vipCard').style.display = 'block';
-            document.getElementById('displayHolder').innerText = name;
-            
-            // توليد رقم كارت عشوائي فخم يشبه أرقام الفيزا البنكية
             var part1 = Math.floor(1000 + Math.random() * 9000);
             var part2 = Math.floor(1000 + Math.random() * 9000);
             var part3 = Math.floor(1000 + Math.random() * 9000);
-            document.getElementById('cardNumber').innerText = "7777 " + part1 + " " + part2 + " " + part3;
+            var generatedCardNumber = "7777 " + part1 + " " + part2 + " " + part3;
             
-            // ملحوظة: في الخطوات القادمة سنضع هنا الكود المسؤول عن إرسال البيانات فوراً لجوجل شيت تلقائياً
+            document.getElementById('formContainer').style.display = 'none';
+            document.getElementById('vipCard').style.display = 'block';
+            document.getElementById('displayHolder').innerText = name;
+            document.getElementById('cardNumber').innerText = generatedCardNumber;
+            
+            // الرابط الخاص بك مدمج هنا تلقائياً لربط البيانات
+            var webAppUrl = "https://google.com";
+            
+            fetch(webAppUrl, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name: name, phone: phone, cardNumber: generatedCardNumber })
+            }).then(response => {
+                console.log("تم الحفظ في جوجل شيت لقصر المحمدي!");
+            }).catch(error => {
+                console.error("خطأ في الاتصال بجوجل شيت:", error);
+            });
         }
     </script>
 </body>
