@@ -40,37 +40,99 @@ https://script.google.com/macros/s/AKfycbwISB5zl3a9bhdkPCTyEpcIhk-C46dOoq4r-QcjA
     </div>
 
     <script>
-        function generateVIPCard() {
-            var name = document.getElementById('username').value.trim();
-            var phone = document.getElementById('phone').value.trim();
-            
-            if(name == "" || phone == "") { 
-                alert("برجاء إدخال البيانات أولاً."); 
-                return; 
-            }
-            
-            var part1 = Math.floor(1000 + Math.random() * 9000);
-            var part2 = Math.floor(1000 + Math.random() * 9000);
-            var part3 = Math.floor(1000 + Math.random() * 9000);
-            var generatedCardNumber = "7777 " + part1 + " " + part2 + " " + part3;
-            
-            document.getElementById('formContainer').style.display = 'none';
-            document.getElementById('vipCard').style.display = 'block';
-            document.getElementById('displayHolder').innerText = name;
-            document.getElementById('cardNumber').innerText = generatedCardNumber;
-            
-            // الرابط الخاص بك مدمج هنا تلقائياً لربط البيانات
-            var webAppUrl = "https://script.google.com/macros/s/AKfycbyoseSVz6JJfiJobJ-G6cskDKYvKYyLWzs2KW4JCmKWTGVkeD9igdHikiwgTJzpvRJ1Yw/exec";
-            fetch(webAppUrl, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name: name, phone: phone, cardNumber: generatedCardNumber })
-            }).then(response => {
-                console.log("تم الحفظ في جوجل شيت لقصر المحمدي!");
-            }).catch(error => {
-                console.error("خطأ في الاتصال بجوجل شيت:", error);
-            });
+    <script>
+    function generateVIPCard() {
+        var name = document.getElementById('username').value.trim();
+        var phone = document.getElementById('phone').value.trim();
+        
+        if (name === "" || phone === "") {
+            alert("برجاء إدخال البيانات أولاً!");
+            return;
         }
+        
+        // توليد رقم الكارت الذكي العشوائي
+        var part1 = Math.floor(1000 + Math.random() * 9000);
+        var part2 = Math.floor(1000 + Math.random() * 9000);
+        var part3 = Math.floor(1000 + Math.random() * 9000);
+        var cardNumber = "7777 " + part1 + " " + part2 + " " + part3;
+
+        // إخفاء النموذج وإظهار الكارت على الشاشة
+        document.getElementById('formContainer').style.display = 'none';
+        document.getElementById('vipCard').style.display = 'block';
+        document.getElementById('displayHolder').innerText = name;
+        document.getElementById('cardNumber').innerText = cardNumber;
+
+        // رابط تطبيق الويب النظيف الخاص بك من جوجل شيت الجديد
+        var webAppUrl = "<script>
+    function generateVIPCard() {
+        var name = document.getElementById('username').value.trim();
+        var phone = document.getElementById('phone').value.trim();
+        
+        if (name === "" || phone === "") {
+            alert("برجاء إدخال البيانات أولاً!");
+            return;
+        }
+        
+        // توليد رقم الكارت الذكي العشوائي
+        var part1 = Math.floor(1000 + Math.random() * 9000);
+        var part2 = Math.floor(1000 + Math.random() * 9000);
+        var part3 = Math.floor(1000 + Math.random() * 9000);
+        var cardNumber = "7777 " + part1 + " " + part2 + " " + part3;
+
+        // إخفاء النموذج وإظهار الكارت على الشاشة
+        document.getElementById('formContainer').style.display = 'none';
+        document.getElementById('vipCard').style.display = 'block';
+        document.getElementById('displayHolder').innerText = name;
+        document.getElementById('cardNumber').innerText = cardNumber;
+
+        // رابط تطبيق الويب النظيف الخاص بك من جوجل شيت الجديد
+        var webAppUrl = "https://script.google.com/macros/s/AKfycbyoseSVz6JJfiJobJ-G6cskDKYvKYyLWzs2KW4JCmKWTGVkeD9igdHikiwgTJzpvRJ1Yw/exec";
+
+        // إرسال البيانات بطريقة تقليدية وبسيطة لتخطي حظر جوجل الأمني
+        var formDetails = new URLSearchParams();
+        formDetails.append('name', name);
+        formDetails.append('phone', phone);
+        formDetails.append('cardNumber', cardNumber);
+
+        fetch(webAppUrl, {
+            method: "POST",
+            mode: "no-cors", // تم إعادتها مع التوليد التقليدي لتخطي حظر CORS تماماً
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: formDetails
+        })
+        .then(function() {
+            console.log("تم ترحيل البيانات بنجاح وأمان إلى جوجل شيت الجديد!");
+        })
+        .catch(function(error) {
+            console.error("خطأ في الإرسال:", error);
+        });
+    }
+</script>";
+
+        // إرسال البيانات بطريقة تقليدية وبسيطة لتخطي حظر جوجل الأمني
+        var formDetails = new URLSearchParams();
+        formDetails.append('name', name);
+        formDetails.append('phone', phone);
+        formDetails.append('cardNumber', cardNumber);
+
+        fetch(webAppUrl, {
+            method: "POST",
+            mode: "no-cors", // تم إعادتها مع التوليد التقليدي لتخطي حظر CORS تماماً
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: formDetails
+        })
+        .then(function() {
+            console.log("تم ترحيل البيانات بنجاح وأمان إلى جوجل شيت الجديد!");
+        })
+        .catch(function(error) {
+            console.error("خطأ في الإرسال:", error);
+        });
+    }
+</script>
     </script>
 </body>
 </html>
