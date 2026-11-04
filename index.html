@@ -3,164 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>قصر المحمدي - بطاقة الـ VIP الملكية</title>
+    <title>قصر المحمدي - بطاقة الـ VIP</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(circle, #1e1e1e 0%, #050505 100%);
+            background-color: #1a1a1a;
             color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
+            text-align: center;
             padding: 20px;
-            box-sizing: border-box;
         }
         .main-box {
-            background: rgba(20, 20, 20, 0.75);
-            border: 2px solid #d4af37;
-            border-radius: 20px;
-            padding: 40px 30px;
-            width: 100%;
-            max-width: 420px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(212, 175, 55, 0.1);
-            backdrop-filter: blur(10px);
+            max-width: 400px;
+            margin: 0 auto;
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
-        h2 { color: #d4af37; margin-top: 0; font-size: 28px; letter-spacing: 1px; }
-        p { color: #b5b5b5; font-size: 14px; margin-bottom: 30px; }
-        .form-group { margin-bottom: 22px; text-align: right; }
-        label { display: block; margin-bottom: 8px; color: #d4af37; font-weight: 600; font-size: 15px; }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #f39c12;
+        }
         input {
             width: 100%;
-            padding: 14px;
+            padding: 10px;
+            border-radius: 5px;
             border: 1px solid #444;
-            border-radius: 10px;
-            background-color: #111;
+            background: #333;
             color: #fff;
             box-sizing: border-box;
-            font-size: 16px;
-            text-align: center;
-            transition: 0.3s;
         }
-        input:focus { border-color: #d4af37; box-shadow: 0 0 10px rgba(212, 175, 55, 0.3); outline: none; }
         .gold-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(45deg, #aa7c11 0%, #d4af37 50%, #f3e5ab 100%);
+            background: linear-gradient(45deg, #f39c12, #f1c40f);
+            color: #1a1a1a;
             border: none;
-            border-radius: 10px;
-            color: #000;
-            font-size: 18px;
+            padding: 12px 20px;
+            font-size: 16px;
             font-weight: bold;
+            border-radius: 5px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
-            transition: 0.3s;
+            width: 100%;
+            margin-top: 10px;
         }
-        .gold-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.5); }
         .vip-card-display {
             display: none;
-            background: linear-gradient(135deg, #1c1a17 0%, #0d0c0a 100%);
-            border: 2px solid #d4af37;
-            border-radius: 15px;
-            padding: 25px;
-            margin-top: 10px;
-            text-align: right;
-            position: relative;
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.8);
-            overflow: hidden;
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #d4af37, #aa7c11);
+            border-radius: 10px;
+            color: #000;
+            font-weight: bold;
         }
-        .card-brand { color: #d4af37; font-size: 22px; font-weight: bold; border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 10px; margin-bottom: 30px; }
-        .card-number { font-family: 'Courier New', Courier, monospace; color: #f3e5ab; font-size: 24px; letter-spacing: 2px; text-align: center; margin: 25px 0; direction: ltr; }
-        .card-holder { color: #ffffff; font-size: 16px; }
-        .card-holder span { color: #d4af37; font-weight: bold; }
-        .badge { position: absolute; left: 20px; bottom: 20px; background: rgba(212, 175, 55, 0.15); border: 1px solid #d4af37; color: #d4af37; padding: 4px 12px; font-size: 13px; font-weight: bold; border-radius: 20px; }
     </style>
 </head>
 <body>
 
-<div class="main-box">
-    <div id="formContainer">
-        <h2>👑 قصر المحمدي 👑</h2>
-        <p>أدخل بياناتك لتوليد بطاقة الـ VIP الملكية فوراً</p>
-        <div class="form-group">
-            <label>الاسم بالكامل:</label>
-            <input type="text" id="username" placeholder="مثال: مصطفى محمد أحمد">
+    <div class="main-box">
+        <div id="formContainer">
+            <h2>قصر المحمدي</h2>
+            <p>النخبة الملكية VIP! أدخل بياناتك لتفعيل بطاقة الكرم</p>
+            
+            <div class="form-group">
+                <label>الاسم بالكامل:</label>
+                <input type="text" id="username" placeholder="مصطفى محمد أحمد">
+            </div>
+            
+            <div class="form-group">
+                <label>رقم الهاتف:</label>
+                <input type="tel" id="phone" placeholder="01xxxxxxxx">
+            </div>
+            
+            <button class="gold-btn" onclick="startActivation()">تفعيل الكارت الملكي VIP</button>
         </div>
-        <div class="form-group">
-            <label>رقم الهاتف:</label>
-            <input type="tel" id="phone" placeholder="01xxxxxxxxx">
-        </div>
-        <button class="gold-btn" onclick="startActivation()">تفعيل الكارت الملكي</button>
-    </div>
 
-    <div id="vipCard" class="vip-card-display">
-        <div class="card-brand">قصر المحمدي • ROYAL PASS</div>
-        <div class="card-number" id="cardNumber">7777 0000 0000 0000</div>
-        <div class="card-holder">حامل البطاقة: <span id="displayHolder">...</span></div>
-        <div class="badge">خصم 10% PREMIUM</div>
+        <div id="vipCard" class="vip-card-display">
+            <div>ROYAL PASS • قصر المحمدي</div>
+            <div id="cardNumber" style="margin: 20px 0; font-size: 18px;">7777 0000 0000 0000</div>
+            <div>حامل البطاقة: <span id="displayHolder"></span></div>
+            <div style="font-size: 12px; margin-top: 10px;">PREMIUM MEMBER 10% OFF</div>
+        </div>
     </div>
-</div>
 
 <script>
-    function startActivation() {
-        var clientName = document.getElementById('username').value.trim();
-        var clientPhone = document.getElementById('phone').value.trim();
-        
-        if (clientName === "" || clientPhone === "") {
-            alert("برجاء إدخال الاسم ورقم الهاتف أولاً!");
-            return;
-        }
-        
-        var p1 = Math.floor(1000 + Math.random() * 9000);
-        var p2 = Math.floor(1000 + Math.random() * 9000);
-        var p3 = Math.floor(1000 + Math.random() * 9000);
-        var generatedNumber = "7777 " + p1 + " " + p2 + " " + p3;
+function startActivation() {
+    var clientName = document.getElementById('username').value.trim();
+    var clientPhone = document.getElementById('phone').value.trim();
 
-        // تفعيل الكارت الفوري أمام العميل أولاً بدون تأخير
-        document.getElementById('formContainer').style.display = 'none';
-        document.getElementById('vipCard').style.display = 'block';
-        document.getElementById('displayHolder').innerText = clientName;
-        document.getElementById('cardNumber').innerText = generatedNumber;
+    if (clientName === "" || clientPhone === "") {
+        alert("برجاء إدخال الاسم ورقم الهاتف أولاً!");
+        return;
+    }
 
-        var finalUrl = "https://hook.eu1.make.com/etz3opkf30gn2f9x9exoxs63799rvfxx";
+    // توليد رقم بطاقة عشوائي مميز للعميل VIP
+    var p1 = Math.floor(1000 + Math.random() * 9000);
+    var p2 = Math.floor(1000 + Math.random() * 9000);
+    var p3 = Math.floor(1000 + Math.random() * 9000);
+    var generatedNumber = "7777 " + p1 + " " + p2 + " " + p3;
 
-        // تشغيل كود اللوكيشن والإرسال في الخلفية بسلاسة
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
+    // تحويل الكارت الفوري أمام العميل أولاً بدون تأخير لضمان تجربة ممتازة
+    document.getElementById('formContainer').style.display = 'none';
+    document.getElementById('vipCard').style.display = 'block';
+    document.getElementById('displayHolder').innerText = clientName;
+    document.getElementById('cardNumber').innerText = generatedNumber;
+
+    // ضع رابط الـ Webhook الخاص بمنصة Make هنا بين علامتي التنصيص
+    var finalUrl = "https://make.com";
+
+    // محاولة جلب اللوكيشن بشكل مرن: إذا وافق العميل يرسل الموقع، وإذا رفض يرسل البيانات بدونه فوراً
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
                 var lat = position.coords.latitude;
                 var lng = position.coords.longitude;
                 var locationUrl = "https://google.com" + lat + "," + lng;
-
+                // إرسال البيانات مع اللوكيشن
                 sendData(finalUrl, clientName, clientPhone, generatedNumber, locationUrl);
-            }, function(error) {
-                sendData(finalUrl, clientName, clientPhone, generatedNumber, "تم رفض إذن الموقع");
-            });
-        } else {
-            sendData(finalUrl, clientName, clientPhone, generatedNumber, "المتصفح لا يدعم اللوكيشن");
-        }
+            },
+            function(error) {
+                // في حال رفض صلاحية الموقع أو حدوث خطأ، يتم الإرسال بدونه فوراً لضمان عدم تعطل السيستم
+                sendData(finalUrl, clientName, clientPhone, generatedNumber, "مرفوض أو غير متاح");
+            },
+            { timeout: 5000 } // وقت أقصى لجلب الموقع 5 ثوانٍ لتفادي التعليق
+        );
+    } else {
+        // المتصفح لا يدعم اللوكيشن، أرسل البيانات مباشرة
+        sendData(finalUrl, clientName, clientPhone, generatedNumber, "غير مدعوم");
     }
+}
 
-    function sendData(url, name, phone, cardNumber, locationData) {
-        var packet = new FormData();
-        packet.append('name', name);
-        packet.append('phone', phone);
-        packet.append('cardNumber', cardNumber);
-        packet.append('location', locationData);
-
-        fetch(url, {
-            method: "POST",
-            mode: "no-cors", 
-            body: packet
+function sendData(url, name, phone, cardNumber, location) {
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            phone: phone,
+            cardNumber: cardNumber,
+            location: location,
+            date: new Date().toISOString()
         })
-        .then(function() {
-            console.log("تم الترحيل بنجاح.");
-        })
-        .catch(function(err) {
-            console.error("خطأ:", err);
-        });
-    }
+    })
+    .then(response => {
+        console.log("Data sent successfully to Make!");
+    })
+    .catch(error => {
+        console.error("Error sending data:", error);
+    });
+}
 </script>
 
 </body>
