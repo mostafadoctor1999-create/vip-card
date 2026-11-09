@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#090a09">
     <title>بوابة النخبة الرقمية | مقهى البادية</title>
-    <!-- ملف الـ Manifest لتحويل الكارت لتطبيق قابل للتثبيت -->
-    <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com" rel="stylesheet">
@@ -34,7 +32,6 @@
         .page { width: min(100%, 420px); text-align: center; }
         .brand { color: var(--gold-light); font-size: 18px; font-weight: 700; margin-bottom: 20px; }
         
-        /* تصميم الكارت الذهبي الفاخر */
         .vip-card {
             background: linear-gradient(135deg, #1f1e17 0%, #11120f 50%, #050605 100%);
             border: 2px solid var(--gold);
@@ -43,12 +40,9 @@
             box-shadow: 0 20px 40px rgba(215, 181, 109, 0.12), inset 0 1px 2px rgba(255,255,255,0.1);
             text-align: right;
             position: relative;
-            transition: all 0.5s ease;
         }
-        /* حركة الوميض الذهبي عند لقط الموقع */
         .geo-active {
             border-color: #fff;
-            box-shadow: 0 0 30px rgba(215, 181, 109, 0.6);
             animation: goldPulse 2s infinite;
         }
         @keyframes goldPulse {
@@ -56,7 +50,6 @@
             50% { box-shadow: 0 0 40px rgba(215, 181, 109, 0.8); }
             100% { box-shadow: 0 0 20px rgba(215, 181, 109, 0.4); }
         }
-
         .card-header { display: flex; justify-content: space-between; align-items: center; }
         .logo-text { font-family: "Playfair Display", serif; color: var(--gold-light); font-size: 19px; font-weight: bold; }
         .level-badge { background: rgba(215,181,109,0.15); border: 1px solid var(--gold); color: var(--gold-light); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; }
@@ -69,29 +62,25 @@
         .name { font-size: 16px; font-weight: 700; color: #fff; margin-top: 2px; }
         .qr-placeholder { width: 52px; height: 52px; background: #fff; padding: 4px; border-radius: 5px; }
         
-        /* نظام المكافآت والتسويق الجديد داخل الكارت (الزيارات) */
-        .rewards-panel { background: rgba(215,181,109,0.05); border: 1px solid rgba(215,181,109,0.2); border-radius: 12px; padding: 12px; margin-top: 15px; text-align: right; }
+        .rewards-panel { background: rgba(215,181,109,0.05); border: 1px solid rgba(215,181,109,0.2); border-radius: 12px; padding: 12px; margin-top: 15px; }
         .rewards-title { font-size: 11px; color: var(--gold-light); font-weight: 700; margin-bottom: 8px; }
         .stamps { display: flex; justify-content: space-between; direction: ltr; }
         .stamp-dot { width: 32px; height: 32px; border-radius: 50%; border: 1px dashed var(--gold); display: flex; align-items: center; justify-content: center; font-size: 14px; color: rgba(215,181,109,0.4); }
         .stamp-dot.active { border-style: solid; background: var(--gold); color: #000; font-weight: bold; }
 
-        /* أزرار التسويق الفاخرة */
         .marketing-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
         .btn-share { background: rgba(37, 211, 102, 0.15); border: 1px solid #25d366; color: #25d366; border-radius: 8px; padding: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
         .btn-pwa { background: rgba(215,181,109,0.15); border: 1px solid var(--gold); color: var(--gold-light); border-radius: 8px; padding: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: none; }
 
-        /* تصميم فورم إدخال البيانات الفخم */
         .registration-panel { background: var(--panel); border: 1px solid var(--gold); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: right; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .reg-title { font-size: 14px; color: var(--gold-light); font-weight: 700; margin-bottom: 12px; border-bottom: 1px solid rgba(215,181,109,0.2); padding-bottom: 6px; }
         .input-field { width: 100%; min-height: 44px; padding: 10px; border: 1px solid rgba(215,181,109,0.3); border-radius: 8px; background: #0c0d0b; color: #fff; margin-bottom: 12px; font-size: 13px; outline: none; }
         .input-field:focus { border-color: var(--gold); }
         
-        .btn-activate { background: linear-gradient(135deg, #f1dda5, #c49a52); color: #17130b; border: none; width: 100%; min-height: 48px; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer; box-shadow: 0 5px 15px rgba(196,154,82,0.15); }
+        .btn-activate { background: linear-gradient(135deg, #f1dda5, #c49a52); color: #17130b; border: none; width: 100%; min-height: 48px; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer; }
         .status-msg { font-size: 12px; color: #aaa597; margin-top: 12px; margin-bottom: 25px; text-align: center; line-height: 1.6; }
         
-        /* قسم تصفح المنيو الرقمي الغني */
-        .menu-section { background: var(--panel); border: 1px solid rgba(215,181,109,0.15); border-radius: 15px; padding: 20px; text-align: right; box-shadow: 0 10px 30px rgba(0,0,0,0.3); margin-bottom: 20px; }
+        .menu-section { background: var(--panel); border: 1px solid rgba(215,181,109,0.15); border-radius: 15px; padding: 20px; text-align: right; margin-bottom: 20px; }
         .menu-title { font-size: 16px; color: var(--gold-light); font-weight: 700; border-bottom: 1px solid rgba(215,181,109,0.2); padding-bottom: 8px; margin-bottom: 15px; }
         .menu-category { font-size: 13px; color: var(--gold); font-weight: 600; margin-top: 20px; margin-bottom: 8px; padding-right: 5px; border-right: 2px solid var(--gold); }
         .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
@@ -105,21 +94,21 @@
 <div class="page">
     <div class="brand">مقهى البادية · بوابة النخبة</div>
     
-    <!-- قسم الكارت الرقمي -->
     <div class="vip-card" id="vipCard">
         <div class="card-header">
             <span class="logo-text">AL BADYAH</span>
-            <span class="level-badge">بريمير · Premier</span>
+            <!-- تم جعل فئة بريمير بالعربية ومتبوعة بالإنجليزية بين قوسين -->
+            <span class="level-badge" id="cardLevel">بريمير (Premier)</span>
         </div>
         
         <div class="discount-box">
             <div class="discount-title" id="discountTitle">خصم الـ VIP التلقائي الحصري عند حضورك</div>
-            <div class="discount-value" id="discountVal">10% OFF</div>
+            <div class="discount-value" id="discountVal">10% خصم</div>
         </div>
         
         <div class="card-footer">
             <div class="client-info">
-                <span class="label">اسم العميل VIP</span>
+                <span class="label" id="cardLabelText">اسم العميل ورقم بطاقة الـ VIP</span>
                 <span class="name" id="custName">ضيف النخبة العزيز</span>
                 <span class="label" style="margin-top: 4px; color: var(--gold);">المزايا الإضافية: ضيافة راقية وعروض حصرية</span>
             </div>
@@ -130,7 +119,6 @@
             </div>
         </div>
 
-        <!-- نظام كروت جمع الفناجين التلقائي (دعاية تكرار الزيارة) -->
         <div class="rewards-panel">
             <div class="rewards-title">☕ بطاقة تجميع المكافآت (الزيارة الخامسة مجانية!)</div>
             <div class="stamps">
@@ -143,162 +131,28 @@
         </div>
     </div>
 
-    <!-- أزرار الدعاية والتثبيت -->
     <div class="marketing-actions">
         <button class="btn-pwa" id="installBtn" onclick="triggerInstall()">📱 تثبيت الكارت على الشاشة</button>
         <button class="btn-share" onclick="shareWithFriends()">👑 اعزم صاحبك واكسب خصم</button>
     </div>
     
-    <!-- فورم تسجيل بيانات العميل الفاخر -->
     <div class="registration-panel" id="regPanel">
         <div class="reg-title">تنشيط بطاقة النخبة الرقمية</div>
         <input type="text" id="clientNameInput" class="input-field" placeholder="أدخل اسمك الكريم">
         <input type="tel" id="clientPhoneInput" class="input-field" placeholder="أدخل رقم الهاتف">
         <button class="btn-activate" onclick="activateVipMazaia()">تفعيل مستشعر الموقع والخصم اللحظي ✨</button>
     </div>
-<script>
-// إحداثيات مدخل سمالوط / قرية بادية وطريق الغروب
-const TARGET_LAT = 28.3050; 
-const TARGET_LNG = 30.6950; 
-const GEOFENCE_RADIUS_METERS = 500; 
-
-// ضع رابط تطبيق الويب الخاص بك هنا
-const webAppUrl = "https://hook.eu1.make.com/pmtj8hmcen1m6chdyk9otwpykmqfu5p8";
-let deferredPrompt;
-
-function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-}
-
-window.onload = function() {
-    const cardId = getQueryParam('card');
-    if (cardId) {
-        checkExistingCard(cardId);
-    }
-    setupPWAInstall();
-};
-
-// فحص الكارت الجاهز في الجوجل شيت
-function checkExistingCard(cardId) {
-    const statusMsg = document.getElementById('statusMessage');
-    statusMsg.innerText = "جاري تحميل بطاقتك الرقمية الفاخرة...";
-
-    fetch(${webAppUrl}?action=getCard&card=${encodeURIComponent(cardId)})
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            document.getElementById('custName').innerText = data.name;
-            document.getElementById('regPanel').style.display = 'none';
-            statusMsg.style.color = "#d7b56d";
-            statusMsg.innerText = مرحباً بك مجدداً في النخبة. رقم كارتك الفريد: ${cardId};
-            initGeofencing();
-        } else {
-            statusMsg.innerText = "رقم الكارت غير مسجل، يمكنك إنشاء كارت جديد بالأسفل.";
-        }
-    }).catch(err => {
-        console.error(err);
-        statusMsg.innerText = "حدث خطأ أثناء الاتصال بقاعدة البيانات.";
-    });
-}
-
-// دالة تسجيل عميل جديد (تم تصحيحها بالكامل هنا لتعمل الروابط والارتباطات)
-function activateVipMazaia() {
-    const nameInput = document.getElementById('clientNameInput').value.trim();
-    const phoneInput = document.getElementById('clientPhoneInput').value.trim();
-    const statusMsg = document.getElementById('statusMessage');
-
-    if (!nameInput || !phoneInput) {
-        statusMsg.style.color = "#ff4d4d";
-        statusMsg.innerText = "برجاء إدخال الاسم ورقم الهاتف لتفعيل الكارت ✨";
-        return;
-    }
-
-    statusMsg.style.color = "#d7b56d";
-    statusMsg.innerText = "جاري إنشاء كارت فريد لك وحفظ البيانات...";
-
-    // إرسال البيانات بشكل متوافق تماماً مع جوجل شيت
-    fetch(webAppUrl, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "register", name: nameInput, phone: phoneInput })
-    })
-    .then(() => {
-        document.getElementById('custName').innerText = nameInput;
-        document.getElementById('regPanel').style.display = 'none';
-        statusMsg.style.color = "#c49a52";
-        statusMsg.innerText = "تم تفعيل كارت النخبة ومستشعر الموقع بنجاح! ✨";
-        initGeofencing();
-    })
-    .catch(err => {
-        console.error(err);
-        statusMsg.style.color = "#ff4d4d";
-        statusMsg.innerText = "حدث مشكلة أثناء التنشيط، يرجى المحاولة مرة أخرى.";
-    });
-}
-
-// مستشعر الموقع الجغرافي
-function initGeofencing() {
-    if (navigator.geolocation) {
-        navigator.geolocation.watchPosition((position) => {
-            const userLat = position.coords.latitude;
-            const userLng = position.coords.longitude;
-            const distance = calculateDistance(userLat, userLng, TARGET_LAT, TARGET_LNG);
-            
-            if (distance <= GEOFENCE_RADIUS_METERS) {
-                triggerVipAlert();
-            }
-        }, null, { enableHighAccuracy: true, timeout: 5000 });
-    }
-}
-
-function calculateDistance(lat1, lon1, lat2, lon2) {
-    const R = 6371e3;
-    const phi1 = lat1 * Math.PI / 180;
-    const phi2 = lat2 * Math.PI / 180;
-    const deltaPhi = (lat2 - lat1) * Math.PI / 180;
-    const deltaLambda = (lon2 - lon1) * Math.PI / 180;
-    const a = Math.sin(deltaPhi / 2) * Math.sin(deltaPhi / 2) + Math.cos(phi1) * Math.cos(phi2) * Math.sin(deltaLambda / 2) * Math.sin(deltaLambda / 2);
-    return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
-}
-
-function triggerVipAlert() {
-    document.getElementById('vipCard').classList.add('geo-active');
-    document.getElementById('discountTitle').innerText = "🚀 تم تفعيل خصم المرور السريع لمدخل سمالوط اللحظي!";
-    document.getElementById('discountVal').innerText = "15% OFF";
+    <div class="status-msg" id="statusMessage">يرجى ملء البيانات لتنشيط المزايا الجغرافية الفاخرة عند اقترابك من فرع بادية بمدخل سمالوط.</div>
     
-    const statusMsg = document.getElementById('statusMessage');
-    statusMsg.style.color = "#f5e2a8";
-    statusMsg.innerHTML = <strong>🔔 أهلاً بك يا VIP في سمالوط!</strong><br>طلبك السريع جاهز للاستلام الفوري من عربيتك بخصم خاص جداً! ✨;
-    
-    if (navigator.vibrate) {
-        navigator.vibrate(200); 
-    }
-}
-
-function setupPWAInstall() {
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredPrompt = e;
-        document.getElementById('installBtn').style.display = 'block';
-    });
-}
-
-function triggerInstall() {
-    if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-                document.getElementById('installBtn').style.display = 'none';
-            }
-            deferredPrompt = null;
-        });
-    }
-}
-
-function shareWithFriends() {
-    const text = صاحبي الغالي، أنا فعلت بطاقة النخبة الرقمية الخاصة بمقاهي البادية بمدخل سمالوط، الكارت بيدي خصومات تفعيل جغرافية فخمة جداً وعروض حصرية للطريق. فعل كارتك أنت كمان من الرابط ده: ${window.location.href};
-    window.open(https://whatsapp.com{encodeURIComponent(text)}, '_blank');
-}
-</script>
+    <div class="menu-section">
+        <div class="menu-title">قائمة الضيافة الراقية وعروض النخبة</div>
+        <div class="menu-category">عروض الـ VIP الحصرية اليومية للسيارات</div>
+        <div class="menu-item">
+            <div>
+                <span class="item-name">كومبو الاستجمام السريع على الطريق</span>
+                <span class="item-desc">قهوة البادية الخاصة دبل + دوناتس فاخرة جاهزة للتسليم للعربية</span>
+            </div>
+            <span class="item-price">110 EGP</span>
+        </div>
+    </div>
+</div>
