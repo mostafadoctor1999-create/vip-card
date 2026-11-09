@@ -162,11 +162,10 @@ const TARGET_LAT = 28.3050;
 const TARGET_LNG = 30.6950; 
 const GEOFENCE_RADIUS_METERS = 500; 
 
-// 2. ضع رابط تطبيق الويب الخاص بك هنا
-const webAppUrl = "https://script.google.com/macros/s/AKfycbx2eVXzeAWWBN9VdAPxrE7r0f9Zb_VamXF4iB9j-YM0d34rTddDkaQBEXAU05a1fP1BUQ/exec";
+// ضع رابط تطبيق الويب الخاص بك هنا
+const webAppUrl = "ضع_رابط_تطبيق_الويب_هنا";
 let deferredPrompt;
 
-// قراءة البارامترات والتحقق من رقم الكارت
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
@@ -185,7 +184,7 @@ function checkExistingCard(cardId) {
     const statusMsg = document.getElementById('statusMessage');
     statusMsg.innerText = "جاري تحميل بطاقتك الرقمية الفاخرة...";
 
-    fetch(${webAppUrl}?action=getCard&card=${cardId})
+    fetch(${webAppUrl}?action=getCard&card=${encodeURIComponent(cardId)})
     .then(response => response.json())
     .then(data => {
         if (data.success) {
@@ -194,11 +193,16 @@ function checkExistingCard(cardId) {
             statusMsg.style.color = "#d7b56d";
             statusMsg.innerText = مرحباً بك مجدداً في النخبة. رقم كارتك الفريد: ${cardId};
             initGeofencing();
+        } else {
+            statusMsg.innerText = "رقم الكارت غير مسجل، يمكنك إنشاء كارت جديد بالأسفل.";
         }
-    }).catch(err => console.error(err));
+    }).catch(err => {
+        console.error(err);
+        statusMsg.innerText = "حدث خطأ أثناء الاتصال بقاعدة البيانات.";
+    });
 }
 
-// دالة تسجيل عميل جديد
+// دالة تسجيل عميل جديد (تم تصحيحها بالكامل هنا لتعمل الروابط والارتباطات)
 function activateVipMazaia() {
     const nameInput = document.getElementById('clientNameInput').value.trim();
     const phoneInput = document.getElementById('clientPhoneInput').value.trim();
@@ -210,8 +214,10 @@ function activateVipMazaia() {
         return;
     }
 
+    statusMsg.style.color = "#d7b56d";
     statusMsg.innerText = "جاري إنشاء كارت فريد لك وحفظ البيانات...";
 
+    // إرسال البيانات بشكل متوافق تماماً مع جوجل شيت
     fetch(webAppUrl, {
         method: "POST",
         mode: "no-cors",
@@ -221,13 +227,18 @@ function activateVipMazaia() {
     .then(() => {
         document.getElementById('custName').innerText = nameInput;
         document.getElementById('regPanel').style.display = 'none';
-        statusMsg.style.color = "#4dh770";
+        statusMsg.style.color = "#c49a52";
         statusMsg.innerText = "تم تفعيل كارت النخبة ومستشعر الموقع بنجاح! ✨";
         initGeofencing();
+    })
+    .catch(err => {
+        console.error(err);
+        statusMsg.style.color = "#ff4d4d";
+        statusMsg.innerText = "حدث مشكلة أثناء التنشيط، يرجى المحاولة مرة أخرى.";
     });
 }
 
-// مستشعر الموقع الجغرافي ومراقبة التحرك لمدخل سمالوط
+// مستشعر الموقع الجغرافي
 function initGeofencing() {
     if (navigator.geolocation) {
         navigator.geolocation.watchPosition((position) => {
@@ -252,7 +263,6 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
     return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
 }
 
-// تفعيل الوميض والاهتزاز عند لقط الموقع
 function triggerVipAlert() {
     document.getElementById('vipCard').classList.add('geo-active');
     document.getElementById('discountTitle').innerText = "🚀 تم تفعيل خصم المرور السريع لمدخل سمالوط اللحظي!";
@@ -263,11 +273,10 @@ function triggerVipAlert() {
     statusMsg.innerHTML = <strong>🔔 أهلاً بك يا VIP في سمالوط!</strong><br>طلبك السريع جاهز للاستلام الفوري من عربيتك بخصم خاص جداً! ✨;
     
     if (navigator.vibrate) {
-        navigator.vibrate([200, 100, 200]); 
+        navigator.vibrate(200); 
     }
 }
 
-// تشغيل زر التثبيت PWA على الشاشة
 function setupPWAInstall() {
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
@@ -288,7 +297,6 @@ function triggerInstall() {
     }
 }
 
-// مشاركة الكارت مع الأصدقاء
 function shareWithFriends() {
     const text = صاحبي الغالي، أنا فعلت بطاقة النخبة الرقمية الخاصة بمقاهي البادية بمدخل سمالوط، الكارت بيدي خصومات تفعيل جغرافية فخمة جداً وعروض حصرية للطريق. فعل كارتك أنت كمان من الرابط ده: ${window.location.href};
     window.open(https://whatsapp.com{encodeURIComponent(text)}, '_blank');
