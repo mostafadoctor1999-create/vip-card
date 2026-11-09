@@ -156,3 +156,141 @@
         <input type="tel" id="clientPhoneInput" class="input-field" placeholder="أدخل رقم الهاتف">
         <button class="btn-activate" onclick="activateVipMazaia()">تفعيل مستشعر الموقع والخصم اللحظي ✨</button>
     </div>
+<script>
+// إحداثيات مدخل سمالوط / قرية بادية وطريق الغروب
+const TARGET_LAT = 28.3050; 
+const TARGET_LNG = 30.6950; 
+const GEOFENCE_RADIUS_METERS = 500; 
+
+// 2. ضع رابط تطبيق الويب الخاص بك هنا
+const webAppUrl = "https://script.google.com/macros/s/AKfycbx2eVXzeAWWBN9VdAPxrE7r0f9Zb_VamXF4iB9j-YM0d34rTddDkaQBEXAU05a1fP1BUQ/exec";
+let deferredPrompt;
+
+// قراءة البارامترات والتحقق من رقم الكارت
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+window.onload = function() {
+    const cardId = getQueryParam('card');
+    if (cardId) {
+        checkExistingCard(cardId);
+    }
+    setupPWAInstall();
+};
+
+// فحص الكارت الجاهز في الجوجل شيت
+function checkExistingCard(cardId) {
+    const statusMsg = document.getElementById('statusMessage');
+    statusMsg.innerText = "جاري تحميل بطاقتك الرقمية الفاخرة...";
+
+    fetch(${webAppUrl}?action=getCard&card=${cardId})
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById('custName').innerText = data.name;
+            document.getElementById('regPanel').style.display = 'none';
+            statusMsg.style.color = "#d7b56d";
+            statusMsg.innerText = مرحباً بك مجدداً في النخبة. رقم كارتك الفريد: ${cardId};
+            initGeofencing();
+        }
+    }).catch(err => console.error(err));
+}
+
+// دالة تسجيل عميل جديد
+function activateVipMazaia() {
+    const nameInput = document.getElementById('clientNameInput').value.trim();
+    const phoneInput = document.getElementById('clientPhoneInput').value.trim();
+    const statusMsg = document.getElementById('statusMessage');
+
+    if (!nameInput || !phoneInput) {
+        statusMsg.style.color = "#ff4d4d";
+        statusMsg.innerText = "برجاء إدخال الاسم ورقم الهاتف لتفعيل الكارت ✨";
+        return;
+    }
+
+    statusMsg.innerText = "جاري إنشاء كارت فريد لك وحفظ البيانات...";
+
+    fetch(webAppUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "register", name: nameInput, phone: phoneInput })
+    })
+    .then(() => {
+        document.getElementById('custName').innerText = nameInput;
+        document.getElementById('regPanel').style.display = 'none';
+        statusMsg.style.color = "#4dh770";
+        statusMsg.innerText = "تم تفعيل كارت النخبة ومستشعر الموقع بنجاح! ✨";
+        initGeofencing();
+    });
+}
+
+// مستشعر الموقع الجغرافي ومراقبة التحرك لمدخل سمالوط
+function initGeofencing() {
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition((position) => {
+            const userLat = position.coords.latitude;
+            const userLng = position.coords.longitude;
+            const distance = calculateDistance(userLat, userLng, TARGET_LAT, TARGET_LNG);
+            
+            if (distance <= GEOFENCE_RADIUS_METERS) {
+                triggerVipAlert();
+            }
+        }, null, { enableHighAccuracy: true, timeout: 5000 });
+    }
+}
+
+function calculateDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371e3;
+    const phi1 = lat1 * Math.PI / 180;
+    const phi2 = lat2 * Math.PI / 180;
+    const deltaPhi = (lat2 - lat1) * Math.PI / 180;
+    const deltaLambda = (lon2 - lon1) * Math.PI / 180;
+    const a = Math.sin(deltaPhi / 2) * Math.sin(deltaPhi / 2) + Math.cos(phi1) * Math.cos(phi2) * Math.sin(deltaLambda / 2) * Math.sin(deltaLambda / 2);
+    return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+}
+
+// تفعيل الوميض والاهتزاز عند لقط الموقع
+function triggerVipAlert() {
+    document.getElementById('vipCard').classList.add('geo-active');
+    document.getElementById('discountTitle').innerText = "🚀 تم تفعيل خصم المرور السريع لمدخل سمالوط اللحظي!";
+    document.getElementById('discountVal').innerText = "15% OFF";
+    
+    const statusMsg = document.getElementById('statusMessage');
+    statusMsg.style.color = "#f5e2a8";
+    statusMsg.innerHTML = <strong>🔔 أهلاً بك يا VIP في سمالوط!</strong><br>طلبك السريع جاهز للاستلام الفوري من عربيتك بخصم خاص جداً! ✨;
+    
+    if (navigator.vibrate) {
+        navigator.vibrate([200, 100, 200]); 
+    }
+}
+
+// تشغيل زر التثبيت PWA على الشاشة
+function setupPWAInstall() {
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        document.getElementById('installBtn').style.display = 'block';
+    });
+}
+
+function triggerInstall() {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                document.getElementById('installBtn').style.display = 'none';
+            }
+            deferredPrompt = null;
+        });
+    }
+}
+
+// مشاركة الكارت مع الأصدقاء
+function shareWithFriends() {
+    const text = صاحبي الغالي، أنا فعلت بطاقة النخبة الرقمية الخاصة بمقاهي البادية بمدخل سمالوط، الكارت بيدي خصومات تفعيل جغرافية فخمة جداً وعروض حصرية للطريق. فعل كارتك أنت كمان من الرابط ده: ${window.location.href};
+    window.open(https://whatsapp.com{encodeURIComponent(text)}, '_blank');
+}
+</script>
