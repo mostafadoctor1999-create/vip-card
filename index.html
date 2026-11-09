@@ -156,3 +156,114 @@
         </div>
     </div>
 </div>
+<script>
+    // رابط الـ Webhook الخاص بك من منصة Make
+    const MAKE_WEBHOOK_URL = 'https://make.com';
+
+    // إحداثيات المستشعر الجغرافي عند مدخل سمالوط (موقع مقهى بادية)
+    const TARGET_LAT = 28.3100; 
+    const TARGET_LON = 30.7100;
+    const GEOFENCE_RADIUS_KM = 1.5; // نصف القطر المستهدف لاكتشاف السيارات المارة (1.5 كيلومتر)
+
+    function activateVipMazaia() {
+        const name = document.getElementById('clientNameInput').value.trim();
+        const phone = document.getElementById('clientPhoneInput').value.trim();
+        const statusMsg = document.getElementById('statusMessage');
+
+        if (!name || !phone) {
+            statusMsg.innerHTML = "❌ عذراً، يرجى كتابة الاسم ورقم الهاتف بشكل صحيح لتنشيط الكارت.";
+            statusMsg.style.color = "#ff6b6b";
+            return;
+        }
+
+        statusMsg.innerHTML = "⏳ جاري تشغيل مستشعر الموقع الجغرافي وفحص النطاق...";
+        statusMsg.style.color = "#f5e2a8";
+
+        // طلب إذن تحديد الموقع من المتصفح وسحب البيانات لايف
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const userLat = position.coords.latitude;
+                    const userLon = position.coords.longitude;
+                    
+                    // حساب المسافة بين العميل والمدخل
+                    const distance = calculateDistance(userLat, userLon, TARGET_LAT, TARGET_LON);
+                    let inGeofence = (distance <= GEOFENCE_RADIUS_KM);
+
+                    // إرسال البيانات فوراً لـ Make عبر الـ Webhook
+                    sendDataToMake(name, phone, userLat, userLon, inGeofence, distance);
+                },
+                (error) => {
+                    console.error(error);
+                    statusMsg.innerHTML = "⚠️ تم تفعيل الكارت، لكن يرجى السماح بصلاحية الموقع للمتصفح لتشغيل الخصم التلقائي عند المدخل.";
+                    statusMsg.style.color = "#d7b56d";
+                    // إرسال البيانات حتى لو لم يعطِ الصلاحية لتوثيق التسجيل في الشيت
+                    sendDataToMake(name, phone, 0, 0, false, -1);
+                },
+                { enableHighAccuracy: true, timeout: 10000 }
+            );
+        } else {
+            statusMsg.innerHTML = "❌ متصفحك لا يدعم مستشعرات الموقع التلقائية.";
+            sendDataToMake(name, phone, 0, 0, false, -1);
+        }
+    }
+
+    function sendDataToMake(name, phone, lat, lon, inGeofence, distance) {
+        const statusMsg = document.getElementById('statusMessage');
+        
+        const payload = {
+            client_name: name,
+            client_phone: phone,
+            latitude: lat,
+            longitude: lon,
+            is_in_geofence: inGeofence,
+            distance_km: distance.toFixed(2),
+            timestamp: new Date().toISOString()
+        };
+
+        fetch(MAKE_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        })
+        .then(response => {
+            // تحديث واجهة الكارت فورياً باسم العميل وتفعيل المستشعر
+            document.getElementById('custName').innerText = name;
+            document.getElementById('regPanel').style.display = 'none';
+            
+            if (inGeofence) {
+                document.getElementById('vipCard').classList.add('geo-active');
+                statusMsg.innerHTML = "👑 أهلاً بك في نطاق سمالوط! تم تفعيل الـ VIP وجاري إرسال إشعار فوري لتجهيز ضيافتك للسيارة.";
+                statusMsg.style.color = "#25d366";
+            } else {
+                statusMsg.innerHTML = "✨ تم تفعيل بطاقتك بنجاح! المستشعر سيتنشط تلقائياً ويضيء الكارت باللون الذهبي فور اقترابك من مدخل سمالوط.";
+                statusMsg.style.color = "#f5e2a8";
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            statusMsg.innerHTML = "❌ حدث خطأ أثناء الاتصال بالخادم، يرجى المحاولة مرة أخرى.";
+            statusMsg.style.color = "#ff6b6b";
+        });
+    }
+
+    // معادلة هافرسين لحساب المسافة الجغرافية بدقة بين نقطتين على الخريطة
+    function calculateDistance(lat1, lon1, lat2, lon2) {
+        const R = 6371; // نصف قطر الأرض بالكيلومترات
+        const dLat = (lat2 - lat1) * Math.PI / 180;
+        const dLon = (lon2 - lon1) * Math.PI / 180;
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                  Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+                  Math.sin(dLon/2) * Math.sin(dLon/2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return R * c;
+    }
+
+    function shareWithFriends() {
+        const text = "سجل الآن في بوابة النخبة لمقهى البادية واحصل على كارت VIP بخصم 10% تلقائي ومكافآت حصرية عند مدخل سمالوط!";
+        window.open(https://whatsapp.com{encodeURIComponent(text)}, '_blank');
+    }
+</script>
+
+</body>
+</html>
