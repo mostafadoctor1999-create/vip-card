@@ -51,11 +51,17 @@
         .card-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 15px; }
         .client-info { display: flex; flex-direction: column; }
         .label { font-size: 10px; color: #b8ad96; }
-        .name { font-size: 15px; font-weight: 600; color: #fff; }
+        .name { font-size: 16px; font-weight: 700; color: #fff; margin-top: 2px; }
         .qr-placeholder { width: 52px; height: 52px; background: #fff; padding: 4px; border-radius: 5px; }
         
-        .btn-activate { background: linear-gradient(135deg, #f1dda5, #c49a52); color: #17130b; border: none; width: 100%; min-height: 48px; border-radius: 12px; font-weight: 700; font-size: 13px; margin-top: 15px; cursor: pointer; box-shadow: 0 5px 15px rgba(196,154,82,0.15); }
-        .status-msg { font-size: 11px; color: #aaa597; margin-top: 8px; margin-bottom: 25px; }
+        /* تصميم فورم إدخال البيانات الفخم */
+        .registration-panel { background: var(--panel); border: 1px solid var(--gold); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: right; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .reg-title { font-size: 14px; color: var(--gold-light); font-weight: 700; margin-bottom: 12px; border-bottom: 1px solid rgba(215,181,109,0.2); padding-bottom: 6px; }
+        .input-field { width: 100%; min-height: 44px; padding: 10px; border: 1px solid rgba(215,181,109,0.3); border-radius: 8px; background: #0c0d0b; color: #fff; margin-bottom: 12px; font-size: 13px; outline: none; }
+        .input-field:focus { border-color: var(--gold); }
+        
+        .btn-activate { background: linear-gradient(135deg, #f1dda5, #c49a52); color: #17130b; border: none; width: 100%; min-height: 48px; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer; box-shadow: 0 5px 15px rgba(196,154,82,0.15); }
+        .status-msg { font-size: 11px; color: #aaa597; margin-top: 8px; margin-bottom: 25px; text-align: center; }
         
         /* قسم تصفح المنيو الرقمي الغني */
         .menu-section { background: var(--panel); border: 1px solid rgba(215,181,109,0.15); border-radius: 15px; padding: 20px; text-align: right; box-shadow: 0 10px 30px rgba(0,0,0,0.3); margin-bottom: 20px; }
@@ -106,8 +112,14 @@
         </div>
     </div>
     
-    <button class="btn-activate" onclick="activateVipMazaia()">تفعيل مستشعر الموقع والخصم اللحظي ✨</button>
-    <div class="status-msg" id="statusMessage">اضغط لتنشيط المزايا الجغرافية عند اقترابك من فرع بادية.</div>
+    <!-- فورم تسجيل بيانات العميل الفاخر -->
+    <div class="registration-panel" id="regPanel">
+        <div class="reg-title">تنشيط بطاقة النخبة الرقمية</div>
+        <input type="text" id="clientNameInput" class="input-field" placeholder="أدخل اسمك الكريم">
+        <input type="tel" id="clientPhoneInput" class="input-field" placeholder="أدخل رقم الهاتف">
+        <button class="btn-activate" onclick="activateVipMazaia()">تفعيل مستشعر الموقع والخصم اللحظي ✨</button>
+    </div>
+    <div class="status-msg" id="statusMessage">يرجى ملء البيانات لتنشيط المزايا الجغرافية عند اقترابك من فرع بادية.</div>
     
     <!-- قسم تصفح قائمة الطعام الممتدة والضيافة الراقية -->
     <div class="menu-section">
@@ -151,29 +163,3 @@
                 <span class="item-name">كابوتشينو مخملي</span>
                 <span class="item-desc">إسبريسو غني مع رغوة حليب كريمية ناعمة بنقوش النخبة</span>
             </div>
-            <span class="item-price">60 EGP</span>
-        </div>
-        <div class="menu-item">
-            <div>
-                <span class="item-name">لاتيه البادية الفاخر</span>
-                <span class="item-desc">مزيج متوازن وممتع من الحليب المكثف والإسبريسو العالي النقاء</span>
-            </div>
-            <span class="item-price">65 EGP</span>
-        </div>
-        
-        <!-- قسم المشروبات الباردة المنعشة -->
-        <div class="menu-category">المشروبات الباردة والمنعشة</div>
-        <div class="menu-item">
-            <div>
-                <span class="item-name">موهيتو بادية المنعش</span>
-                <span class="item-desc">مزيج رائع من النعناع الطازج، الليمون ونكهة الاستجمام الخاصة</span>
-            </div>
-            <span class="item-price">55 EGP</span>
-        </div>
-        <div class="menu-item">
-            <div>
-                <span class="item-name">سبانش لاتيه مثلج</span>
-                <span class="item-desc">قهوة باردة فاخرة ومحلاة تعبر عن قمة الروقان</span>
-            </div>
-            <span class="item-price">70 EGP</span>
-        </div>
