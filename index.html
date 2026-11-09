@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#090a09">
     <title>بوابة النخبة الرقمية | مقهى البادية</title>
+    <!-- ملف الـ Manifest لتحويل الكارت لتطبيق قابل للتثبيت -->
+    <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com" rel="stylesheet">
     <style>
         :root {
             color-scheme: dark;
@@ -41,7 +43,20 @@
             box-shadow: 0 20px 40px rgba(215, 181, 109, 0.12), inset 0 1px 2px rgba(255,255,255,0.1);
             text-align: right;
             position: relative;
+            transition: all 0.5s ease;
         }
+        /* حركة الوميض الذهبي عند لقط الموقع */
+        .geo-active {
+            border-color: #fff;
+            box-shadow: 0 0 30px rgba(215, 181, 109, 0.6);
+            animation: goldPulse 2s infinite;
+        }
+        @keyframes goldPulse {
+            0% { box-shadow: 0 0 20px rgba(215, 181, 109, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(215, 181, 109, 0.8); }
+            100% { box-shadow: 0 0 20px rgba(215, 181, 109, 0.4); }
+        }
+
         .card-header { display: flex; justify-content: space-between; align-items: center; }
         .logo-text { font-family: "Playfair Display", serif; color: var(--gold-light); font-size: 19px; font-weight: bold; }
         .level-badge { background: rgba(215,181,109,0.15); border: 1px solid var(--gold); color: var(--gold-light); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; }
@@ -54,6 +69,18 @@
         .name { font-size: 16px; font-weight: 700; color: #fff; margin-top: 2px; }
         .qr-placeholder { width: 52px; height: 52px; background: #fff; padding: 4px; border-radius: 5px; }
         
+        /* نظام المكافآت والتسويق الجديد داخل الكارت (الزيارات) */
+        .rewards-panel { background: rgba(215,181,109,0.05); border: 1px solid rgba(215,181,109,0.2); border-radius: 12px; padding: 12px; margin-top: 15px; text-align: right; }
+        .rewards-title { font-size: 11px; color: var(--gold-light); font-weight: 700; margin-bottom: 8px; }
+        .stamps { display: flex; justify-content: space-between; direction: ltr; }
+        .stamp-dot { width: 32px; height: 32px; border-radius: 50%; border: 1px dashed var(--gold); display: flex; align-items: center; justify-content: center; font-size: 14px; color: rgba(215,181,109,0.4); }
+        .stamp-dot.active { border-style: solid; background: var(--gold); color: #000; font-weight: bold; }
+
+        /* أزرار التسويق الفاخرة */
+        .marketing-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .btn-share { background: rgba(37, 211, 102, 0.15); border: 1px solid #25d366; color: #25d366; border-radius: 8px; padding: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
+        .btn-pwa { background: rgba(215,181,109,0.15); border: 1px solid var(--gold); color: var(--gold-light); border-radius: 8px; padding: 8px; font-size: 12px; font-weight: 700; cursor: pointer; display: none; }
+
         /* تصميم فورم إدخال البيانات الفخم */
         .registration-panel { background: var(--panel); border: 1px solid var(--gold); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: right; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .reg-title { font-size: 14px; color: var(--gold-light); font-weight: 700; margin-bottom: 12px; border-bottom: 1px solid rgba(215,181,109,0.2); padding-bottom: 6px; }
@@ -61,7 +88,7 @@
         .input-field:focus { border-color: var(--gold); }
         
         .btn-activate { background: linear-gradient(135deg, #f1dda5, #c49a52); color: #17130b; border: none; width: 100%; min-height: 48px; border-radius: 12px; font-weight: 700; font-size: 13px; cursor: pointer; box-shadow: 0 5px 15px rgba(196,154,82,0.15); }
-        .status-msg { font-size: 11px; color: #aaa597; margin-top: 8px; margin-bottom: 25px; text-align: center; }
+        .status-msg { font-size: 12px; color: #aaa597; margin-top: 12px; margin-bottom: 25px; text-align: center; line-height: 1.6; }
         
         /* قسم تصفح المنيو الرقمي الغني */
         .menu-section { background: var(--panel); border: 1px solid rgba(215,181,109,0.15); border-radius: 15px; padding: 20px; text-align: right; box-shadow: 0 10px 30px rgba(0,0,0,0.3); margin-bottom: 20px; }
@@ -71,14 +98,6 @@
         .item-name { font-size: 13px; color: #fff; font-weight: 600; }
         .item-desc { font-size: 10px; color: #aaa597; display: block; margin-top: 2px; line-height: 1.5; }
         .item-price { font-size: 13px; color: var(--gold-light); font-weight: 700; font-family: "Playfair Display", serif; }
-
-        /* قسم روابط التواصل الاجتماعي الفاخرة */
-        .social-section { background: var(--panel); border: 1px solid rgba(215,181,109,0.15); border-radius: 15px; padding: 18px; text-align: right; }
-        .social-title { font-size: 14px; color: var(--gold-light); font-weight: 700; margin-bottom: 12px; }
-        .social-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .social-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(215,181,109,0.15); border-radius: 10px; padding: 10px; text-decoration: none; color: #f6f1e7; font-size: 11px; font-weight: 600; transition: background 0.2s; }
-        .social-btn:hover { background: rgba(215,181,109,0.08); border-color: var(--gold); }
-        .social-icon { font-size: 18px; margin-bottom: 4px; color: var(--gold); }
     </style>
 </head>
 <body>
@@ -87,15 +106,15 @@
     <div class="brand">مقهى البادية · بوابة النخبة</div>
     
     <!-- قسم الكارت الرقمي -->
-    <div class="vip-card">
+    <div class="vip-card" id="vipCard">
         <div class="card-header">
             <span class="logo-text">AL BADYAH</span>
             <span class="level-badge">بريمير · Premier</span>
         </div>
         
         <div class="discount-box">
-            <div class="discount-title">خصم الـ VIP التلقائي الحصري عند حضورك</div>
-            <div class="discount-value">10% OFF</div>
+            <div class="discount-title" id="discountTitle">خصم الـ VIP التلقائي الحصري عند حضورك</div>
+            <div class="discount-value" id="discountVal">10% OFF</div>
         </div>
         
         <div class="card-footer">
@@ -110,6 +129,24 @@
                 </div>
             </div>
         </div>
+
+        <!-- نظام كروت جمع الفناجين التلقائي (دعاية تكرار الزيارة) -->
+        <div class="rewards-panel">
+            <div class="rewards-title">☕ بطاقة تجميع المكافآت (الزيارة الخامسة مجانية!)</div>
+            <div class="stamps">
+                <div class="stamp-dot active">✓</div>
+                <div class="stamp-dot active">✓</div>
+                <div class="stamp-dot">٣</div>
+                <div class="stamp-dot">٤</div>
+                <div class="stamp-dot">🎁</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- أزرار الدعاية والتثبيت -->
+    <div class="marketing-actions">
+        <button class="btn-pwa" id="installBtn" onclick="triggerInstall()">📱 تثبيت الكارت على الشاشة</button>
+        <button class="btn-share" onclick="shareWithFriends()">👑 اعزم صاحبك واكسب خصم</button>
     </div>
     
     <!-- فورم تسجيل بيانات العميل الفاخر -->
@@ -119,47 +156,3 @@
         <input type="tel" id="clientPhoneInput" class="input-field" placeholder="أدخل رقم الهاتف">
         <button class="btn-activate" onclick="activateVipMazaia()">تفعيل مستشعر الموقع والخصم اللحظي ✨</button>
     </div>
-    <div class="status-msg" id="statusMessage">يرجى ملء البيانات لتنشيط المزايا الجغرافية عند اقترابك من فرع بادية.</div>
-    
-    <!-- قسم تصفح قائمة الطعام الممتدة والضيافة الراقية -->
-    <div class="menu-section">
-        <div class="menu-title">قائمة الضيافة الراقية وعروض النخبة</div>
-        
-        <!-- قسم العروض الخاصة -->
-        <div class="menu-category">عروض الـ VIP الحصرية اليومية</div>
-        <div class="menu-item">
-            <div>
-                <span class="item-name">كومبو الاستجمام الفاخر</span>
-                <span class="item-desc">قهوة البادية الخاصة + اختيارك من كيك الشوكولاتة أو المخبوزات الفرنسية</span>
-            </div>
-            <span class="item-price">110 EGP</span>
-        </div>
-        <div class="menu-item">
-            <div>
-                <span class="item-name">عقد الروقان الثنائي</span>
-                <span class="item-desc">2 مشروب ساخن فاخر من اختيارك + حلوى مجانية للضيافة</span>
-            </div>
-            <span class="item-price">130 EGP</span>
-        </div>
-        
-        <!-- قسم المشروبات الساخنة -->
-        <div class="menu-category">المشروبات الساخنة الفاخرة</div>
-        <div class="menu-item">
-            <div>
-                <span class="item-name">قهوة البادية الخاصة</span>
-                <span class="item-desc">خلطة ممتازة من البن الفاخر بلمسة شرقية دافئة</span>
-            </div>
-            <span class="item-price">65 EGP</span>
-        </div>
-        <div class="menu-item">
-            <div>
-                <span class="item-name">إسبريسو سينجل / دبل</span>
-                <span class="item-desc">مستخلص نقي من حبوب البن المحمصة بعناية فائقة</span>
-            </div>
-            <span class="item-price">45 EGP</span>
-        </div>
-        <div class="menu-item">
-            <div>
-                <span class="item-name">كابوتشينو مخملي</span>
-                <span class="item-desc">إسبريسو غني مع رغوة حليب كريمية ناعمة بنقوش النخبة</span>
-            </div>
