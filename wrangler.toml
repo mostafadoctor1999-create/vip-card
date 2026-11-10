@@ -1,0 +1,7 @@
+name = "vip-card-location-alert"
+main = "worker.js"
+compatibility_date = "2026-11-10"
+
+[vars]
+# Exact origin of the GitHub Pages site; do not include a trailing slash.
+ALLOWED_ORIGIN = "https://mostafadoctor1999-create.github.io"

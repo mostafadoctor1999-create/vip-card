@@ -1,7 +1,6 @@
 /*
- * Location tracking enhancement for the existing Al Badyah page.
- * Include this file after the page's existing inline script:
- * <script src="./location-tracker.js"></script>
+ * Opt-in geolocation tracking and local departure alerts.
+ * External alert delivery is disabled until this endpoint is configured.
  */
 (() => {
   'use strict';
@@ -9,6 +8,8 @@
   const RESTAURANT_LAT = 28.3095;
   const RESTAURANT_LNG = 30.7123;
   const DEPARTURE_RADIUS_METERS = 100;
+  // Replace only with the public URL of your deployed Cloudflare Worker.
+  // Never put the Make webhook URL or its secret token in this public file.
   const LOCATION_ALERT_ENDPOINT = 'PLACEHOLDER_URL';
 
   const originalLocateButton = document.getElementById('locateBtn');
@@ -20,8 +21,8 @@
     return;
   }
 
-  // Replace only the location button, preserving its appearance and removing the
-  // old one-shot click listener so the live watcher is the sole location handler.
+  // Replace the existing button to remove its one-shot geolocation handler while
+  // preserving its markup, appearance, and all unrelated page functionality.
   const locateButton = originalLocateButton.cloneNode(true);
   originalLocateButton.replaceWith(locateButton);
 
@@ -36,7 +37,7 @@
 
   const consentText = document.createElement('span');
   consentText.id = 'locationConsentText';
-  consentText.textContent = 'أوافق على متابعة موقعي أثناء بقاء الصفحة مفتوحة، وإظهار تنبيه على جهازي إذا ابتعدت أكثر من 100 متر عن المطعم. يمكنني إيقاف المتابعة في أي وقت.';
+  consentText.textContent = 'أوافق على متابعة موقعي أثناء بقاء الصفحة مفتوحة. عند الابتعاد المؤكد أكثر من 100 متر، سيظهر تنبيه محلي، وقد تُرسل إحداثياتي إلى المطعم لإشعاره إذا تم إعداد الوسيط الآمن. يمكنني إيقاف المتابعة في أي وقت.';
   consentLabel.append(consentCheckbox, consentText);
   locateButton.insertAdjacentElement('afterend', consentLabel);
 
@@ -70,7 +71,7 @@
   }
 
   function stopWatching(message = 'تم إيقاف متابعة الموقع.') {
-    if (watchId !== null) {
+    if (watchId !== null && 'geolocation' in navigator) {
       navigator.geolocation.clearWatch(watchId);
       watchId = null;
     }
@@ -92,8 +93,6 @@
   }
 
   function notifyDeparture(message) {
-    // Notifications require HTTPS and explicit browser permission. The page must
-    // remain open for geolocation watch callbacks to continue.
     if ('Notification' in window && Notification.permission === 'granted') {
       try {
         new Notification('تنبيه موقع المطعم', {
@@ -105,7 +104,6 @@
         console.warn('Could not display notification:', error);
       }
     }
-
     if ('vibrate' in navigator) navigator.vibrate([300, 150, 300]);
   }
 
@@ -124,14 +122,53 @@
     locationResult.classList.remove('hidden');
   }
 
-  function handlePosition(position) {
+  async function sendExternalAlert(position, distance) {
+    if (
+      !LOCATION_ALERT_ENDPOINT ||
+      LOCATION_ALERT_ENDPOINT === 'PLACEHOLDER_URL'
+    ) {
+      return;
+    }
+
+    let endpoint;
+    try {
+      endpoint = new URL(LOCATION_ALERT_ENDPOINT);
+      if (endpoint.protocol !== 'https:') {
+        throw new Error('The location alert endpoint must use HTTPS.');
+      }
+    } catch (error) {
+      console.error('Invalid location alert endpoint:', error);
+      setLocationStatus('عنوان وسيط التنبيه غير صالح؛ تم عرض التنبيه المحلي فقط.', '#ff7a7a');
+      return;
+    }
+
     const { latitude, longitude, accuracy } = position.coords;
-    const distance = distanceInMeters(
-      latitude,
-      longitude,
-      RESTAURANT_LAT,
-      RESTAURANT_LNG
-    );
+    try {
+      const response = await fetch(endpoint.href, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          event: 'left_restaurant_radius',
+          latitude,
+          longitude,
+          accuracyMeters: accuracy,
+          distanceFromRestaurantMeters: Math.round(distance),
+          occurredAt: new Date(position.timestamp).toISOString()
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Could not send external location alert:', error);
+      setLocationStatus('تم عرض التنبيه المحلي، لكن تعذر إرسال التنبيه الخارجي.', '#ff7a7a');
+    }
+  }
+
+  async function handlePosition(position) {
+    const { latitude, longitude, accuracy } = position.coords;
+    const distance = distanceInMeters(latitude, longitude, RESTAURANT_LAT, RESTAURANT_LNG);
     renderCoordinates(position, distance);
 
     console.log('Geolocation update:', {
@@ -141,8 +178,7 @@
       distanceFromRestaurantMeters: Math.round(distance)
     });
 
-    // Account for GPS uncertainty: only classify as outside if even the nearest
-    // possible point is beyond the radius; only re-arm once definitely inside.
+    // Account for GPS uncertainty to avoid acting on an imprecise boundary reading.
     if (distance + accuracy <= DEPARTURE_RADIUS_METERS) {
       departureAlertSent = false;
       setLocationStatus(`أنت داخل نطاق المطعم (100 متر). دقة القراءة: نحو ${Math.round(accuracy)} متر.`, '#7bdc96');
@@ -160,12 +196,7 @@
     const message = `ابتعدت عن المطعم أكثر من ${DEPARTURE_RADIUS_METERS} متر. المسافة التقريبية ${Math.round(distance)} متر.`;
     setLocationStatus(message, '#ff7a7a');
     notifyDeparture(message);
-
-    // Deliberately do not send coordinates to the placeholder or any third party.
-    // Configure a consented, protected backend before implementing external alerts.
-    if (LOCATION_ALERT_ENDPOINT !== 'PLACEHOLDER_URL') {
-      console.warn('External alerts are intentionally not implemented in this client-only tracker. Use a protected backend endpoint.');
-    }
+    await sendExternalAlert(position, distance);
   }
 
   function handlePositionError(error) {
