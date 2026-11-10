@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#11100d">
+  <meta name="description" content="اكتشفوا أجواء قرية البادية وأقسام الأكل والمشروبات والجلسات.">
+  <title>منيو قرية البادية | أكل ومشروبات وجلسات</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#11100d;--panel:#1b1914;--gold:#d8b875;--cream:#f8edcf;--muted:#c0b9a8;--line:rgba(216,184,117,.25);font-family:"Cairo",Tahoma,sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -10%,rgba(216,184,117,.16),transparent 40%),var(--bg);color:#f7f2e7}a{color:inherit}.wrap{width:min(1100px,calc(100% - 32px));margin-inline:auto}
+    .top{padding:18px 0;border-bottom:1px solid var(--line)}.top-in{display:flex;align-items:center;justify-content:space-between;gap:12px}.brand{color:var(--cream);font-weight:800;text-decoration:none}.back{color:var(--gold);text-decoration:none;font-size:14px}
+    .hero{position:relative;min-height:390px;margin-top:24px;border:1px solid var(--line);border-radius:24px;overflow:hidden;display:flex;align-items:end;background:#29231a url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1800&q=85') center 55%/cover}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,8,7,.94),rgba(8,8,7,.12) 85%)}.hero-content{position:relative;padding:clamp(24px,6vw,58px);max-width:760px}.eyebrow{color:var(--gold);font-size:12px;letter-spacing:2px}.hero h1{font-size:clamp(34px,7vw,62px);line-height:1.2;margin:8px 0;color:var(--cream)}.hero p{margin:0;color:#e5dfd1;max-width:600px;line-height:1.9}.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.btn{display:inline-flex;min-height:44px;align-items:center;justify-content:center;padding:9px 18px;border-radius:10px;text-decoration:none;font-weight:700;font-size:14px}.gold{color:#211b0e;background:linear-gradient(135deg,#f3e4b7,#c39a50)}.outline{border:1px solid var(--line);color:var(--cream);background:rgba(10,10,9,.5)}
+    .section{padding:48px 0 12px}.section-head{text-align:center;margin-bottom:20px}.section-head small{color:var(--gold)}.section-head h2{color:var(--cream);font-size:clamp(24px,5vw,36px);margin:4px 0}.section-head p{color:var(--muted);font-size:14px;margin:0 auto;max-width:650px;line-height:1.8}
+    .toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:9px;margin:24px auto}.filter{border:1px solid var(--line);border-radius:999px;background:#191813;color:#e8e2d5;padding:9px 17px;font:inherit;font-size:13px;cursor:pointer}.filter[aria-pressed="true"]{background:var(--gold);color:#211b0e;border-color:var(--gold)}.search{display:block;width:min(420px,100%);height:46px;margin:0 auto 20px;border:1px solid var(--line);border-radius:12px;padding:0 15px;background:#191813;color:white;font:inherit}.search:focus{outline:2px solid var(--gold);outline-offset:2px}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{overflow:hidden;border:1px solid var(--line);border-radius:16px;background:linear-gradient(145deg,#211f19,#171612);transition:transform .2s,border-color .2s}.card:hover{transform:translateY(-3px);border-color:rgba(216,184,117,.65)}.photo{height:220px;position:relative;background:#28241b}.photo img{width:100%;height:100%;object-fit:cover;display:block}.photo:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(12,11,9,.8))}.tag{position:absolute;z-index:1;right:13px;top:13px;padding:5px 10px;border-radius:999px;background:rgba(15,14,12,.8);border:1px solid var(--line);font-size:11px;color:var(--cream)}.card-body{padding:15px 16px 17px}.card h3{margin:0 0 5px;color:var(--cream);font-size:18px}.card p{margin:0;color:var(--muted);font-size:13px;line-height:1.8}.card-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.07)}.price{color:var(--gold);font-size:12px}.ask{color:var(--cream);font-size:12px;text-decoration:none}.empty{display:none;text-align:center;padding:25px;color:var(--muted)}.note{margin:24px 0;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:rgba(216,184,117,.06);color:var(--muted);font-size:12px;line-height:1.9;text-align:center}.footer{text-align:center;border-top:1px solid var(--line);padding:24px 0 34px;margin-top:48px;color:var(--muted);font-size:12px}.footer strong{color:var(--cream)}
+    @media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.photo{height:185px}.hero{min-height:350px}}@media(max-width:520px){.wrap{width:min(100% - 22px,1100px)}.grid{grid-template-columns:1fr}.photo{height:230px}.hero{min-height:330px}.top-in{align-items:flex-start}.section{padding-top:36px}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="wrap top-in"><a class="brand" href="./index.html">قرية البادية</a><a class="back" href="./index.html">→ العودة للموقع الرئيسي</a></div></header>
+  <main class="wrap">
+    <section class="hero" aria-label="أجواء المطعم والجلسات"><div class="hero-content"><div class="eyebrow">AL BADYAH · FOOD · DRINKS · FIRE</div><h1>المنيو يبدأ<br>من الأجواء الحلوة</h1><p>اختاروا القسم اللي يناسبكم، واسألونا على واتساب عن الأصناف المتاحة والأسعار قبل الزيارة.</p><div class="hero-actions"><a class="btn gold" href="#menu">استكشف الأقسام</a><a class="btn outline" href="https://wa.me/201111815659?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D8%8C%20%D9%85%D9%85%D9%83%D9%86%20%D8%A7%D9%84%D9%85%D9%86%D9%8A%D9%88%20%D9%88%D8%A7%D9%84%D8%A3%D8%B3%D8%B9%D8%A7%D8%B1%D8%9F" target="_blank" rel="noopener noreferrer">اسأل عن المنيو</a></div></div></section>
+    <section class="section" id="menu"><div class="section-head"><small>اختاروا على مزاجكم</small><h2>أقسام قرية البادية</h2><p>ابحثوا أو اختاروا القسم. تواصلوا معنا للتأكد من الأصناف والتوافر والأسعار.</p></div>
+      <div class="toolbar" role="group" aria-label="تصفية أقسام المنيو"><button class="filter" data-filter="all" aria-pressed="true">الكل</button><button class="filter" data-filter="food" aria-pressed="false">الأكل</button><button class="filter" data-filter="drinks" aria-pressed="false">المشروبات</button><button class="filter" data-filter="fire" aria-pressed="false">جلسات النار</button></div>
+      <label for="search" class="section-head"><span class="sr-only">ابحث في الأقسام</span></label><input id="search" class="search" type="search" placeholder="ابحث عن قسم..." autocomplete="off">
+      <div class="grid" id="cards">
+        <article class="card" data-category="food" data-search="الأكل الطعام وجبات أطباق"><div class="photo"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80" alt="طبق طعام طازج" loading="lazy"><span class="tag">الأكل</span></div><div class="card-body"><h3>الأكل</h3><p>اكتشفوا اختيارات الأكل المتاحة واسألوا عن الأصناف اليومية.</p><div class="card-foot"><span class="price">الأسعار حسب المنيو</span><a class="ask" href="https://wa.me/201111815659?text=%D9%85%D9%85%D9%83%D9%86%20%D8%AA%D8%A8%D8%B9%D8%AA%D9%88%D8%A7%20%D9%85%D9%86%D9%8A%D9%88%20%D8%A7%D9%84%D8%A3%D9%83%D9%84%D8%9F" target="_blank" rel="noopener noreferrer">اسألنا ←</a></div></div></article>
+        <article class="card" data-category="drinks" data-search="المشروبات قهوة شاي عصائر"><div class="photo"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80" alt="مشروب ساخن وأجواء مقهى" loading="lazy"><span class="tag">المشروبات</span></div><div class="card-body"><h3>المشروبات</h3><p>مشروبات تناسب قعدتكم؛ اسألوا عن المتاح في يوم زيارتكم.</p><div class="card-foot"><span class="price">الأسعار حسب المنيو</span><a class="ask" href="https://wa.me/201111815659?text=%D9%85%D9%85%D9%83%D9%86%20%D8%AA%D8%A8%D8%B9%D8%AA%D9%88%D8%A7%20%D9%85%D9%86%D9%8A%D9%88%20%D8%A7%D9%84%D9%85%D8%B4%D8%B1%D9%88%D8%A8%D8%A7%D8%AA%D8%9F" target="_blank" rel="noopener noreferrer">اسألنا ←</a></div></div></article>
+        <article class="card" data-category="fire" data-search="جلسات النار نار شتاء أجواء"><div class="photo"><img src="https://images.unsplash.com/photo-1475738198235-4f82b2c2d7a?auto=format&fit=crop&w=900&q=80" alt="أجواء جلسة خارجية دافئة" loading="lazy"><span class="tag">الجلسات</span></div><div class="card-body"><h3>جلسات النار</h3><p>جلسات للأجواء الباردة؛ اسألوا عن التوافر والتفاصيل قبل الحضور.</p><div class="card-foot"><span class="price">التوافر حسب الحجز</span><a class="ask" href="https://wa.me/201111815659?text=%D9%85%D9%85%D9%83%D9%86%20%D8%A3%D8%B9%D8%B1%D9%81%20%D8%AA%D9%81%D8%A7%D8%B5%D9%8A%D9%84%20%D8%AC%D9%84%D8%B3%D8%A7%D8%AA%20%D8%A7%D9%84%D9%86%D8%A7%D8%B1%D8%9F" target="_blank" rel="noopener noreferrer">اسألنا ←</a></div></div></article>
+      </div><p class="empty" id="empty">مفيش نتائج مطابقة. جرّب كلمة تانية.</p>
+      <p class="note">تنبيه: الصور المعروضة للتوضيح وليست صورًا مؤكدة من قرية البادية. الأصناف والأسعار والتوافر تُؤكَّد عبر واتساب؛ أرسلوا صور المكان والمنيو الحقيقي لاستبدال الصور وإضافة الأصناف والأسعار بدقة.</p>
+    </section>
+  </main>
+  <footer class="footer"><div class="wrap"><strong>قرية البادية</strong><br>أكل ومشروبات وجلسات نار للأجواء الباردة</div></footer>
+  <script>
+    const buttons = [...document.querySelectorAll('.filter')];
+    const cards = [...document.querySelectorAll('.card')];
+    const search = document.getElementById('search');
+    const empty = document.getElementById('empty');
+    let activeFilter = 'all';
+    function updateCards() {
+      const query = search.value.trim().toLocaleLowerCase('ar');
+      let visible = 0;
+      cards.forEach((card) => {
+        const matchesFilter = activeFilter === 'all' || card.dataset.category === activeFilter;
+        const matchesSearch = !query || card.dataset.search.toLocaleLowerCase('ar').includes(query) || card.querySelector('h3').textContent.toLocaleLowerCase('ar').includes(query);
+        card.hidden = !(matchesFilter && matchesSearch);
+        if (!card.hidden) visible++;
+      });
+      empty.style.display = visible ? 'none' : 'block';
+    }
+    buttons.forEach((button) => button.addEventListener('click', () => {
+      activeFilter = button.dataset.filter;
+      buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+      updateCards();
+    }));
+    search.addEventListener('input', updateCards);
+    document.querySelectorAll('.photo img').forEach((image) => image.addEventListener('error', () => { image.hidden = true; image.parentElement.style.background = 'linear-gradient(135deg,#38301e,#171612)'; }));
+  </script>
+</body>
+</html>
