@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10100d">
+  <title>اختبار الموقع الجغرافي | قرية البادية</title>
+  <style>
+    :root{color-scheme:dark;--gold:#d6b66f;--bg:#11100d;--panel:#1a1814;--muted:#c0b7a5}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;padding:24px;background:var(--bg);color:#f9f2dc;font:16px/1.7 system-ui,sans-serif}
+    main{max-width:680px;margin:8vh auto;padding:24px;border:1px solid rgba(214,182,111,.35);border-radius:18px;background:var(--panel)}
+    h1{color:var(--gold);margin-top:0}button{border:0;border-radius:10px;padding:12px 20px;background:var(--gold);color:#17140c;font:inherit;font-weight:700;cursor:pointer}button:disabled{opacity:.6;cursor:wait}
+    #status{min-height:2em;color:var(--muted)}pre{direction:ltr;text-align:left;white-space:pre-wrap;overflow-wrap:anywhere;padding:16px;border-radius:10px;background:#0f0e0b;color:#f9f2dc}
+    a{color:var(--gold)}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>اختبار المستشعر الجغرافي</h1>
+    <p>اضغط الزر واسمح للمتصفح بالوصول إلى موقعك. ستظهر الإحداثيات هنا وفي Console.</p>
+    <button id="locate" type="button">التقاط موقعي الآن</button>
+    <p id="status" role="status" aria-live="polite">جاهز لطلب الموقع.</p>
+    <pre id="result">لم يتم التقاط الموقع بعد.</pre>
+    <p><a href="./index.html#location">العودة إلى صفحة قرية البادية</a></p>
+  </main>
+  <script>
+    const button = document.getElementById('locate');
+    const status = document.getElementById('status');
+    const result = document.getElementById('result');
+
+    button.addEventListener('click', () => {
+      result.textContent = 'جارٍ طلب الموقع…';
+      if (!window.isSecureContext) {
+        status.textContent = 'يلزم فتح هذه الصفحة عبر HTTPS حتى يعمل تحديد الموقع.';
+        return;
+      }
+      if (!navigator.geolocation) {
+        status.textContent = 'تحديد الموقع غير مدعوم في هذا المتصفح.';
+        return;
+      }
+
+      button.disabled = true;
+      status.textContent = 'جارٍ تحديد الموقع بأفضل دقة متاحة… وافق على طلب المتصفح.';
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude, accuracy, altitude, heading, speed } = position.coords;
+          const details = {
+            latitude,
+            longitude,
+            accuracy_meters: accuracy,
+            altitude_meters: altitude,
+            heading_degrees: heading,
+            speed_meters_per_second: speed,
+            captured_at: new Date(position.timestamp).toISOString()
+          };
+          console.log('Geolocation captured:', details);
+          console.table(details);
+          result.textContent = JSON.stringify(details, null, 2);
+          status.textContent = `تم التقاط الموقع. هامش الدقة التقريبي: ${Math.round(accuracy)} متر.`;
+          button.disabled = false;
+        },
+        (error) => {
+          const messages = {
+            1: 'تم رفض إذن الموقع. اسمح للمتصفح بالوصول إلى الموقع من إعدادات الهاتف.',
+            2: 'تعذر تحديد الموقع. تحقق من تفعيل GPS وحاول مجددًا.',
+            3: 'انتهت مهلة تحديد الموقع. حاول مجددًا في مكان مكشوف.'
+          };
+          status.textContent = messages[error.code] || `تعذر تحديد الموقع: ${error.message}`;
+          result.textContent = `رمز الخطأ: ${error.code}\n${error.message}`;
+          console.error('Geolocation error:', error);
+          button.disabled = false;
+        },
+        { enableHighAccuracy: true, timeout: 60000, maximumAge: 0 }
+      );
+    });
+  </script>
+</body>
+</html>
