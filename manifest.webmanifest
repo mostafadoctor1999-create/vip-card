@@ -1,8 +1,8 @@
 {
-  "id": "vip-card-al-badyah-village",
-  "name": "بطاقة الولاء - قرية البادية",
+  "id": "al-badyah-village-loyalty",
+  "name": "قرية البادية | الولاء والحجز",
   "short_name": "قرية البادية",
-  "description": "بطاقة الولاء الرقمية لقرية البادية",
+  "description": "أكل ومشروبات وشيشة وجلسات نار للأجواء الباردة.",
   "lang": "ar",
   "dir": "rtl",
   "start_url": "./",

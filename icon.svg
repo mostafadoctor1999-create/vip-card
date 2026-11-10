@@ -1,6 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="110" fill="#090a09"/>
-  <rect x="28" y="28" width="456" height="456" rx="92" fill="#141613" stroke="#d7b56d" stroke-width="12"/>
-  <path d="M160 180h192v34H160zm0 69h192v34H160zm0 69h192v34H160z" fill="#f5e2a8"/>
-  <text x="256" y="427" fill="#d7b56d" font-family="serif" font-size="42" font-weight="700" text-anchor="middle">VIP</text>
+  <rect width="512" height="512" rx="108" fill="#090a09"/>
+  <rect x="24" y="24" width="464" height="464" rx="92" fill="#141613" stroke="#d7b56d" stroke-width="12"/>
+  <path d="M102 351h308v24H102z" fill="#d7b56d"/>
+  <path d="M140 336V219l116-91 116 91v117h-72v-91h-88v91z" fill="#f5e2a8" stroke="#d7b56d" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M226 336v-68h60v68" fill="#090a09" stroke="#d7b56d" stroke-width="7"/>
+  <path d="M160 180c-18-25 16-35 0-58m96 48c-18-25 16-35 0-58m96 58c-18-25 16-35 0-58" fill="none" stroke="#d7b56d" stroke-width="9" stroke-linecap="round" opacity=".8"/>
+  <text x="256" y="430" fill="#f5e2a8" font-family="sans-serif" font-size="37" font-weight="700" text-anchor="middle">AL BADYAH</text>
 </svg>
