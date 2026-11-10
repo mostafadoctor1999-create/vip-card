@@ -259,10 +259,11 @@
         return R * c;
     }
 
-    function shareWithFriends() {
-        const text = "سجل الآن في بوابة النخبة لمقهى البادية واحصل على كارت VIP بخصم 10% تلقائي ومكافآت حصرية عند مدخل سمالوط!";
-        window.open(https://whatsapp.com{encodeURIComponent(text)}, '_blank');
-    }
+function shareWithFriends() {
+    const text = "سجل الآن في بوابة النخبة لمقهى البادية واحصل على كارت VIP بخصم 10% تلقائي ومكافآت حصرية عند مدخل سمالوط!";
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+} 
 </script>
 
 </body>
