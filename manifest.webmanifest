@@ -1,0 +1,21 @@
+{
+  "id": "vip-card-al-badyah-village",
+  "name": "بطاقة الولاء - قرية البادية",
+  "short_name": "قرية البادية",
+  "description": "بطاقة الولاء الرقمية لقرية البادية",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#090a09",
+  "theme_color": "#090a09",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

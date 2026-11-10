@@ -4,8 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#090a09">
-    <meta name="description" content="بطاقة الولاء الرقمية لمقهى البادية">
-    <title>بوابة النخبة الرقمية | مقهى البادية</title>
+    <meta name="description" content="بطاقة الولاء الرقمية لقرية البادية: أكل ومشروبات وشيشة وجلسات نار في الأجواء الباردة.">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>بطاقة الولاء الرقمية | قرية البادية</title>
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="icon" href="./icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="./icon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
@@ -13,8 +19,9 @@
         :root { color-scheme: dark; --gold: #d7b56d; --gold-light: #f5e2a8; --panel: #141613; --arabic: "Cairo", Tahoma, sans-serif; }
         * { box-sizing: border-box; }
         body { margin: 0; min-height: 100vh; color: #f6f1e7; background: radial-gradient(ellipse at 50% -18%, rgba(166,128,62,.15), transparent 55%), linear-gradient(160deg,#10110e 0%,#080908 60%,#11100d 100%); font-family: var(--arabic); display: flex; flex-direction: column; align-items: center; padding: 20px 10px; }
-        .page { width: min(100%,420px); text-align: center; }
-        .brand { color: var(--gold-light); font-size: 18px; font-weight: 700; margin-bottom: 20px; }
+        .page { width: min(100%, 440px); text-align: center; }
+        .brand { color: var(--gold-light); font-size: 20px; font-weight: 800; margin-bottom: 5px; }
+        .tagline { color: #c9c1b2; font-size: 12px; line-height: 1.8; margin-bottom: 18px; }
         .vip-card { background: linear-gradient(135deg,#1f1e17 0%,#11120f 50%,#050605 100%); border: 2px solid var(--gold); border-radius: 19px; padding: 22px; box-shadow: 0 20px 40px rgba(215,181,109,.12), inset 0 1px 2px rgba(255,255,255,.1); text-align: right; position: relative; }
         .geo-active { border-color: #fff; animation: goldPulse 2s infinite; }
         @keyframes goldPulse { 0%,100% { box-shadow: 0 0 20px rgba(215,181,109,.4); } 50% { box-shadow: 0 0 40px rgba(215,181,109,.8); } }
@@ -35,8 +42,10 @@
         .stamps { display: flex; justify-content: space-between; direction: ltr; }
         .stamp-dot { width: 32px; height: 32px; border-radius: 50%; border: 1px dashed var(--gold); display: flex; align-items: center; justify-content: center; font-size: 14px; color: rgba(215,181,109,.4); }
         .stamp-dot.active { border-style: solid; background: var(--gold); color: #000; font-weight: bold; }
-        .marketing-actions { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 15px; }
-        .btn-share { background: rgba(37,211,102,.15); border: 1px solid #25d366; color: #25d366; border-radius: 8px; padding: 10px; font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }
+        .marketing-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .btn-share, .btn-pwa { border-radius: 8px; padding: 10px 8px; font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }
+        .btn-share { background: rgba(37,211,102,.15); border: 1px solid #25d366; color: #25d366; }
+        .btn-pwa { display: none; background: rgba(215,181,109,.15); border: 1px solid var(--gold); color: var(--gold-light); }
         .registration-panel { background: var(--panel); border: 1px solid var(--gold); border-radius: 15px; padding: 20px; margin-top: 20px; text-align: right; box-shadow: 0 10px 30px rgba(0,0,0,.5); }
         .reg-title { font-size: 14px; color: var(--gold-light); font-weight: 700; margin-bottom: 12px; border-bottom: 1px solid rgba(215,181,109,.2); padding-bottom: 6px; }
         .input-field { width: 100%; min-height: 44px; padding: 10px; border: 1px solid rgba(215,181,109,.3); border-radius: 8px; background: #0c0d0b; color: #fff; margin-bottom: 12px; font: inherit; font-size: 13px; outline: none; }
@@ -45,58 +54,80 @@
         .consent input { margin-top: 4px; accent-color: var(--gold); }
         .btn-activate { background: linear-gradient(135deg,#f1dda5,#c49a52); color: #17130b; border: 0; width: 100%; min-height: 48px; border-radius: 12px; font: inherit; font-weight: 700; font-size: 13px; cursor: pointer; }
         .btn-activate:disabled { opacity: .65; cursor: wait; }
-        .status-msg { font-size: 12px; color: #aaa597; margin: 12px 0 25px; text-align: center; line-height: 1.6; }
+        .status-msg { font-size: 12px; color: #aaa597; margin: 12px 0 25px; text-align: center; line-height: 1.7; }
         .menu-section { background: var(--panel); border: 1px solid rgba(215,181,109,.15); border-radius: 15px; padding: 20px; text-align: right; margin-bottom: 20px; }
         .menu-title { font-size: 16px; color: var(--gold-light); font-weight: 700; border-bottom: 1px solid rgba(215,181,109,.2); padding-bottom: 8px; margin-bottom: 15px; }
         .menu-category { font-size: 13px; color: var(--gold); font-weight: 600; margin: 20px 0 8px; padding-right: 5px; border-right: 2px solid var(--gold); }
         .menu-item { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.05); }
         .item-name { font-size: 13px; color: #fff; font-weight: 600; }
-        .item-desc { font-size: 10px; color: #aaa597; display: block; margin-top: 2px; line-height: 1.5; }
+        .item-desc { font-size: 10px; color: #aaa597; display: block; margin-top: 2px; line-height: 1.6; }
         .item-price { white-space: nowrap; font-size: 13px; color: var(--gold-light); font-weight: 700; font-family: "Playfair Display",serif; }
-        @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } }
+        @media (max-width: 360px) { .marketing-actions { grid-template-columns: 1fr; } }
+        @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
     </style>
 </head>
 <body>
 <div class="page">
-    <div class="brand">مقهى البادية · بوابة النخبة</div>
-    <div class="vip-card" id="vipCard">
-        <div class="card-header"><span class="logo-text">AL BADYAH</span><span class="level-badge" id="cardLevel">بريمير (Premier)</span></div>
-        <div class="discount-box"><div class="discount-title" id="discountTitle">خصم الـ VIP التلقائي الحصري عند حضورك</div><div class="discount-value" id="discountVal">10% خصم</div></div>
-        <div class="card-footer">
-            <div class="client-info"><span class="label" id="cardLabelText">اسم العميل ورقم بطاقة الـ VIP</span><span class="name" id="custName">ضيف النخبة العزيز</span><span class="label" style="margin-top:4px;color:var(--gold);">المزايا الإضافية: ضيافة راقية وعروض حصرية</span></div>
-            <div class="qr-placeholder" role="img" aria-label="رمز زخرفي وليس رمز بطاقة قابلًا للمسح"><svg viewBox="0 0 21 21" aria-hidden="true"><path fill="#000" d="M0 0h7v7H0zm1 1v5h5V1zm1 1h3v3H2zM14 0h7v7h-7zm1 1v5h5V1zm1 1h3v3h-3zM0 14h7v7H0zm1 1v5h5v-5zm1 1h3v3H2zM8 0h2v2H8zm2 3h2v2h-2zM8 6h2v2H8zm3 0h2v2h-2zM8 9h3v2H8zm4-1h2v3h-2zm3 0h2v2h-2zm3 0h3v2h-3zM8 12h2v2H8zm3 1h2v2h-2zm3-1h2v2h-2zm3 1h2v2h-2zm-9 3h2v2H8zm3 0h2v2h-2zm3 2h2v3h-2zm3-2h2v2h-2zm3 1h1v3h-1zm-9 2h2v2h-2z"/></svg></div>
+    <header>
+        <div class="brand">قرية البادية · بطاقة الولاء</div>
+        <div class="tagline">أكل ومشروبات · شيشة · جلسات نار للأجواء الباردة</div>
+    </header>
+    <main>
+        <section class="vip-card" id="vipCard" aria-label="بطاقة الولاء">
+            <div class="card-header"><span class="logo-text">AL BADYAH</span><span class="level-badge" id="cardLevel">بريمير (Premier)</span></div>
+            <div class="discount-box"><div class="discount-title">عروض ومزايا الولاء</div><div class="discount-value" id="discountVal">10% خصم</div></div>
+            <div class="card-footer">
+                <div class="client-info"><span class="label">اسم صاحب البطاقة</span><span class="name" id="custName">ضيف قرية البادية العزيز</span><span class="label" style="margin-top:4px;color:var(--gold);">أهلًا بكم في القرية</span></div>
+                <div class="qr-placeholder" role="img" aria-label="رمز زخرفي للتصميم فقط وليس بطاقة قابلة للمسح"><svg viewBox="0 0 21 21" aria-hidden="true"><path fill="#000" d="M0 0h7v7H0zm1 1v5h5V1zm1 1h3v3H2zM14 0h7v7h-7zm1 1v5h5V1zm1 1h3v3h-3zM0 14h7v7H0zm1 1v5h5v-5zm1 1h3v3H2zM8 0h2v2H8zm2 3h2v2h-2zM8 6h2v2H8zm3 0h2v2h-2zM8 9h3v2H8zm4-1h2v3h-2zm3 0h2v2h-2zm3 0h3v2h-3zM8 12h2v2H8zm3 1h2v2h-2zm3-1h2v2h-2zm3 1h2v2h-2zm-9 3h2v2H8zm3 0h2v2h-2zm3 2h2v3h-2zm3-2h2v2h-2zm3 1h1v3h-1zm-9 2h2v2h-2z"/></svg></div>
+            </div>
+            <div class="rewards-panel"><div class="rewards-title">☕ مكافآت الزيارات (المكافأة الخامسة حسب شروط القرية)</div><div class="stamps"><div class="stamp-dot active">✓</div><div class="stamp-dot active">✓</div><div class="stamp-dot">٣</div><div class="stamp-dot">٤</div><div class="stamp-dot">🎁</div></div></div>
+        </section>
+        <div class="marketing-actions">
+            <button class="btn-pwa" id="installBtn" type="button">📱 تثبيت البطاقة على الشاشة</button>
+            <button class="btn-share" type="button" onclick="shareWithFriends()">👑 شارك قرية البادية مع أصحابك</button>
         </div>
-        <div class="rewards-panel"><div class="rewards-title">☕ بطاقة تجميع المكافآت (الزيارة الخامسة مجانية!)</div><div class="stamps"><div class="stamp-dot active">✓</div><div class="stamp-dot active">✓</div><div class="stamp-dot">٣</div><div class="stamp-dot">٤</div><div class="stamp-dot">🎁</div></div></div>
-    </div>
-    <div class="marketing-actions"><button class="btn-share" type="button" onclick="shareWithFriends()">👑 اعزم صاحبك واكسب خصم</button></div>
-    <form class="registration-panel" id="regPanel" onsubmit="event.preventDefault(); activateVipMazaia();">
-        <div class="reg-title">تنشيط بطاقة النخبة الرقمية</div>
-        <input type="text" id="clientNameInput" class="input-field" placeholder="أدخل اسمك الكريم" autocomplete="name" maxlength="80" required>
-        <input type="tel" id="clientPhoneInput" class="input-field" placeholder="أدخل رقم الهاتف" autocomplete="tel" inputmode="tel" maxlength="20" required>
-        <label class="consent"><input type="checkbox" id="dataConsent" required><span>أوافق على إرسال اسمي ورقم هاتفي وموقعي التقريبي إلى المطعم لتسجيل البطاقة والتحقق من القرب من الفرع.</span></label>
-        <button class="btn-activate" id="activateBtn" type="submit">تفعيل مستشعر الموقع والخصم اللحظي ✨</button>
-    </form>
-    <div class="status-msg" id="statusMessage" role="status" aria-live="polite">يرجى ملء البيانات للمشاركة في برنامج الولاء. سيطلب المتصفح إذن الموقع.</div>
-    <div class="menu-section"><div class="menu-title">قائمة الضيافة الراقية وعروض النخبة</div><div class="menu-category">عروض الـ VIP الحصرية اليومية للسيارات</div><div class="menu-item"><div><span class="item-name">كومبو الاستجمام السريع على الطريق</span><span class="item-desc">قهوة البادية الخاصة دبل + دوناتس فاخرة جاهزة للتسليم للعربية</span></div><span class="item-price">110 EGP</span></div></div>
+        <form class="registration-panel" id="regPanel">
+            <div class="reg-title">تسجيل بطاقة الولاء</div>
+            <input type="text" id="clientNameInput" class="input-field" placeholder="أدخل اسمك الكريم" autocomplete="name" maxlength="80" required>
+            <input type="tel" id="clientPhoneInput" class="input-field" placeholder="أدخل رقم الهاتف" autocomplete="tel" inputmode="tel" maxlength="20" required>
+            <label class="consent"><input type="checkbox" id="dataConsent" required><span>أوافق على إرسال اسمي ورقم هاتفي وموقعي التقريبي لغرض التسجيل والتحقق من قرب الفرع.</span></label>
+            <button class="btn-activate" id="activateBtn" type="submit">تسجيل وتفعيل البطاقة ✨</button>
+        </form>
+        <div class="status-msg" id="statusMessage" role="status" aria-live="polite">سجل بياناتك للمشاركة في برنامج الولاء. سيطلب المتصفح إذن الموقع.</div>
+        <section class="menu-section">
+            <div class="menu-title">أجواء قرية البادية</div>
+            <div class="menu-category">الأكل والمشروبات</div>
+            <div class="menu-item"><div><span class="item-name">أكلات ومشروبات متنوعة</span><span class="item-desc">اسأل فريق القرية عن القائمة المتاحة والعروض اليومية.</span></div></div>
+            <div class="menu-category">جلسات الشتاء</div>
+            <div class="menu-item"><div><span class="item-name">جلسات شيشة ونار</span><span class="item-desc">جلسات خارجية وأجواء دافئة؛ توافرها حسب الطقس وتعليمات المكان.</span></div></div>
+        </section>
+    </main>
 </div>
 <script>
-    // رابط Make ظاهر في كود الواجهة؛ لا ترسل بيانات حقيقية قبل مراجعة أمانه وخصوصيته.
-    const MAKE_WEBHOOK_URL = 'https://hook.eu1.make.com/pmtj8hmcen1m6chdyk9otwpykmqfu5p8';
-    // غيّر الإحداثيات التالية إلى موقع الفرع الفعلي.
+    // أدخل رابط Webhook جديدًا للاختبار بعد تدوير الرابط السابق؛ أي رابط بالواجهة العامة سيكون ظاهرًا للزوار.
+    const MAKE_WEBHOOK_URL = '';
+    // استبدل بالإحداثيات الفعلية لقرية البادية قبل تجربة تحديد النطاق.
     const TARGET_LAT = 28.3100;
     const TARGET_LON = 30.7100;
     const GEOFENCE_RADIUS_KM = 1.5;
+    let deferredInstallPrompt = null;
 
-    function setStatus(message, color) {
-        const statusMsg = document.getElementById('statusMessage');
-        statusMsg.textContent = message;
-        statusMsg.style.color = color;
+    const form = document.getElementById('regPanel');
+    const activateBtn = document.getElementById('activateBtn');
+    function setStatus(message, color = '#aaa597') {
+        const status = document.getElementById('statusMessage');
+        status.textContent = message;
+        status.style.color = color;
     }
 
-    function activateVipMazaia() {
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        registerCustomer();
+    });
+
+    function registerCustomer() {
         const name = document.getElementById('clientNameInput').value.trim();
         const phone = document.getElementById('clientPhoneInput').value.trim().replace(/[\s()-]/g, '');
-        const activateBtn = document.getElementById('activateBtn');
         if (!name || !/^[+\d]{7,16}$/.test(phone)) {
             setStatus('❌ من فضلك أدخل الاسم ورقم هاتف صحيحًا.', '#ff6b6b');
             return;
@@ -106,9 +137,9 @@
             return;
         }
         activateBtn.disabled = true;
-        setStatus('⏳ جارٍ طلب إذن الموقع وتسجيل البطاقة...', '#f5e2a8');
+        setStatus('⏳ جارٍ طلب إذن الموقع...', '#f5e2a8');
         if (!navigator.geolocation) {
-            sendDataToMake(name, phone, null, null, false, null, 'unsupported');
+            finishRegistration(name, phone, null, null, false, null, 'unsupported');
             return;
         }
         navigator.geolocation.getCurrentPosition(
@@ -116,18 +147,17 @@
                 const lat = position.coords.latitude;
                 const lon = position.coords.longitude;
                 const distance = calculateDistance(lat, lon, TARGET_LAT, TARGET_LON);
-                sendDataToMake(name, phone, lat, lon, distance <= GEOFENCE_RADIUS_KM, distance, null);
+                finishRegistration(name, phone, lat, lon, distance <= GEOFENCE_RADIUS_KM, distance, null);
             },
             (error) => {
                 console.warn('تعذر الحصول على الموقع:', error.message);
-                sendDataToMake(name, phone, null, null, false, null, error.code);
+                finishRegistration(name, phone, null, null, false, null, error.code);
             },
             { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 }
         );
     }
 
-    async function sendDataToMake(name, phone, lat, lon, inGeofence, distance, locationError) {
-        const activateBtn = document.getElementById('activateBtn');
+    async function finishRegistration(name, phone, lat, lon, inGeofence, distance, locationError) {
         const payload = {
             client_name: name,
             client_phone: phone,
@@ -138,30 +168,30 @@
             location_error: locationError,
             timestamp: new Date().toISOString()
         };
+        if (!MAKE_WEBHOOK_URL) {
+            showRegisteredCard(name);
+            const locationNote = lat === null ? ' لم يتم الحصول على الموقع.' : (inGeofence ? ' الموقع داخل النطاق المحدد.' : ' الموقع خارج النطاق المحدد.');
+            setStatus('🧪 وضع تجريبي محلي: لم تُرسل البيانات إلى Make.' + locationNote + ' أضف رابط Webhook جديدًا بعد تجهيزه.', '#f5e2a8');
+            activateBtn.disabled = false;
+            return;
+        }
         try {
-            // طلب بسيط لتجنب preflight؛ no-cors يعني أن المتصفح لا يستطيع تأكيد استجابة Make.
             const formBody = new URLSearchParams();
             for (const [key, value] of Object.entries(payload)) formBody.append(key, value === null ? '' : String(value));
-            await fetch(MAKE_WEBHOOK_URL, {
-                method: 'POST', mode: 'no-cors',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-                body: formBody
-            });
-            document.getElementById('custName').textContent = name;
-            document.getElementById('regPanel').style.display = 'none';
-            if (inGeofence) {
-                document.getElementById('vipCard').classList.add('geo-active');
-                setStatus('👑 أنت داخل نطاق الفرع المحدد. تم إرسال التسجيل؛ تحقق من وصوله في Make.', '#25d366');
-            } else if (lat === null) {
-                setStatus('⚠️ أُرسل التسجيل بدون موقع. تحقق من Make واسمح للموقع لاختبار النطاق.', '#d7b56d');
-            } else {
-                setStatus('✨ أُرسل التسجيل. أنت خارج نطاق الفرع المحدد؛ تحقق من وصول البيانات في Make.', '#f5e2a8');
-            }
+            // no-cors لا يتيح للمتصفح تأكيد رد Make؛ تحقق من وصول العملية داخل Make.
+            await fetch(MAKE_WEBHOOK_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }, body: formBody });
+            showRegisteredCard(name);
+            setStatus('✅ أُرسل طلب التسجيل. تحقق من ظهور العملية في Make للتأكد من الاستلام.' + (lat === null ? ' لم يُرسل موقع.' : (inGeofence ? ' الموقع داخل النطاق.' : ' الموقع خارج النطاق.')), '#f5e2a8');
         } catch (error) {
             console.error('تعذر إرسال التسجيل:', error);
-            setStatus('❌ تعذر إرسال التسجيل. تحقق من الإنترنت ورابط Make ثم حاول مرة أخرى.', '#ff6b6b');
+            setStatus('❌ تعذر إرسال التسجيل. تحقق من الاتصال ورابط Make ثم حاول مرة أخرى.', '#ff6b6b');
             activateBtn.disabled = false;
         }
+    }
+
+    function showRegisteredCard(name) {
+        document.getElementById('custName').textContent = name;
+        document.getElementById('regPanel').style.display = 'none';
     }
 
     function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -174,14 +204,35 @@
     }
 
     async function shareWithFriends() {
-        const text = 'سجل الآن في بوابة النخبة لمقهى البادية واحصل على كارت VIP بخصم 10% تلقائي ومكافآت حصرية عند مدخل سمالوط!';
-        const shareData = { title: 'بوابة النخبة - مقهى البادية', text, url: window.location.href };
+        const text = 'زوروا قرية البادية واستمتعوا بالأكل والمشروبات والشيشة وجلسات النار في الأجواء الباردة!';
+        const shareData = { title: 'قرية البادية', text, url: window.location.href };
         try {
             if (navigator.share) await navigator.share(shareData);
             else window.open(`https://wa.me/?text=${encodeURIComponent(`${text} ${window.location.href}`)}`, '_blank', 'noopener,noreferrer');
         } catch (error) {
             if (error.name !== 'AbortError') window.open(`https://wa.me/?text=${encodeURIComponent(`${text} ${window.location.href}`)}`, '_blank', 'noopener,noreferrer');
         }
+    }
+
+    window.addEventListener('beforeinstallprompt', (event) => {
+        event.preventDefault();
+        deferredInstallPrompt = event;
+        document.getElementById('installBtn').style.display = 'inline-block';
+    });
+    document.getElementById('installBtn').addEventListener('click', async () => {
+        if (!deferredInstallPrompt) {
+            setStatus('للتثبيت على iPhone استخدم مشاركة Safari ثم «إضافة إلى الشاشة الرئيسية».', '#f5e2a8');
+            return;
+        }
+        deferredInstallPrompt.prompt();
+        await deferredInstallPrompt.userChoice;
+        deferredInstallPrompt = null;
+        document.getElementById('installBtn').style.display = 'none';
+    });
+    window.addEventListener('appinstalled', () => setStatus('✅ تم تثبيت بطاقة قرية البادية.', '#25d366'));
+
+    if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+        window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch((error) => console.error('تعذر تسجيل Service Worker:', error)));
     }
 </script>
 </body>
