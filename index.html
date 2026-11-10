@@ -218,8 +218,8 @@
             longitude: lon,
             is_in_geofence: inGeofence,
             distance_km: distance.toFixed(2),
-            timestamp: new Date().toISOString()
-        };
+            timestamp: new Date().toISOString(),
+        );
 
         fetch(MAKE_WEBHOOK_URL, {
             method: 'POST',
