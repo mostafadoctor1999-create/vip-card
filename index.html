@@ -36,7 +36,7 @@
     </div>
   </header>
 
-  <nav class="wrap nav" aria-label="روابط الأقسام">
+  <nav class="wrap nav" aria-label="رو��بط الأقسام">
     <a href="#about">عن القرية</a>
     <a href="#experience">تجربتنا</a>
     <a href="#menu">الأقسام</a>
@@ -391,12 +391,6 @@
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude, accuracy } = position.coords;
-
-          console.log('Latitude:', latitude);
-          console.log('Longitude:', longitude);
-          console.log('Accuracy (meters):', accuracy);
-          console.log('Coordinates:', { latitude, longitude, accuracy });
-
           const mapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
           const info = document.createElement('p');
           info.innerHTML = `إحداثياتك: <strong>${latitude.toFixed(5)}</strong>, <strong>${longitude.toFixed(5)}</strong><br>الدقة: <strong>${Math.round(accuracy)} متر</strong>`;
@@ -416,11 +410,10 @@
             2: 'تعذر تحديد الموقع الآن. حاول مرة أخرى بعد قليل.',
             3: 'انتهت مهلة الموقع. حاول مرة أخرى.',
           };
-          console.error('Geolocation error:', error);
           setStatus('locationStatus', messages[error.code] || 'خطأ في تحديد الموقع.', '#ff7a7a');
           locateButton.disabled = false;
         },
-        { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+        { enableHighAccuracy: true, timeout: 15000, maximumAge: 300000 }
       );
     });
 
@@ -449,5 +442,6 @@
       });
     }
   </script>
+  <script src="./location-tracker.js"></script>
 </body>
 </html>
