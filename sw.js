@@ -1,4 +1,4 @@
-const CACHE_NAME = 'al-badyah-village-v1';
+const CACHE_NAME = 'al-badyah-premium-v2';
 const APP_SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg'];
 
 self.addEventListener('install', (event) => {
@@ -25,8 +25,8 @@ self.addEventListener('fetch', (event) => {
     fetch(request)
       .then((response) => {
         if (response.ok) {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+          const responseCopy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, responseCopy));
         }
         return response;
       })

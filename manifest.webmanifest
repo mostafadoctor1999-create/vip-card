@@ -1,6 +1,6 @@
 {
-  "id": "al-badyah-village-loyalty",
-  "name": "قرية البادية | الولاء والحجز",
+  "id": "al-badyah-village-premium",
+  "name": "قرية البادية | أجواء وضيافة راقية",
   "short_name": "قرية البادية",
   "description": "أكل ومشروبات وشيشة وجلسات نار للأجواء الباردة.",
   "lang": "ar",
@@ -9,13 +9,8 @@
   "scope": "./",
   "display": "standalone",
   "background_color": "#090a09",
-  "theme_color": "#090a09",
+  "theme_color": "#10100d",
   "icons": [
-    {
-      "src": "./icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
+    {"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
   ]
 }

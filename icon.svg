@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="108" fill="#090a09"/>
-  <rect x="24" y="24" width="464" height="464" rx="92" fill="#141613" stroke="#d7b56d" stroke-width="12"/>
-  <path d="M102 351h308v24H102z" fill="#d7b56d"/>
-  <path d="M140 336V219l116-91 116 91v117h-72v-91h-88v91z" fill="#f5e2a8" stroke="#d7b56d" stroke-width="8" stroke-linejoin="round"/>
-  <path d="M226 336v-68h60v68" fill="#090a09" stroke="#d7b56d" stroke-width="7"/>
-  <path d="M160 180c-18-25 16-35 0-58m96 48c-18-25 16-35 0-58m96 58c-18-25 16-35 0-58" fill="none" stroke="#d7b56d" stroke-width="9" stroke-linecap="round" opacity=".8"/>
-  <text x="256" y="430" fill="#f5e2a8" font-family="sans-serif" font-size="37" font-weight="700" text-anchor="middle">AL BADYAH</text>
+  <rect width="512" height="512" rx="110" fill="#10100d"/>
+  <rect x="22" y="22" width="468" height="468" rx="94" fill="#171713" stroke="#d6b66f" stroke-width="12"/>
+  <path d="M256 84l22 58 62 4-48 38 16 60-52-33-52 33 16-60-48-38 62-4z" fill="#f6e5b3"/>
+  <path d="M110 345h292v20H110z" fill="#d6b66f"/>
+  <path d="M148 332V226l108-82 108 82v106h-67v-83h-82v83z" fill="#f6e5b3" stroke="#d6b66f" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M228 332v-66h56v66" fill="#10100d" stroke="#d6b66f" stroke-width="7"/>
+  <text x="256" y="424" fill="#f6e5b3" font-family="sans-serif" font-size="36" font-weight="700" text-anchor="middle">AL BADYAH</text>
 </svg>
