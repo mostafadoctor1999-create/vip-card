@@ -8,11 +8,8 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <title>قرية البادية | مجلس الشتاء VIP</title>
-  <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="icon" href="./icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="./icon.svg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="./icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{color-scheme:dark;--gold:#e4c47d;--gold-bright:#ffe9ad;--cream:#fff7e6;--muted:#c7bca9;--line:rgba(228,196,125,.25);--bg:#100d0b;--panel:#1b1713;--green:#73d39a;--red:#ff8580;font-family:"Cairo",Tahoma,sans-serif}
@@ -21,196 +18,71 @@
     .hero{padding:42px 0 18px}.hero-inner{position:relative;min-height:350px;display:flex;align-items:flex-end;overflow:hidden;padding:clamp(26px,5vw,55px);border:1px solid var(--line);border-radius:26px;background:linear-gradient(180deg,rgba(12,11,10,.28),rgba(12,10,8,.93)),url('https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1600&q=85') center/cover}.hero-content{max-width:690px}.eyebrow{color:var(--gold);font-size:12px;letter-spacing:2px;font-weight:800}.brand{margin:8px 0;font-size:clamp(38px,7vw,68px);line-height:1.15}.stars{color:var(--gold);letter-spacing:5px;font-size:19px}.tagline{margin:15px 0 0;color:#f1dfb8;font-size:18px}.intro{max-width:650px;color:#e2d7c6;line-height:1.9}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border:1px solid transparent;border-radius:12px;font-weight:700;cursor:pointer;transition:transform .18s,filter .18s}.btn:hover{transform:translateY(-1px);filter:brightness(1.08)}.btn-gold,.btn-submit{background:linear-gradient(135deg,#f6e5b3,#d6b66f);color:#19160a}.btn-green{border-color:rgba(96,195,138,.45);background:rgba(96,195,138,.12);color:#dcf7e4}.btn-outline{border-color:var(--line);background:#ffffff08;color:var(--cream)}
     .nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:14px 0}.nav a{padding:9px 14px;border:1px solid var(--line);border-radius:999px;background:#ffffff05;color:#eee2cb;font-size:13px}.main-wrap{padding:12px 0 40px}.section{padding:34px 0}.section-head{text-align:center;margin-bottom:20px}.ornament{color:var(--gold);letter-spacing:6px}.section h2{margin:10px 0;color:var(--cream);font-size:clamp(25px,4vw,36px)}.sub{max-width:760px;margin:10px auto;color:var(--muted);line-height:1.9;font-size:14px}.features,.menu-grid,.gallery-grid,.form-grid,.location-box,.loyalty-row{display:grid;gap:16px}.features{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:24px}.tile,.menu-item,.gallery-card,.panel,.loyalty-card,.location-panel{border:1px solid var(--line);border-radius:18px;background:linear-gradient(160deg,#211c17,#14110f);overflow:hidden}.tile,.menu-item{padding:22px 18px;text-align:center}.tile-icon{font-size:30px;color:var(--gold)}.tile h3,.menu-item h3{margin:10px 0;color:var(--cream);font-size:18px}.tile p,.menu-item p,.gallery-card p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.8}.menu-grid{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:24px}.menu-category{padding:24px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(160deg,#211c17,#14110f);box-shadow:0 12px 35px #0003}.menu-category h3{margin:0 0 18px;color:var(--gold-bright);font-size:22px}.menu-list{display:grid;gap:12px}.menu-entry{padding:14px 15px;border:1px solid #ffffff12;border-radius:14px;background:#09080755}.menu-entry-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.menu-entry h4{margin:0;color:var(--cream);font-size:15px}.menu-price{flex:0 0 auto;color:var(--gold-bright);font-weight:800;white-space:nowrap}.menu-details,.menu-note{margin:8px 0 0;color:var(--muted);font-size:12px;line-height:1.85}.menu-note{color:#e0c990}.menu-prices{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.menu-prices span{padding:4px 9px;border:1px solid var(--line);border-radius:999px;color:#f0dfb8;font-size:11px}.menu-footer{margin:24px auto 0;padding:20px;border:1px solid rgba(228,196,125,.4);border-radius:16px;background:linear-gradient(135deg,#251b12,#14100d);text-align:center;color:var(--cream);line-height:1.9}.menu-footer strong{display:block;color:var(--gold-bright);font-size:16px}.menu-footer span{display:block;margin-top:6px;color:#e1c98e;font-weight:700}
     .gallery-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:24px}.gallery-card img{width:100%;height:220px;object-fit:cover}.gallery-card>div{padding:16px}.gallery-card strong{color:var(--cream)}.form-grid{grid-template-columns:minmax(0,760px);justify-content:center}.panel{padding:22px}.field-group{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}.field-group label,.label{color:#e4dcc6;font-size:13px}.field{width:100%;min-height:46px;padding:10px 12px;border:1px solid rgba(214,182,111,.35);border-radius:10px;background:#0b0b09;color:var(--cream)}.field:focus{outline:2px solid rgba(214,182,111,.35);outline-offset:1px}.textarea{min-height:110px;resize:vertical}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.full{grid-column:1/-1}.btn-submit{width:100%;border:0;margin-top:6px}.status{min-height:24px;margin:12px 0 0;color:var(--muted);font-size:13px}.loyalty-row{grid-template-columns:1.1fr .9fr;align-items:start}.loyalty-card{padding:22px}.card-head{display:flex;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid #ffffff16}.card-head span:first-child{color:var(--gold);font-weight:800;letter-spacing:1px}.small{font-size:12px;color:var(--muted)}.stamps{display:flex;gap:9px;margin-top:18px}.stamp{display:grid;place-items:center;width:34px;height:34px;border:1px dashed var(--gold);border-radius:50%;color:var(--gold)}.stamp.active{background:var(--gold);color:#12100d}.location-box{grid-template-columns:1.2fr .8fr}.location-panel{padding:20px}.location-status{min-height:45px;color:var(--muted);line-height:1.8}.location-result{display:none;margin-top:16px;padding:15px;border:1px solid var(--line);border-radius:14px;background:#ffffff05;line-height:1.9}.location-result:not(.hidden){display:block}.location-result a,.location-panel a{color:var(--gold);font-weight:700}.footer{margin-top:25px;padding:28px 0 42px;border-top:1px solid var(--line);text-align:center;color:#d7d0c0;font-size:13px;line-height:2}.footer strong{color:var(--cream)}
+    /* Added Golden Ticket membership card and actions. */
+    .golden-ticket-wrap{padding:18px 0 8px;animation:ticket-enter .9s ease both}.golden-ticket{position:relative;max-width:900px;margin:auto;padding:clamp(24px,5vw,42px);overflow:hidden;border:1px solid rgba(255,220,131,.82);border-radius:24px;background:radial-gradient(ellipse at 90% 0%,rgba(190,142,54,.15),transparent 45%),linear-gradient(135deg,#090909,#15130f 55%,#080807);box-shadow:0 0 0 4px rgba(222,181,91,.07),0 0 36px rgba(226,183,83,.19),inset 0 0 40px rgba(233,193,101,.05)}.golden-ticket::before{content:"✦  ✧  ✦";position:absolute;left:22px;top:15px;color:rgba(255,226,160,.55);letter-spacing:6px}.golden-ticket::after{content:"";position:absolute;inset:10px;border:1px solid rgba(255,220,131,.16);border-radius:17px;pointer-events:none}.ticket-topline{color:#d5bb7d;font-size:11px;font-weight:700;letter-spacing:3px}.ticket-title{margin:9px 0;color:#fff0c8;font-size:clamp(24px,5vw,38px);line-height:1.5}.ticket-subtitle{margin:0;color:#cfc2a9;font-size:14px}.ticket-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin:18px auto 28px}.ticket-action{min-height:48px;padding:10px 18px;border:1px solid rgba(228,196,125,.55);border-radius:13px;background:linear-gradient(145deg,#211b12,#100e0b);color:#f4dfae;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s}.ticket-action:hover{transform:translateY(-2px);box-shadow:0 7px 24px rgba(221,177,76,.18)}.ticket-action-book{border-color:#e8c878;background:linear-gradient(135deg,#f6e5b3,#d6b66f);color:#20180b}.ticket-distance{min-width:210px}.menu-reveal{animation:menu-rise .9s .12s both}@keyframes ticket-enter{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}@keyframes menu-rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
     @keyframes ember-rise{0%{transform:translate3d(0,0,0) scale(.5);opacity:0}12%{opacity:.85}85%{opacity:.55}100%{transform:translate3d(var(--drift,18px),-105vh,0) scale(0);opacity:0}}@keyframes fireglow{from{opacity:.12;transform:scale(.88)}to{opacity:.28;transform:scale(1.08)}}@keyframes button-breathe{0%,100%{box-shadow:0 0 0 4px rgba(228,196,125,.09),0 0 28px rgba(238,188,82,.3),inset 0 1px 0 #fff8}50%{box-shadow:0 0 0 6px rgba(228,196,125,.13),0 0 42px rgba(238,188,82,.48),inset 0 1px 0 #fff8}}@keyframes welcome-rise{from{opacity:0;transform:translateY(24px) scale(.985)}to{opacity:1;transform:none}}@keyframes content-rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
     @media(max-width:850px){.features{grid-template-columns:repeat(2,minmax(0,1fr))}.menu-grid,.gallery-grid{grid-template-columns:1fr 1fr}.hero-inner{min-height:400px}.location-box,.loyalty-row{grid-template-columns:1fr}}@media(max-width:560px){.wrap{width:min(100% - 24px,1110px)}.welcome-card{border-radius:23px}.welcome-seal{width:60px;height:60px}.welcome-copy{line-height:1.85}.features,.menu-grid,.gallery-grid,.field-grid{grid-template-columns:1fr}.hero-inner{min-height:440px;padding:24px}.nav{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto}.nav a{white-space:nowrap}.section{padding:26px 0}.gallery-card img{height:210px}.menu-entry-head{flex-wrap:wrap}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
   </style>
 </head>
 <body>
   <div class="topline" aria-hidden="true"></div>
-  <section class="welcome-overlay" id="welcomeOverlay" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
-    <div class="ember-field" aria-hidden="true"><i class="ember" style="--left:8%;--duration:9s;--delay:-2s;--drift:25px"></i><i class="ember" style="--left:19%;--duration:11s;--delay:-6s;--drift:-20px"></i><i class="ember" style="--left:34%;--duration:8s;--delay:-4s;--drift:16px"></i><i class="ember" style="--left:51%;--duration:10s;--delay:-7s;--drift:-18px"></i><i class="ember" style="--left:68%;--duration:12s;--delay:-3s;--drift:22px"></i><i class="ember" style="--left:83%;--duration:9s;--delay:-5s;--drift:-24px"></i><i class="ember" style="--left:94%;--duration:11s;--delay:-1s;--drift:12px"></i></div>
-    <div class="welcome-card"><div class="welcome-seal" aria-hidden="true">✦</div><div class="welcome-kicker">AL BADYAH · WINTER MAJLIS</div><h1 id="welcomeTitle">قرية البادية</h1><h2>يا مرحبًا بك في مجلسنا الشتوي الفاخر</h2><p class="welcome-copy">يا مرحب بيك في مجلس قرية البادية الفاخر.. ليل الشتا يجمعنا على ضحكة وسيرة طيبة وأكل من الآخر. نورت مكانك بين أهلك وأصحابك.</p><p class="welcome-note">لإظهار المنيو وتشغيل متابعة الموقع الاختيارية، وافق أدناه ثم اضغط زر التفعيل. لن يُطلب إذن الموقع قبل ضغطك، ويمكنك إيقاف المتابعة في أي وقت.</p><label class="welcome-consent"><input id="welcomeConsent" type="checkbox"><span>أوافق على مشاركة موقعي أثناء بقاء الصفحة مفتوحة، واستخدامه لحساب المسافة وإرسال تنبيهات النطاق إلى قرية البادية. متابعة الموقع اختيارية.</span></label><button class="welcome-button" id="activateVipBtn" type="button" disabled>تفعيل بطاقة الـ VIP وتشغيل خدمات الموقع 📍</button><p class="welcome-status" id="welcomeStatus" role="status" aria-live="polite"></p></div>
-  </section>
-
+  <section class="welcome-overlay" id="welcomeOverlay" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle"><div class="ember-field" aria-hidden="true"><i class="ember" style="--left:8%;--duration:9s;--delay:-2s;--drift:25px"></i><i class="ember" style="--left:19%;--duration:11s;--delay:-6s;--drift:-20px"></i><i class="ember" style="--left:34%;--duration:8s;--delay:-4s;--drift:16px"></i><i class="ember" style="--left:51%;--duration:10s;--delay:-7s;--drift:-18px"></i><i class="ember" style="--left:68%;--duration:12s;--delay:-3s;--drift:22px"></i><i class="ember" style="--left:83%;--duration:9s;--delay:-5s;--drift:-24px"></i><i class="ember" style="--left:94%;--duration:11s;--delay:-1s;--drift:12px"></i></div><div class="welcome-card"><div class="welcome-seal" aria-hidden="true">✦</div><div class="welcome-kicker">AL BADYAH · WINTER MAJLIS</div><h1 id="welcomeTitle">قرية البادية</h1><h2>يا مرحبًا بك في مجلسنا الشتوي الفاخر</h2><p class="welcome-copy">يا مرحب بيك في مجلس قرية البادية الفاخر.. ليل الشتا يجمعنا على ضحكة وسيرة طيبة وأكل من الآخر. نورت مكانك بين أهلك وأصحابك.</p><p class="welcome-note">لإظهار المنيو وتشغيل متابعة الموقع الاختيارية، وافق أدناه ثم اضغط زر التفعيل. لن يُطلب إذن الموقع قبل ضغطك، ويمكنك إيقاف المتابعة في أي وقت.</p><label class="welcome-consent"><input id="welcomeConsent" type="checkbox"><span>أوافق على مشاركة موقعي أثناء بقاء الصفحة مفتوحة، واستخدامه لحساب المسافة وإرسال تنبيهات النطاق إلى قرية البادية. متابعة الموقع اختيارية.</span></label><button class="welcome-button" id="activateVipBtn" type="button" disabled>تفعيل بطاقة الـ VIP وتشغيل خدمات الموقع 📍</button><p class="welcome-status" id="welcomeStatus" role="status" aria-live="polite"></p></div></section>
   <div class="site-app" id="siteApp" inert aria-hidden="true">
     <header class="hero"><div class="wrap hero-inner"><div class="hero-content"><div class="eyebrow">WELCOME TO AL BADYAH</div><h1 class="brand">قرية البادية</h1><div class="stars" aria-label="خمس نجوم تصميمية">★★★★★</div><p class="tagline">أكل ومشروبات · جلسات نار للأجواء الباردة</p><p class="intro">ضيافة بطابع راقٍ، وجلسات تجمع الأهل والأصحاب في أجواء دافئة. تواصلوا معنا لمعرفة القائمة والتوافر.</p><div class="actions"><a class="btn btn-gold" href="#booking">اطلب حجز جلستك</a><button class="btn btn-green" id="contactBtn" type="button">تواصل واتساب</button><button class="btn btn-outline hidden" id="installBtn" type="button">تثبيت التطبيق</button></div></div></div></header>
     <nav class="wrap nav" aria-label="روابط الأقسام"><a href="#about">عن القرية</a><a href="#experience">تجربتنا</a><a href="#menu">الأقسام والمنيو</a><a href="#gallery">المعرض</a><a href="#booking">الحجز</a><a href="#loyalty">بطاقة الولاء</a><a href="#location">الموقع</a></nav>
     <main class="wrap main-wrap">
       <section class="section" id="about"><div class="section-head"><div class="ornament">✦ ✦ ✦</div><h2>ضيافة تليق بزيارتكم</h2><p class="sub">قرية البادية وجهة للاجتماع والاسترخاء، تجمع بين أجواء الاحتفال والهدوء والدفء. نرحب بالأهل والأصحاب في مجلس يليق بكم.</p></div><div class="features"><article class="tile"><div class="tile-icon">🍽️</div><h3>مذاق مميز</h3><p>وجبات ومشروبات تناسب الأجواء العائلية والحميمية.</p></article><article class="tile"><div class="tile-icon">🔥</div><h3>جلسات نار</h3><p>أجواء دافئة في المساء مع جلسة مريحة ومميزة.</p></article><article class="tile"><div class="tile-icon">☕</div><h3>مشروبات متنوعة</h3><p>قهوة وشاي وعصائر ومشروبات تناسب الجلسات الطويلة.</p></article><article class="tile"><div class="tile-icon">🤝</div><h3>استقبال راقٍ</h3><p>روح ضيافة تجعل كل زيارة تجربة لا تُنسى.</p></article></div></section>
       <section class="section" id="experience"><div class="section-head"><div class="ornament">✦ ✦ ✦</div><h2>تفاصيل التجربة</h2><p class="sub">اختاروا ما يناسبكم، واسألوا عن التوافر قبل الوصول. أجواء مميزة للأصدقاء والعائلات، ومذاق يكتمل به ليل الشتاء.</p></div></section>
-      <section class="section" id="menu"><div class="section-head"><div class="ornament">✦ ✦ ✦</div><h2>منيو قرية البادية</h2><p class="sub">تصفحوا الأقسام والأصناف والأسعار والتفاصيل. للاستفسار عن التوافر أو الأسعار، تواصلوا معنا مباشرة.</p></div><div class="menu-grid" id="menuGrid" aria-live="polite"></div><aside class="menu-footer"><strong>قرية بادية جاهزين لاستقبال جميع المناسبات والحفلات والعزومات الكبيره داخل وخارج القرية - 01111815659</strong><span>يتم تقديم جميع التسويات للعزومات الكبيره</span></aside></section>
+      <section class="golden-ticket-wrap" aria-label="بطاقة VIP"><article class="golden-ticket"><div class="ticket-topline">AL BADYAH · WINTER HOSPITALITY</div><h2 class="ticket-title">بطاقة ضيافة صفوة الضيوف - VIP Pass</h2><p class="ticket-subtitle">دفء المجلس البدوي، وكرم الضيافة في ليالي الشتاء</p></article><div class="ticket-actions"><button class="ticket-action ticket-distance" id="ticketDistanceBtn" type="button" aria-live="polite">المسافة عن القرية: بانتظار الموقع</button><button class="ticket-action ticket-action-book" id="ticketBookingBtn" type="button">احجز جلستك الشتوية القادمة 🎪</button></div></section>
+      <section class="section menu-reveal" id="menu"><div class="section-head"><div class="ornament">✦ ✦ ✦</div><h2>منيو قرية البادية</h2><p class="sub">تصفحوا الأقسام والأصناف والأسعار والتفاصيل. للاستفسار عن التوافر أو الأسعار، تواصلوا معنا مباشرة.</p></div><div class="menu-grid" id="menuGrid" aria-live="polite"></div><aside class="menu-footer"><strong>قرية بادية جاهزين لاستقبال جميع المناسبات والحفلات والعزومات الكبيره داخل وخارج القرية - 01111815659</strong><span>يتم تقديم جميع التسويات للعزومات الكبيره</span></aside></section>
       <section class="section" id="gallery"><div class="section-head"><div class="ornament">✦ ✦ ✦</div><h2>لمحات من الأجواء</h2><p class="sub">الصور الحالية توضيحية فقط، ويمكن استبدالها بصور حقيقية للقرية عند توفرها.</p></div><div class="gallery-grid"><article class="gallery-card"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=80" alt="جلسة في مكان أنيق" loading="lazy"><div><strong>جلسة عائلية</strong><p>أجواء مريحة تجمع العائلة والأصدقاء في ليلة دافئة.</p></div></article><article class="gallery-card"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80" alt="مقاعد لأجواء الليل" loading="lazy"><div><strong>ليلة دافئة</strong><p>إضاءة هادئة وجلسات مناسبة لليلة الباردة والراحة.</p></div></article><article class="gallery-card"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80" alt="أطباق منتقاة" loading="lazy"><div><strong>أطباق متنوعة</strong><p>منيو مختار يليق بتنوع الأذواق والطلبات الخاصة.</p></div></article></div></section>
       <section class="section" id="booking"><div class="section-head"><div class="ornament">✦ ✦ ✦</div><h2>احجزوا جلستكم</h2><p class="sub">اكتب بياناتك، وسيتم إرسال طلب الحجز إلى Make مع فتح نسخة احتياطية في واتساب.</p></div><div class="form-grid"><form class="panel" id="bookingForm" novalidate><div class="field-grid"><div class="field-group"><label for="bookingName">الاسم</label><input class="field" id="bookingName" name="name" type="text" maxlength="80" required></div><div class="field-group"><label for="bookingGuests">عدد الأشخاص</label><select class="field" id="bookingGuests" name="guests" required><option value="">اختر العدد</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7+">7 أو أكثر</option></select></div><div class="field-group"><label for="bookingDate">التاريخ</label><input class="field" id="bookingDate" name="date" type="date" required></div><div class="field-group"><label for="bookingTime">الوقت</label><input class="field" id="bookingTime" name="time" type="time" required></div><div class="field-group full"><label for="bookingNote">ملاحظات (اختياري)</label><textarea class="field textarea" id="bookingNote" name="note" maxlength="300" placeholder="أي ملاحظات خاصة مثل طلب أجواء دافئة أو طاولة خاصة"></textarea></div></div><button class="btn btn-submit" type="submit">إرسال الطلب</button><p class="status" id="bookingStatus" role="status" aria-live="polite"></p></form></div></section>
       <section class="section" id="loyalty"><div class="section-head"><div class="ornament">✦ ✦ ✦</div><h2>بطاقة الولاء التجريبية</h2><p class="sub">هذه نسخة تجريبية فقط ولا تحفظ البيانات أو تحتسب زيارات فعلية في الوقت الحالي.</p></div><div class="loyalty-row"><div class="panel loyalty-card"><form id="loyaltyForm"><div class="field-group"><label for="loyaltyNameInput">الاسم</label><input class="field" id="loyaltyNameInput" name="name" type="text" maxlength="80" required></div><div class="field-group"><label for="loyaltyPhoneInput">رقم الهاتف</label><input class="field" id="loyaltyPhoneInput" name="phone" type="tel" inputmode="tel" maxlength="20" required></div><label class="small"><input type="checkbox" id="loyaltyConsent" required> أوافق على أن هذه بطاقة تجريبية فقط.</label><button class="btn btn-submit" type="submit">تسجيل بطاقة الولاء</button><p class="status" id="loyaltyStatus" role="status" aria-live="polite"></p></form></div><article class="loyalty-card"><div class="card-head"><span>AL BADYAH</span><span>بطاقة الولاء</span></div><p class="small">اسم حامل البطاقة: <strong id="cardName">—</strong></p><div class="stamps"><span class="stamp active">1</span><span class="stamp active">2</span><span class="stamp">3</span><span class="stamp">4</span><span class="stamp">5</span></div></article></div></section>
       <section class="section" id="location"><div class="section-head"><div class="ornament">✦ ✦ ✦</div><h2>موقعكم على الخريطة</h2><p class="sub">تبدأ متابعة الموقع فقط بموافقتك الصريحة، ويمكنك إيقافها في أي وقت.</p></div><div class="location-box"><div class="location-panel"><button class="btn btn-gold" id="locateBtn" type="button">بدء متابعة الموقع</button><p class="location-status" id="locationStatus" role="status" aria-live="polite">لم تبدأ متابعة الموقع.</p><div class="location-result hidden" id="locationResult"></div></div><div class="location-panel"><p class="small">رابط سريع إلى خرائط Google:</p><p><a href="https://maps.app.goo.gl/rNbBHN1eVw8ZaQpr7" target="_blank" rel="noopener noreferrer">افتح خرائط قرية البادية</a></p></div></div></section>
     </main><footer class="footer"><div class="wrap"><strong>قرية البادية</strong><br>أكل ومشروبات وجلسات نار للأجواء الباردة</div></footer>
   </div>
-
   <script>
     (() => {
       'use strict';
       const villageMenuDraft = {
-        "العزومات": [
-          { "name": "تيس كامل", "price": 9500 }, { "name": "نص تيس", "price": 4900 }, { "name": "ربع تيس", "price": 3100 }, { "name": "ديك رومي", "price": 3300 }
-        ],
+        "العزومات": [{"name":"تيس كامل","price":9500},{"name":"نص تيس","price":4900},{"name":"ربع تيس","price":3100},{"name":"ديك رومي","price":3300}],
         "الصواني الفاخرة": [
-          { "name": "صنية القريه", "price": 3599, "details": "ديك رومي + فرخه ونص مشوي + كيلو مشكل + 4 فرد حمام + نص ممبار + 10 قطع محشي + 10 قطع سمبوسك + رز بسمتي + 3 طواجن ملوخيه + سلطة + طحينه + عيش + شوربة + دقوس" },
-          { "name": "صنية شيخ المندي", "price": 1799, "details": "فرخه ونص مندي + نص لحمه مندي عجالي + نص لحمه مندي ماعز + ربع ممبار + 5 قطع سمبوسك + كيلو رز بسمتي + 2 طاجن ملوخيه + سلطة + طحينه + عيش + شوربة + دقوس" },
-          { "name": "صنية شيوخ القبائل", "price": 2645, "details": "فرخه مندي + فرخه مشوي + كيلو عجالي + كيلو إلا ربع مشكل + ربع ممبار + 8 قطع سمبوسك + 8 قطع محشي + 2 طاجن ملوخيه + سلطة + طحينه + عيش + شوربة + دقوس" },
-          { "name": "صنية ابو مكه", "price": 1350, "details": "فرخة ونص مندي + نص لحمه عجالي + 5 قطع محشي + 5 قطع سمبوسك + رز بسمتي + سلطة + طحينة + دقوس + ملوخية + شوربة + عيش" },
-          { "name": "صنية باديه", "price": 899, "details": "فرخة مشوي + نص كفتة + 4 قطع سمبوسك + رز بسمتي + ملوخية + سلطة + ديتشة + دقوس + عيش + شوربة" },
-          { "name": "صينية مشويات باديه", "price": 1199, "details": "فرخة مشوي + نص كفتة + 2 حواوشي + ربع ممبار + 5 قطع سمبوسك + رز بسمتي + دقوس + سلطة + طحينة + ملوخية + شوربة + عيش" }
-        ],
-        "القسم البدوي والصواني": [
-          { "name": "فرخه مندي", "price": 500 }, { "name": "مكبكه فراخ", "price": 500 }, { "name": "كيسه فراخ", "price": 500 },
-          { "name": "كيلو لحمه مندي (عجالي او ماعز)", "price": 999 }, { "name": "كيلو لحمه كبسه (عجالي او ماعز)", "price": 999 },
-          { "name": "صنية مكبكه لحمه كيلو (عجالي او ماعز)", "price": 999, "note": "يقدم مع جميع الصواني والبدوي: سلطه، دقوس، طحينه، شوربه، ملوخيه، رز بسمتي، عيش" }
-        ],
-        "المشويات والسندوتشات": [
-          { "name": "فراخ مشوية", "prices": { "ربع": 120, "نص": 220, "كيلو": 400 } }, { "name": "كفته", "prices": { "ربع": 220, "نص": 440, "كيلو": 880 } },
-          { "name": "طرب", "prices": { "ربع": 230, "نص": 460, "كيلو": 920 } }, { "name": "كباب", "prices": { "ربع": 240, "نص": 475, "كيلو": 950 } },
-          { "name": "كيلو مشكل", "prices": { "ربع": 240, "نص": 475, "كيلو": 950 }, "note": "يقدم مع المشويات رز بسمتي وسلطه وطحينه ودقوس وعيش وملوخيه وشوربه" },
-          { "name": "جوز حمام", "price": 440 }, { "name": "بطه محشيه", "price": 810 }, { "name": "بطه محمره", "price": 790 },
-          { "name": "سندوتش كفته", "price": 70 }, { "name": "سندوتش طرب", "price": 80 }, { "name": "سندوتش كباب", "price": 80 }, { "name": "حواوشي", "price": 75 }
-        ],
-        "الطواجن والوجبات": [
-          { "name": "طاجن باميه باللحمه", "price": 250 }, { "name": "طاجن بطاطس باللحمه", "price": 250 }, { "name": "طاجن خضار مشكل", "price": 250 },
-          { "name": "طاجن لحمه بالبصل", "price": 250 }, { "name": "طاجن عكاوي", "price": 299 }, { "name": "طاجن كوارع بورق العنب", "price": 320, "note": "يقدم مع الطواجن رز ابيض وسلطة وطحينة وعيش" },
-          { "name": "وجبة ربع فراخ مشوي", "price": 120, "details": "ربع فراخ مشوي + رز بسمتي + سلطة + طحينة + عيش + شوربة" },
-          { "name": "وجبة ربع فراخ مندي", "price": 130, "details": "ربع فراخ مندي + رز بسمتي + سلطة + طحينة + دقوس + عيش + شوربة" },
-          { "name": "وجبة القرية", "price": 199, "details": "ربع فراخ مشوي + 2 صوابع كفتة + قطعة سمبوسك + سلطة + طحينة + دقوس + عيش + شوربة" },
-          { "name": "نفر مندي", "price": 250, "details": "ربع فراخ مندي + شريحة لحمة مندي + قطعة محشي + سمبوسك + سلطة + دقوس + عيش + شوربة + ملوخية" },
-          { "name": "نفر مشوي", "price": 250, "details": "ربع فراخ + 2 صابع كفتة + 1 صباع طرب + قطعة محشي + سمبوسك + سلطة + دقوس + عيش + شوربة + ملوخية" },
-          { "name": "مكس جريل", "price": 290, "details": "ربع فراخ مشوي + شريحة لحمه مندي + 2 صابع كفته + قطعة محشي + قطعة سمبوسك + رز بسمتي + سلطة + طحينه + دقوس + عيش + شوربه" }
-        ],
-        "الأيس كوفي والميلك شيك": [
-          { "name": "ايس كوفي كلاسيك", "price": 80 }, { "name": "ايس لاتيه", "price": 80 }, { "name": "ايس كابتشينو", "price": 80 },
-          { "name": "ميلك شيك شيكولاتة", "price": 85 }, { "name": "ميلك شيك فانيليا", "price": 85 }, { "name": "ميلك شيك كراميل", "price": 85 }, { "name": "ميلك شيك مانجا", "price": 85 }, { "name": "ميلك شيك فراوله", "price": 85 }
-        ],
-        "عصائر فريش ومشروبات غازية": [
-          { "name": "ليمون فريش", "price": 50 }, { "name": "ليمون نعناع فريش", "price": 55 }, { "name": "فراولة فريش", "price": 70 }, { "name": "مانجا فريش", "price": 70 }, { "name": "جوافه فريش", "price": 70 },
-          { "name": "موز حليب فريش", "price": 75 }, { "name": "تمر باللبن", "price": 75 }, { "name": "فريش القرية (ليمون نعناع حليب او جوافه نعناع حليب)", "price": 75 }, { "name": "موهيتو", "price": 75 }, { "name": "كوكتيل", "price": 80 }, { "name": "كيوي", "price": 85 }, { "name": "أفوكادو", "price": 99 },
-          { "name": "مياه معدنيه صغيره", "price": 10 }, { "name": "بيبسي", "price": 30 }, { "name": "شويبس", "price": 30 }, { "name": "سفن", "price": 30 }, { "name": "ميرندا", "price": 30 }, { "name": "إستنج", "price": 30 }, { "name": "ريد بول", "price": 75 }, { "name": "طبق فواكه وسط", "price": 150 }, { "name": "طبق فواكه كبير", "price": 200 }
-        ],
-        "الشاي والقهوة والأعشاب": [
-          { "name": "شاي", "price": 15 }, { "name": "شاي قرنفل", "price": 20 }, { "name": "شاي فواكه", "price": 20 }, { "name": "شاي حليب", "price": 35 }, { "name": "شاي كرك", "price": 40 },
-          { "name": "براد شاي وسط", "price": 70 }, { "name": "براد شاي كبير", "price": 100 }, { "name": "قهوه تركي", "price": 25 }, { "name": "قهوه فرنساوي", "price": 35 }, { "name": "اسبريسو", "price": 40 }, { "name": "قهوه بندق", "price": 45 },
-          { "name": "جينه اسواني", "price": 95 }, { "name": "داله قهوه عربي", "price": 100 }, { "name": "نسكافيه", "price": 40 }, { "name": "كابتشينو لاتيه", "price": 50 }, { "name": "كاكو", "price": 45 }, { "name": "هوت سيدر", "price": 45 }, { "name": "هوت شوكليت", "price": 50 }, { "name": "سحلب", "price": 70 }, { "name": "سحلب القرية", "price": 80 },
-          { "name": "ينسون / زنجبيل / حلبة حب / كركديه اسواني", "price": 25 }, { "name": "ليمون مغلي", "price": 30 }, { "name": "حلبة حليب / قرفة حليب / صيدلية القرية", "price": 35 }
-        ],
-        "الشيشة": [
-          { "name": "قص", "price": 15 }, { "name": "سلوم", "price": 15 }, { "name": "اسكندراني", "price": 35 }, { "name": "فواكه دندش", "price": 65 }, { "name": "فاخر", "price": 90 }
-        ]
+          {"name":"صنية القريه","price":3599,"details":"ديك رومي + فرخه ونص مشوي + كيلو مشكل + 4 فرد حمام + نص ممبار + 10 قطع محشي + 10 قطع سمبوسك + رز بسمتي + 3 طواجن ملوخيه + سلطة + طحينه + عيش + شوربة + دقوس"},
+          {"name":"صنية شيخ المندي","price":1799,"details":"فرخه ونص مندي + نص لحمه مندي عجالي + نص لحمه مندي ماعز + ربع ممبار + 5 قطع سمبوسك + كيلو رز بسمتي + 2 طاجن ملوخيه + سلطة + طحينه + عيش + شوربة + دقوس"},
+          {"name":"صنية شيوخ القبائل","price":2645,"details":"فرخه مندي + فرخه مشوي + كيلو عجالي + كيلو إلا ربع مشكل + ربع ممبار + 8 قطع سمبوسك + 8 قطع محشي + 2 طاجن ملوخيه + سلطة + طحينه + عيش + شوربة + دقوس"},
+          {"name":"صنية ابو مكه","price":1350,"details":"فرخة ونص مندي + نص لحمه عجالي + 5 قطع محشي + 5 قطع سمبوسك + رز بسمتي + سلطة + طحينة + دقوس + ملوخية + شوربة + عيش"},
+          {"name":"صنية باديه","price":899,"details":"فرخة مشوي + نص كفتة + 4 قطع سمبوسك + رز بسمتي + ملوخية + سلطة + ديتشة + دقوس + عيش + شوربة"},
+          {"name":"صينية مشويات باديه","price":1199,"details":"فرخة مشوي + نص كفتة + 2 حواوشي + ربع ممبار + 5 قطع سمبوسك + رز بسمتي + دقوس + سلطة + طحينة + ملوخية + شوربة + عيش"}],
+        "القسم البدوي والصواني": [{"name":"فرخه مندي","price":500},{"name":"مكبكه فراخ","price":500},{"name":"كيسه فراخ","price":500},{"name":"كيلو لحمه مندي (عجالي او ماعز)","price":999},{"name":"كيلو لحمه كبسه (عجالي او ماعز)","price":999},{"name":"صنية مكبكه لحمه كيلو (عجالي او ماعز)","price":999,"note":"يقدم مع جميع الصواني والبدوي: سلطه، دقوس، طحينه، شوربه، ملوخيه، رز بسمتي، عيش"}],
+        "المشويات والسندوتشات": [{"name":"فراخ مشوية","prices":{"ربع":120,"نص":220,"كيلو":400}},{"name":"كفته","prices":{"ربع":220,"نص":440,"كيلو":880}},{"name":"طرب","prices":{"ربع":230,"نص":460,"كيلو":920}},{"name":"كباب","prices":{"ربع":240,"نص":475,"كيلو":950}},{"name":"كيلو مشكل","prices":{"ربع":240,"نص":475,"كيلو":950},"note":"يقدم مع المشويات رز بسمتي وسلطه وطحينه ودقوس وعيش وملوخيه وشوربه"},{"name":"جوز حمام","price":440},{"name":"بطه محشيه","price":810},{"name":"بطه محمره","price":790},{"name":"سندوتش كفته","price":70},{"name":"سندوتش طرب","price":80},{"name":"سندوتش كباب","price":80},{"name":"حواوشي","price":75}],
+        "الطواجن والوجبات": [{"name":"طاجن باميه باللحمه","price":250},{"name":"طاجن بطاطس باللحمه","price":250},{"name":"طاجن خضار مشكل","price":250},{"name":"طاجن لحمه بالبصل","price":250},{"name":"طاجن عكاوي","price":299},{"name":"طاجن كوارع بورق العنب","price":320,"note":"يقدم مع الطواجن رز ابيض وسلطة وطحينة وعيش"},{"name":"وجبة ربع فراخ مشوي","price":120,"details":"ربع فراخ مشوي + رز بسمتي + سلطة + طحينة + عيش + شوربة"},{"name":"وجبة ربع فراخ مندي","price":130,"details":"ربع فراخ مندي + رز بسمتي + سلطة + طحينة + دقوس + عيش + شوربة"},{"name":"وجبة القرية","price":199,"details":"ربع فراخ مشوي + 2 صوابع كفتة + قطعة سمبوسك + سلطة + طحينة + دقوس + عيش + شوربة"},{"name":"نفر مندي","price":250,"details":"ربع فراخ مندي + شريحة لحمة مندي + قطعة محشي + سمبوسك + سلطة + دقوس + عيش + شوربة + ملوخية"},{"name":"نفر مشوي","price":250,"details":"ربع فراخ + 2 صابع كفتة + 1 صباع طرب + قطعة محشي + سمبوسك + سلطة + دقوس + عيش + شوربة + ملوخية"},{"name":"مكس جريل","price":290,"details":"ربع فراخ مشوي + شريحة لحمه مندي + 2 صابع كفته + قطعة محشي + قطعة سمبوسك + رز بسمتي + سلطة + طحينه + دقوس + عيش + شوربه"}],
+        "الأيس كوفي والميلك شيك": [{"name":"ايس كوفي كلاسيك","price":80},{"name":"ايس لاتيه","price":80},{"name":"ايس كابتشينو","price":80},{"name":"ميلك شيك شيكولاتة","price":85},{"name":"ميلك شيك فانيليا","price":85},{"name":"ميلك شيك كراميل","price":85},{"name":"ميلك شيك مانجا","price":85},{"name":"ميلك شيك فراوله","price":85}],
+        "عصائر فريش ومشروبات غازية": [{"name":"ليمون فريش","price":50},{"name":"ليمون نعناع فريش","price":55},{"name":"فراولة فريش","price":70},{"name":"مانجا فريش","price":70},{"name":"جوافه فريش","price":70},{"name":"موز حليب فريش","price":75},{"name":"تمر باللبن","price":75},{"name":"فريش القرية (ليمون نعناع حليب او جوافه نعناع حليب)","price":75},{"name":"موهيتو","price":75},{"name":"كوكتيل","price":80},{"name":"كيوي","price":85},{"name":"أفوكادو","price":99},{"name":"مياه معدنيه صغيره","price":10},{"name":"بيبسي","price":30},{"name":"شويبس","price":30},{"name":"سفن","price":30},{"name":"ميرندا","price":30},{"name":"إستنج","price":30},{"name":"ريد بول","price":75},{"name":"طبق فواكه وسط","price":150},{"name":"طبق فواكه كبير","price":200}],
+        "الشاي والقهوة والأعشاب": [{"name":"شاي","price":15},{"name":"شاي قرنفل","price":20},{"name":"شاي فواكه","price":20},{"name":"شاي حليب","price":35},{"name":"شاي كرك","price":40},{"name":"براد شاي وسط","price":70},{"name":"براد شاي كبير","price":100},{"name":"قهوه تركي","price":25},{"name":"قهوه فرنساوي","price":35},{"name":"اسبريسو","price":40},{"name":"قهوه بندق","price":45},{"name":"جينه اسواني","price":95},{"name":"داله قهوه عربي","price":100},{"name":"نسكافيه","price":40},{"name":"كابتشينو لاتيه","price":50},{"name":"كاكو","price":45},{"name":"هوت سيدر","price":45},{"name":"هوت شوكليت","price":50},{"name":"سحلب","price":70},{"name":"سحلب القرية","price":80},{"name":"ينسون / زنجبيل / حلبة حب / كركديه اسواني","price":25},{"name":"ليمون مغلي","price":30},{"name":"حلبة حليب / قرفة حليب / صيدلية القرية","price":35}],
+        "الشيشة": [{"name":"قص","price":15},{"name":"سلوم","price":15},{"name":"اسكندراني","price":35},{"name":"فواكه دندش","price":65},{"name":"فاخر","price":90}]
       };
-
-      const menuGrid = document.getElementById('menuGrid');
-      for (const [category, items] of Object.entries(villageMenuDraft)) {
-        const section = document.createElement('section');
-        section.className = 'menu-category';
-        const heading = document.createElement('h3');
-        heading.textContent = category;
-        const list = document.createElement('div');
-        list.className = 'menu-list';
-        for (const item of items) {
-          const entry = document.createElement('article');
-          entry.className = 'menu-entry';
-          const head = document.createElement('div');
-          head.className = 'menu-entry-head';
-          const name = document.createElement('h4');
-          name.textContent = item.name;
-          head.append(name);
-          if (item.price !== undefined) {
-            const price = document.createElement('span');
-            price.className = 'menu-price';
-            price.textContent = String(item.price);
-            head.append(price);
-          }
-          entry.append(head);
-          if (item.prices) {
-            const options = document.createElement('div');
-            options.className = 'menu-prices';
-            for (const [size, priceValue] of Object.entries(item.prices)) {
-              const option = document.createElement('span');
-              option.textContent = `${size}: ${priceValue}`;
-              options.append(option);
-            }
-            entry.append(options);
-          }
-          if (item.details) {
-            const details = document.createElement('p');
-            details.className = 'menu-details';
-            details.textContent = item.details;
-            entry.append(details);
-          }
-          if (item.note) {
-            const note = document.createElement('p');
-            note.className = 'menu-note';
-            note.textContent = item.note;
-            entry.append(note);
-          }
-          list.append(entry);
-        }
-        section.append(heading, list);
-        menuGrid.append(section);
-      }
-
-      const WHATSAPP_NUMBER = '201111815659';
-      const MAKE_BOOKING_WEBHOOK = 'https://hook.eu1.make.com/pmtj8hmcen1m6chdyk9otwpykmqfu5p8';
-      const overlay = document.getElementById('welcomeOverlay');
-      const siteApp = document.getElementById('siteApp');
-      const welcomeConsent = document.getElementById('welcomeConsent');
-      const activateButton = document.getElementById('activateVipBtn');
-      const welcomeStatus = document.getElementById('welcomeStatus');
-      let activationStarted = false;
-      welcomeConsent.addEventListener('change', () => { activateButton.disabled = !welcomeConsent.checked || activationStarted; });
-      activateButton.addEventListener('click', () => {
-        if (!welcomeConsent.checked || activationStarted) return;
-        activationStarted = true; activateButton.disabled = true; activateButton.textContent = 'جارٍ طلب إذن الموقع…';
-        welcomeStatus.textContent = 'وافق على طلب الموقع الذي سيظهر من المتصفح لفتح مجلسك.';
-        window.dispatchEvent(new CustomEvent('badyah:activate-vip', { detail: { consentGranted: true } }));
-      });
-      window.addEventListener('badyah:location-ready', () => {
-        overlay.classList.add('leaving'); siteApp.inert = false; siteApp.setAttribute('aria-hidden', 'false'); siteApp.classList.add('unlocked');
-        window.setTimeout(() => { overlay.hidden = true; }, 900);
-      });
-      window.addEventListener('badyah:location-error', (event) => {
-        activationStarted = false; activateButton.disabled = !welcomeConsent.checked;
-        activateButton.textContent = 'تفعيل بطاقة الـ VIP وتشغيل خدمات الموقع 📍';
-        welcomeStatus.textContent = event.detail?.message || 'تعذر تحديد موقعك. تحقق من الإذن وحاول مرة أخرى.';
-      });
-      function localDate(date) { return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`; }
-      const dateInput = document.getElementById('bookingDate');
-      const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate()+1); dateInput.min = localDate(new Date()); dateInput.value = localDate(tomorrow);
-      function openWhatsApp(message) { window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer'); }
-      document.getElementById('contactBtn').addEventListener('click', () => openWhatsApp('مرحبًا، أريد الاستفسار عن قرية البادية والأكل والمشروبات وجلسات النار.'));
-      document.getElementById('bookingForm').addEventListener('submit', async (event) => {
-        event.preventDefault(); const form = event.currentTarget; if (!form.reportValidity()) return;
-        const formData = new FormData(form);
-        const booking = Object.fromEntries(['name','guests','date','time','note'].map((key) => [key, String(formData.get(key)||'').trim()]));
-        const status = document.getElementById('bookingStatus'); status.textContent = 'جارٍ إرسال الحجز…'; status.style.color = '#d6b66f';
-        try {
-          const response = await fetch(MAKE_BOOKING_WEBHOOK, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(booking) });
-          if (!response.ok) throw new Error(`HTTP ${response.status}`);
-          status.textContent = 'تم إرسال الحجز بنجاح، وسيتم التواصل معكم.'; status.style.color = '#7bdc96';
-          openWhatsApp(['مرحبًا، أريد حجز جلسة',`الاسم: ${booking.name}`,`العدد: ${booking.guests}`,`التاريخ: ${booking.date}`,`الوقت: ${booking.time}`,`ملاحظات: ${booking.note||'لا توجد'}`].join('\n'));
-          form.reset(); dateInput.value = localDate(tomorrow);
-        } catch (error) {
-          console.error(error); status.textContent = 'تعذر تأكيد إرسال الحجز. يمكنك إكمال الطلب عبر واتساب.'; status.style.color = '#ff7a7a';
-          openWhatsApp(['مرحبًا، أريد حجز جلسة',`الاسم: ${booking.name}`,`العدد: ${booking.guests}`,`التاريخ: ${booking.date}`,`الوقت: ${booking.time}`,`ملاحظات: ${booking.note||'لا توجد'}`].join('\n'));
-        }
-      });
-      document.getElementById('loyaltyForm').addEventListener('submit', (event) => {
-        event.preventDefault(); const form = event.currentTarget; if (!form.reportValidity()) return;
-        const name = document.getElementById('loyaltyNameInput').value.trim();
-        const phone = document.getElementById('loyaltyPhoneInput').value.trim().replace(/[^0-9+]/g,'');
-        const status = document.getElementById('loyaltyStatus');
-        if (!name || !/^[0-9+]{7,20}$/.test(phone)) { status.textContent='يرجى إدخال اسم ورقم هاتف صحيح.'; status.style.color='#ff7a7a'; return; }
-        document.getElementById('cardName').textContent=name; status.textContent='تم تسجيل بطاقة الولاء التجريبية بنجاح.'; status.style.color='#7bdc96'; form.reset();
-      });
-      let installPrompt = null; const installButton = document.getElementById('installBtn');
-      window.addEventListener('beforeinstallprompt',(event)=>{event.preventDefault();installPrompt=event;installButton.classList.remove('hidden');});
-      installButton.addEventListener('click',async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;installButton.classList.add('hidden');});
-      if ('serviceWorker' in navigator && location.protocol !== 'file:') window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch((error)=>console.error('Service Worker registration failed:',error)));
+      const menuGrid=document.getElementById('menuGrid');
+      for(const [category,items] of Object.entries(villageMenuDraft)){
+        const section=document.createElement('section');section.className='menu-category';const heading=document.createElement('h3');heading.textContent=category;const list=document.createElement('div');list.className='menu-list';
+        for(const item of items){const entry=document.createElement('article');entry.className='menu-entry';const head=document.createElement('div');head.className='menu-entry-head';const name=document.createElement('h4');name.textContent=item.name;head.append(name);if(item.price!==undefined){const price=document.createElement('span');price.className='menu-price';price.textContent=String(item.price);head.append(price)}entry.append(head);
+          if(item.prices){const options=document.createElement('div');options.className='menu-prices';for(const [size,value] of Object.entries(item.prices)){const option=document.createElement('span');option.textContent=`${size}: ${value}`;options.append(option)}entry.append(options)}
+          if(item.details){const details=document.createElement('p');details.className='menu-details';details.textContent=item.details;entry.append(details)}if(item.note){const note=document.createElement('p');note.className='menu-note';note.textContent=item.note;entry.append(note)}list.append(entry)}section.append(heading,list);menuGrid.append(section)}
+      const WHATSAPP_NUMBER='201111815659',MAKE_BOOKING_WEBHOOK='https://hook.eu1.make.com/pmtj8hmcen1m6chdyk9otwpykmqfu5p8';
+      const overlay=document.getElementById('welcomeOverlay'),siteApp=document.getElementById('siteApp'),welcomeConsent=document.getElementById('welcomeConsent'),activateButton=document.getElementById('activateVipBtn'),welcomeStatus=document.getElementById('welcomeStatus');let activationStarted=false;
+      welcomeConsent.addEventListener('change',()=>{activateButton.disabled=!welcomeConsent.checked||activationStarted});
+      activateButton.addEventListener('click',()=>{if(!welcomeConsent.checked||activationStarted)return;activationStarted=true;activateButton.disabled=true;activateButton.textContent='جارٍ طلب إذن الموقع…';welcomeStatus.textContent='وافق على طلب الموقع الذي سيظهر من المتصفح لفتح مجلسك.';window.dispatchEvent(new CustomEvent('badyah:activate-vip',{detail:{consentGranted:true}}))});
+      window.addEventListener('badyah:location-ready',()=>{overlay.classList.add('leaving');siteApp.inert=false;siteApp.setAttribute('aria-hidden','false');siteApp.classList.add('unlocked');window.setTimeout(()=>{overlay.hidden=true},900)});
+      window.addEventListener('badyah:location-error',(event)=>{activationStarted=false;activateButton.disabled=!welcomeConsent.checked;activateButton.textContent='تفعيل بطاقة الـ VIP وتشغيل خدمات الموقع 📍';welcomeStatus.textContent=event.detail?.message||'تعذر تحديد موقعك. تحقق من الإذن وحاول مرة أخرى.'});
+      const ticketDistance=document.getElementById('ticketDistanceBtn'),locationStatus=document.getElementById('locationStatus'),locationResult=document.getElementById('locationResult');
+      const showDistance=()=>{const text=locationResult?.textContent||'';const match=text.match(/البعد عن المطعم:\s*([\d,]+)\s*متر/);ticketDistance.textContent=match?`المسافة عن القرية: ${match[1]} متر`:(locationStatus.textContent&&locationStatus.textContent!=='لم تبدأ متابعة الموقع.'?locationStatus.textContent:'المسافة عن القرية: بانتظار الموقع');};
+      new MutationObserver(showDistance).observe(locationStatus,{childList:true,subtree:true,characterData:true});new MutationObserver(showDistance).observe(locationResult,{childList:true,subtree:true,characterData:true});
+      ticketDistance.addEventListener('click',()=>{document.getElementById('location').scrollIntoView({behavior:'smooth',block:'center'});showDistance()});
+      document.getElementById('ticketBookingBtn').addEventListener('click',()=>{const msg='مرحبًا، أريد حجز جلستي الشتوية القادمة في قرية البادية.';window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,'_blank','noopener,noreferrer')});
+      function localDate(date){return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`};const dateInput=document.getElementById('bookingDate'),tomorrow=new Date();tomorrow.setDate(tomorrow.getDate()+1);dateInput.min=localDate(new Date());dateInput.value=localDate(tomorrow);
+      function openWhatsApp(message){window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer')};document.getElementById('contactBtn').addEventListener('click',()=>openWhatsApp('مرحبًا، أريد الاستفسار عن قرية البادية والأكل والمشروبات وجلسات النار.'));
+      document.getElementById('bookingForm').addEventListener('submit',async(event)=>{event.preventDefault();const form=event.currentTarget;if(!form.reportValidity())return;const fd=new FormData(form),booking=Object.fromEntries(['name','guests','date','time','note'].map(key=>[key,String(fd.get(key)||'').trim()])),status=document.getElementById('bookingStatus');status.textContent='جارٍ إرسال الحجز…';status.style.color='#d6b66f';try{const response=await fetch(MAKE_BOOKING_WEBHOOK,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(booking)});if(!response.ok)throw new Error(`HTTP ${response.status}`);status.textContent='تم إرسال الحجز بنجاح، وسيتم التواصل معكم.';status.style.color='#7bdc96';openWhatsApp(['مرحبًا، أريد حجز جلسة',`الاسم: ${booking.name}`,`العدد: ${booking.guests}`,`التاريخ: ${booking.date}`,`الوقت: ${booking.time}`,`ملاحظات: ${booking.note||'لا توجد'}`].join('\n'));form.reset();dateInput.value=localDate(tomorrow)}catch(error){console.error(error);status.textContent='تعذر تأكيد إرسال الحجز. يمكنك إكمال الطلب عبر واتساب.';status.style.color='#ff7a7a';openWhatsApp(['مرحبًا، أريد حجز جلسة',`الاسم: ${booking.name}`,`العدد: ${booking.guests}`,`التاريخ: ${booking.date}`,`الوقت: ${booking.time}`,`ملاحظات: ${booking.note||'لا توجد'}`].join('\n'))}});
+      document.getElementById('loyaltyForm').addEventListener('submit',(event)=>{event.preventDefault();const form=event.currentTarget;if(!form.reportValidity())return;const name=document.getElementById('loyaltyNameInput').value.trim(),phone=document.getElementById('loyaltyPhoneInput').value.trim().replace(/[^0-9+]/g,''),status=document.getElementById('loyaltyStatus');if(!name||!/^[0-9+]{7,20}$/.test(phone)){status.textContent='يرجى إدخال اسم ورقم هاتف صحيح.';status.style.color='#ff7a7a';return}document.getElementById('cardName').textContent=name;status.textContent='تم تسجيل بطاقة الولاء التجريبية بنجاح.';status.style.color='#7bdc96';form.reset()});
+      let installPrompt=null;const installButton=document.getElementById('installBtn');window.addEventListener('beforeinstallprompt',(event)=>{event.preventDefault();installPrompt=event;installButton.classList.remove('hidden')});installButton.addEventListener('click',async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;installButton.classList.add('hidden')});if('serviceWorker'in navigator&&location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(error=>console.error('Service Worker registration failed:',error)));
     })();
   </script>
   <script src="./location-tracker.js"></script>
