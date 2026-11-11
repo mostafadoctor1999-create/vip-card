@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#10100d">
-  <meta name="description" content="قرية البادية: أكل ومشروبات وجلسات نار للأجواء الباردة.">
+  <meta name="theme-color" content="#100d0b">
+  <meta name="description" content="قرية البادية: ضيافة شتوية وجلسات نار وأكل ومشروبات. تفعيل الموقع اختياري وبموافقتك.">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <title>قرية البادية | أجواء وضيافة راقية</title>
+  <title>قرية البادية | مجلس الشتاء VIP</title>
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icon.svg">
@@ -15,432 +15,175 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root{color-scheme:dark;--gold:#d6b66f;--light:#f6e5b3;--muted:#c0b7a5;--line:rgba(214,182,111,.25);--bg:#11100d;--panel:#1a1814;--panel-2:#0f0e0b;--green:#60c38a;--red:#ff7a7a;--cream:#f9f2dc;font-family:"Cairo",Tahoma,sans-serif}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:18px}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -20%,rgba(214,182,111,.18),transparent 42%),linear-gradient(180deg,#11100d,#0f0e0b 34%,#11100d);color:#f9f2dc}a{color:inherit;text-decoration:none}img{max-width:100%;display:block}.wrap{width:min(1110px,calc(100% - 28px));margin-inline:auto}.topline{height:3px;background:linear-gradient(90deg,transparent,rgba(214,182,111,.95),transparent)}.hero{padding:42px 0 14px}.hero-inner{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:26px;background:linear-gradient(180deg,rgba(16,15,12,.22),rgba(16,15,12,.64)),url('https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;min-height:530px;display:flex;align-items:flex-end}.hero-inner:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,9,.12),rgba(10,10,9,.62));pointer-events:none}.hero-content{position:relative;z-index:1;padding:clamp(24px,6vw,56px)}.eyebrow{display:inline-block;color:var(--gold);font-size:12px;letter-spacing:2px;font-weight:700;margin-bottom:8px}.brand{margin:0;font-size:clamp(36px,7vw,72px);line-height:1.1;color:var(--cream)}.stars{margin:10px 0 0;color:var(--gold);letter-spacing:4px;font-size:20px}.tagline{margin:16px 0 0;color:#efebdd;font-size:18px}.intro{margin:14px 0 0;color:#e6dfd1;max-width:620px;line-height:2;font-size:15px}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:12px;border:1px solid transparent;font-weight:700;cursor:pointer;transition:transform .15s ease,box-shadow .2s ease}.btn:hover{transform:translateY(-1px)}.btn-gold{background:linear-gradient(135deg,#f6e5b3,#d6b66f);color:#19160a;box-shadow:0 10px 30px rgba(214,182,111,.2)}.btn-green{background:rgba(96,195,138,.12);border-color:rgba(96,195,138,.45);color:#dcf7e4}.btn-outline{background:rgba(255,255,255,.04);border-color:var(--line);color:var(--cream)}.hidden{display:none!important}.nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:12px 0 0}.nav a{padding:10px 16px;border:1px solid var(--line);background:rgba(255,255,255,.02);border-radius:999px;color:#eae2d7;font-size:13px;font-weight:600}.main-wrap{padding:18px 0 40px}.section{padding:32px 0}.section-head{text-align:center;margin-bottom:18px}.ornament{color:var(--gold);letter-spacing:6px;font-size:18px}.section h2{margin:10px 0 0;color:var(--cream);font-size:clamp(26px,4vw,38px)}.sub{margin:12px auto 0;max-width:760px;color:var(--muted);line-height:1.8;font-size:14px}.features,.menu-grid,.gallery-grid,.form-grid,.location-box,.loyalty-row{display:grid;gap:16px}.features{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:24px}.tile,.menu-item,.gallery-card,.panel,.loyalty-card,.location-panel{background:linear-gradient(180deg,#1d1a15,#14120f);border:1px solid var(--line);border-radius:18px;overflow:hidden}.tile,.menu-item{padding:22px 18px;text-align:center}.tile-icon{font-size:30px;color:var(--gold)}.tile h3,.menu-item h3{margin:10px 0 0;color:var(--cream);font-size:18px}.tile p,.menu-item p{margin:10px 0 0;color:var(--muted);line-height:1.8;font-size:13px}.mini{padding-top:12px;margin-top:12px;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;gap:8px;color:var(--gold);font-size:12px}.menu-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:24px}.gallery-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:24px}.gallery-card img{width:100%;height:280px;object-fit:cover}.gallery-card div{padding:14px 16px}.gallery-card strong{color:var(--cream)}.gallery-card p{margin:8px 0 0;color:var(--muted);line-height:1.7;font-size:13px}.form-grid{grid-template-columns:1fr;max-width:760px;margin:0 auto}.panel{padding:22px}.field-group{display:flex;flex-direction:column;gap:8px}.field-group + .field-group{margin-top:14px}.label{display:block;color:#e4dcc6;font-size:13px}.field{width:100%;min-height:48px;padding:10px 12px;border-radius:10px;border:1px solid rgba(214,182,111,.35);background:#0b0b09;color:#f9f2dc}.field:focus{outline:2px solid rgba(214,182,111,.28);outline-offset:1px}.textarea{min-height:120px;resize:vertical}.full{grid-column:1/-1}.btn-submit{width:100%;background:linear-gradient(135deg,#f6e5b3,#d6b66f);color:#19160a;border:none;margin-top:10px}.status{min-height:26px;margin:12px 0 0;color:var(--muted);font-size:13px}.loyalty-row{grid-template-columns:1.1fr .9fr;align-items:start}.loyalty-card{padding:20px}.card-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.08)}.card-head span:first-child{color:var(--gold);font-weight:800;letter-spacing:1px}.small{font-size:12px;color:var(--muted)}.stamps{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.stamp{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.03);border:1px dashed var(--gold);color:var(--gold);font-size:12px}.stamp.active{background:var(--gold);border-style:solid;color:#12100d}.location-box{grid-template-columns:1.3fr .7fr}.location-panel{padding:20px}.location-status{margin:0;color:var(--muted);line-height:1.8;min-height:48px}.location-result{margin-top:18px;padding:16px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.02);display:none}.location-result:not(.hidden){display:block}.location-result a{color:var(--gold);font-weight:700}.footer{margin-top:28px;padding:26px 0 40px;border-top:1px solid var(--line);text-align:center;color:#d7d0c0;font-size:13px}.footer strong{color:var(--cream)}@media (max-width: 860px){.features{grid-template-columns:repeat(2,minmax(0,1fr))}.menu-grid,.gallery-grid,.location-box,.loyalty-row,.form-grid{grid-template-columns:1fr}.hero-inner{min-height:460px}}@media (max-width: 560px){.features{grid-template-columns:1fr}.nav{justify-content:flex-start}.nav a{flex:1 1 auto;text-align:center}} </style>
+    :root{color-scheme:dark;--gold:#e4c47d;--gold-bright:#ffe9ad;--cream:#fff7e6;--muted:#c7bca9;--line:rgba(228,196,125,.25);--bg:#100d0b;--panel:#1b1713;--green:#73d39a;--red:#ff8580;font-family:"Cairo",Tahoma,sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:18px}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -10%,rgba(119,65,31,.2),transparent 48%),linear-gradient(180deg,#100d0b,#17120e 52%,#100e0c);color:var(--cream)}button,input,select,textarea{font:inherit}a{color:inherit;text-decoration:none}img{max-width:100%;display:block}.hidden{display:none!important}.wrap{width:min(1110px,calc(100% - 32px));margin-inline:auto}
+    .topline{height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+    /* Locked welcome screen: no location API is called until the explicit CTA. */
+    .welcome-overlay{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;overflow:hidden;padding:24px;background:radial-gradient(ellipse at 50% 100%,rgba(171,74,25,.25),transparent 38%),radial-gradient(ellipse at 50% 35%,rgba(101,65,35,.25),transparent 58%),linear-gradient(155deg,#090909 0%,#1b120d 55%,#090807 100%);transition:opacity .85s ease,visibility .85s ease}
+    .welcome-overlay::before{content:"";position:absolute;inset:0;opacity:.5;background-image:radial-gradient(1px 1px at 12% 18%,#ffe8ae 98%,transparent),radial-gradient(1px 1px at 78% 12%,#fff 98%,transparent),radial-gradient(2px 2px at 88% 36%,#d6b66f 98%,transparent),radial-gradient(1px 1px at 24% 54%,#fff 98%,transparent),radial-gradient(1px 1px at 58% 22%,#fff 98%,transparent),radial-gradient(2px 2px at 38% 11%,#f4dda9 98%,transparent);background-size:100% 100%}
+    .welcome-overlay::after{content:"";position:absolute;width:min(760px,100vw);height:300px;bottom:-205px;border-radius:50%;background:#df641c;filter:blur(75px);opacity:.2;animation:fireglow 4s ease-in-out infinite alternate}
+    .welcome-card{position:relative;z-index:2;width:min(680px,100%);padding:clamp(28px,6vw,58px) clamp(22px,6vw,62px);text-align:center;border:1px solid rgba(228,196,125,.42);border-radius:30px;background:linear-gradient(145deg,rgba(31,25,20,.91),rgba(12,11,10,.88));box-shadow:0 24px 90px #000b,inset 0 0 55px rgba(206,142,58,.07);backdrop-filter:blur(12px);animation:welcome-rise 1s both}
+    .welcome-seal{width:72px;height:72px;margin:0 auto 18px;display:grid;place-items:center;border:1px solid rgba(255,226,160,.68);border-radius:50%;color:var(--gold-bright);font-size:30px;box-shadow:0 0 34px rgba(228,196,125,.17)}.welcome-kicker{color:var(--gold);font-size:12px;font-weight:800;letter-spacing:3px}.welcome-card h1{margin:12px 0 8px;color:var(--cream);font-size:clamp(34px,8vw,60px);line-height:1.2}.welcome-card h2{margin:0;color:var(--gold-bright);font-size:clamp(17px,4vw,23px);font-weight:600}.welcome-copy{max-width:540px;margin:20px auto;color:#e4d8c5;font-size:clamp(15px,3vw,18px);line-height:2}.welcome-note{max-width:480px;margin:15px auto 23px;color:#c5b9a6;font-size:12px;line-height:1.8}
+    .ember-field{position:absolute;inset:0;overflow:hidden;pointer-events:none}.ember{position:absolute;bottom:-20px;width:4px;height:4px;border-radius:50%;background:#ffd27b;box-shadow:0 0 12px 3px #f07832;opacity:0;animation:ember-rise var(--duration,8s) linear infinite;animation-delay:var(--delay,0s);left:var(--left,50%)}
+    .welcome-consent{display:flex;align-items:flex-start;justify-content:center;gap:10px;max-width:500px;margin:0 auto 18px;text-align:right;color:#e0d4c1;font-size:13px;line-height:1.8}.welcome-consent input{width:19px;height:19px;flex:0 0 auto;margin-top:3px;accent-color:#d6b66f}.welcome-button{position:relative;min-height:60px;width:min(490px,100%);padding:12px 20px;border:1px solid #ffe6a1;border-radius:16px;background:linear-gradient(135deg,#f8e6ae,#c79a48 55%,#e8c978);color:#21170c;font-weight:800;font-size:clamp(15px,3.8vw,19px);cursor:pointer;box-shadow:0 0 0 4px rgba(228,196,125,.09),0 0 32px rgba(238,188,82,.35),inset 0 1px 0 #fff8;transition:transform .2s,box-shadow .25s,opacity .2s;animation:button-breathe 2.8s ease-in-out infinite}.welcome-button:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 0 0 5px rgba(228,196,125,.13),0 0 42px rgba(238,188,82,.5)}.welcome-button:disabled{opacity:.55;cursor:not-allowed;animation:none}.welcome-status{min-height:24px;margin:12px 0 0;color:#ffcf83;font-size:13px}.welcome-overlay.leaving{opacity:0;visibility:hidden;pointer-events:none}
+    .site-app{opacity:0;visibility:hidden;transform:translateY(18px);transition:opacity .85s ease,transform .85s ease,visibility .85s}.site-app.unlocked{opacity:1;visibility:visible;transform:none;animation:content-rise .9s both}.hero{padding:42px 0 18px}.hero-inner{position:relative;min-height:350px;display:flex;align-items:flex-end;overflow:hidden;padding:clamp(26px,5vw,55px);border:1px solid var(--line);border-radius:26px;background:linear-gradient(180deg,rgba(12,11,10,.28),rgba(12,10,8,.93)),url('https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1600&q=85') center/cover}.hero-content{max-width:690px}.eyebrow{color:var(--gold);font-size:12px;letter-spacing:2px;font-weight:800}.brand{margin:8px 0;font-size:clamp(38px,7vw,68px);line-height:1.15}.stars{color:var(--gold);letter-spacing:5px;font-size:19px}.tagline{margin:15px 0 0;color:#f1dfb8;font-size:18px}.intro{max-width:650px;color:#e2d7c6;line-height:1.9}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border:1px solid transparent;border-radius:12px;font-weight:700;cursor:pointer;transition:transform .18s,filter .18s}.btn:hover{transform:translateY(-1px);filter:brightness(1.08)}.btn-gold,.btn-submit{background:linear-gradient(135deg,#f6e5b3,#d6b66f);color:#19160a}.btn-green{border-color:rgba(96,195,138,.45);background:rgba(96,195,138,.12);color:#dcf7e4}.btn-outline{border-color:var(--line);background:#ffffff08;color:var(--cream)}
+    .nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:14px 0}.nav a{padding:9px 14px;border:1px solid var(--line);border-radius:999px;background:#ffffff05;color:#eee2cb;font-size:13px}.main-wrap{padding:12px 0 40px}.section{padding:34px 0}.section-head{text-align:center;margin-bottom:20px}.ornament{color:var(--gold);letter-spacing:6px}.section h2{margin:10px 0;color:var(--cream);font-size:clamp(25px,4vw,36px)}.sub{max-width:760px;margin:10px auto;color:var(--muted);line-height:1.9;font-size:14px}.features,.menu-grid,.gallery-grid,.form-grid,.location-box,.loyalty-row{display:grid;gap:16px}.features{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:24px}.tile,.menu-item,.gallery-card,.panel,.loyalty-card,.location-panel{border:1px solid var(--line);border-radius:18px;background:linear-gradient(160deg,#211c17,#14110f);overflow:hidden}.tile,.menu-item{padding:22px 18px;text-align:center}.tile-icon{font-size:30px;color:var(--gold)}.tile h3,.menu-item h3{margin:10px 0;color:var(--cream);font-size:18px}.tile p,.menu-item p,.gallery-card p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.8}.menu-grid,.gallery-grid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:24px}.mini{display:flex;justify-content:space-between;gap:8px;margin-top:15px;padding-top:12px;border-top:1px solid #ffffff12;color:var(--gold);font-size:12px}.gallery-card img{width:100%;height:220px;object-fit:cover}.gallery-card>div{padding:16px}.gallery-card strong{color:var(--cream)}.form-grid{grid-template-columns:minmax(0,760px);justify-content:center}.panel{padding:22px}.field-group{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}.field-group label,.label{color:#e4dcc6;font-size:13px}.field{width:100%;min-height:46px;padding:10px 12px;border:1px solid rgba(214,182,111,.35);border-radius:10px;background:#0b0b09;color:var(--cream)}.field:focus{outline:2px solid rgba(214,182,111,.35);outline-offset:1px}.textarea{min-height:110px;resize:vertical}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.full{grid-column:1/-1}.btn-submit{width:100%;border:0;margin-top:6px}.status{min-height:24px;margin:12px 0 0;color:var(--muted);font-size:13px}.loyalty-row{grid-template-columns:1.1fr .9fr;align-items:start}.loyalty-card{padding:22px}.card-head{display:flex;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid #ffffff16}.card-head span:first-child{color:var(--gold);font-weight:800;letter-spacing:1px}.small{font-size:12px;color:var(--muted)}.stamps{display:flex;gap:9px;margin-top:18px}.stamp{display:grid;place-items:center;width:34px;height:34px;border:1px dashed var(--gold);border-radius:50%;color:var(--gold)}.stamp.active{background:var(--gold);color:#12100d}.location-box{grid-template-columns:1.2fr .8fr}.location-panel{padding:20px}.location-status{min-height:45px;color:var(--muted);line-height:1.8}.location-result{display:none;margin-top:16px;padding:15px;border:1px solid var(--line);border-radius:14px;background:#ffffff05;line-height:1.9}.location-result:not(.hidden){display:block}.location-result a,.location-panel a{color:var(--gold);font-weight:700}.footer{margin-top:25px;padding:28px 0 42px;border-top:1px solid var(--line);text-align:center;color:#d7d0c0;font-size:13px;line-height:2}.footer strong{color:var(--cream)}
+    @keyframes ember-rise{0%{transform:translate3d(0,0,0) scale(.5);opacity:0}12%{opacity:.85}85%{opacity:.55}100%{transform:translate3d(var(--drift,18px),-105vh,0) scale(0);opacity:0}}@keyframes fireglow{from{opacity:.12;transform:scale(.88)}to{opacity:.28;transform:scale(1.08)}}@keyframes button-breathe{0%,100%{box-shadow:0 0 0 4px rgba(228,196,125,.09),0 0 28px rgba(238,188,82,.3),inset 0 1px 0 #fff8}50%{box-shadow:0 0 0 6px rgba(228,196,125,.13),0 0 42px rgba(238,188,82,.48),inset 0 1px 0 #fff8}}@keyframes welcome-rise{from{opacity:0;transform:translateY(24px) scale(.985)}to{opacity:1;transform:none}}@keyframes content-rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+    @media(max-width:850px){.features{grid-template-columns:repeat(2,minmax(0,1fr))}.menu-grid,.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero-inner{min-height:400px}.location-box,.loyalty-row{grid-template-columns:1fr}}
+    @media(max-width:560px){.wrap{width:min(100% - 24px,1110px)}.welcome-card{border-radius:23px}.welcome-seal{width:60px;height:60px}.welcome-copy{line-height:1.85}.features,.menu-grid,.gallery-grid,.field-grid{grid-template-columns:1fr}.hero-inner{min-height:440px;padding:24px}.nav{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto}.nav a{white-space:nowrap}.section{padding:26px 0}.gallery-card img{height:210px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+  </style>
 </head>
 <body>
   <div class="topline" aria-hidden="true"></div>
-  <header class="hero">
-    <div class="wrap hero-inner">
-      <div class="hero-content">
-        <div class="eyebrow">WELCOME TO AL BADYAH</div>
-        <h1 class="brand">قرية البادية</h1>
-        <div class="stars" aria-label="خمس نجوم تصميمية">★★★★★</div>
-        <p class="tagline">أكل ومشروبات · جلسات نار للأجواء الباردة</p>
-        <p class="intro">ضيافة بطابع راقٍ، وجلسات تجمع الأهل والأصحاب في أجواء دافئة. تواصلوا معنا لمعرفة القائمة والتوافر قبل الوصول.</p>
-        <div class="actions">
-          <a class="btn btn-gold" href="#booking">اطلب حجز جلستك</a>
-          <button class="btn btn-green" id="contactBtn" type="button">تواصل واتساب</button>
-          <button class="btn btn-outline hidden" id="installBtn" type="button">تثبيت التطبيق</button>
-        </div>
-      </div>
+  <section class="welcome-overlay" id="welcomeOverlay" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+    <div class="ember-field" aria-hidden="true">
+      <i class="ember" style="--left:8%;--duration:9s;--delay:-2s;--drift:25px"></i><i class="ember" style="--left:19%;--duration:11s;--delay:-6s;--drift:-20px"></i><i class="ember" style="--left:34%;--duration:8s;--delay:-4s;--drift:16px"></i><i class="ember" style="--left:51%;--duration:10s;--delay:-7s;--drift:-18px"></i><i class="ember" style="--left:68%;--duration:12s;--delay:-3s;--drift:22px"></i><i class="ember" style="--left:83%;--duration:9s;--delay:-5s;--drift:-24px"></i><i class="ember" style="--left:94%;--duration:11s;--delay:-1s;--drift:12px"></i>
     </div>
-  </header>
+    <div class="welcome-card">
+      <div class="welcome-seal" aria-hidden="true">✦</div>
+      <div class="welcome-kicker">AL BADYAH · WINTER MAJLIS</div>
+      <h1 id="welcomeTitle">قرية البادية</h1>
+      <h2>يا مرحبًا بك في مجلسنا الشتوي الفاخر</h2>
+      <p class="welcome-copy">يا مرحب بيك في مجلس قرية البادية الفاخر.. ليل الشتا يجمعنا على ضحكة وسيرة طيبة وأكل من الآخر. نورت مكانك بين أهلك وأصحابك.</p>
+      <p class="welcome-note">لإظهار محتوى الموقع وتشغيل متابعة الموقع الاختيارية، وافق أدناه ثم اضغط زر التفعيل. سيطلب المتصفح إذن الموقع؛ لا يتم طلبه قبل ضغطك، ويمكنك إيقاف المتابعة في أي وقت.</p>
+      <label class="welcome-consent"><input id="welcomeConsent" type="checkbox"><span>أوافق على مشاركة موقعي أثناء بقاء الصفحة مفتوحة، واستخدامه لحساب المسافة وإرسال تنبيهات النطاق إلى قرية البادية. متابعة الموقع اختيارية.</span></label>
+      <button class="welcome-button" id="activateVipBtn" type="button" disabled>تفعيل بطاقة الـ VIP وتشغيل خدمات الموقع 📍</button>
+      <p class="welcome-status" id="welcomeStatus" role="status" aria-live="polite"></p>
+    </div>
+  </section>
 
-  <nav class="wrap nav" aria-label="رو��بط الأقسام">
-    <a href="#about">عن القرية</a>
-    <a href="#experience">تجربتنا</a>
-    <a href="#menu">الأقسام</a>
-    <a href="#gallery">المعرض</a>
-    <a href="#booking">الحجز</a>
-    <a href="#loyalty">بطاقة الولاء</a>
-    <a href="#location">الموقع</a>
-  </nav>
-
-  <main class="wrap main-wrap">
-    <section class="section" id="about">
-      <div class="section-head">
-        <div class="ornament">✦ ✦ ✦</div>
-        <h2>ضيافة تليق بزيارتكم</h2>
-        <p class="sub">قرية البادية وجهة للاجتماع والاسترخاء، تجمع بين أجواء الاحتفال والهدوء والدفء. نرحب بالأهل والأصحاب في جلسات مريحة ومميزة.</p>
-      </div>
-      <div class="features">
-        <article class="tile">
-          <div class="tile-icon">🍽️</div>
-          <h3>مذاق مميز</h3>
-          <p>مناسبات ووجبات ومشروبات تناسب الأجواء العائلية والحميمية.</p>
-        </article>
-        <article class="tile">
-          <div class="tile-icon">🔥</div>
-          <h3>جلسات نار</h3>
-          <p>أجواء دافئة في المساء مع جلسة مريحة ومميزة للطابع البادي.</p>
-        </article>
-        <article class="tile">
-          <div class="tile-icon">☕</div>
-          <h3>مشروبات متنوعة</h3>
-          <p>قهوة، شاي، عصائر، ومشروبات مناسبة للأنشطة والجلوس الطويل.</p>
-        </article>
-        <article class="tile">
-          <div class="tile-icon">🤝</div>
-          <h3>استقبال راقٍ</h3>
-          <p>خدمة موجهة وروح ضيافة تجعل كل زيارة تجربة لا تنسى.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="experience">
-      <div class="section-head">
-        <div class="ornament">✦ ✦ ✦</div>
-        <h2>تفاصيل التجربة</h2>
-        <p class="sub">اختاروا ما يناسبكم، واسألوا عن التوافر قبل الوصول، مع تجربة أجواء مميزة للأصدقاء والعائلات، ومذاق هادئ في المساء.</p>
-      </div>
-    </section>
-
-    <section class="section" id="menu">
-      <div class="section-head">
-        <div class="ornament">✦ ✦ ✦</div>
-        <h2>أقسام القرية</h2>
-        <p class="sub">الأقسام تعريفية، ويمكنكم الطلب أو الاستفسار مباشرة عبر واتساب حول المنيو والأسعار.</p>
-      </div>
-      <div class="menu-grid">
-        <article class="menu-item">
-          <div class="tile-icon">🍲</div>
-          <h3>مقبلات ومشويات</h3>
-          <p>أطباق متنوعة مناسبة للطلبات العائلية، مع تنوع في النكهات ومنظر جذاب للأجواء.</p>
-          <div class="mini"><span>الأطباق</span><span>تواصل للمنيو</span></div>
-        </article>
-        <article class="menu-item">
-          <div class="tile-icon">☕</div>
-          <h3>مشروبات ساخنة</h3>
-          <p>قهوة، شاي، ومشروبات دافئة تناسب التجمعات الطويلة وجلسات المساء.</p>
-          <div class="mini"><span>المشروبات</span><span>سؤال سريع</span></div>
-        </article>
-        <article class="menu-item">
-          <div class="tile-icon">🔥</div>
-          <h3>جلسات النار</h3>
-          <p>إعداد مناسب للأجواء الباردة مع جلسات مريحة وبهوية أنيقة في الليل.</p>
-          <div class="mini"><span>الجلوس</span><span>احجز الآن</span></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="gallery">
-      <div class="section-head">
-        <div class="ornament">✦ ✦ ✦</div>
-        <h2>لمحات من الأجواء</h2>
-        <p class="sub">الصور الحالية توضيحية فقط، ويمكن استبدالها بصور حقيقية للقرية عند توفرها.</p>
-      </div>
-      <div class="gallery-grid">
-        <article class="gallery-card">
-          <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=80" alt="جلسة في مكان أنيق" loading="lazy">
-          <div>
-            <strong>جلسة عائلية</strong>
-            <p>أجواء مريحة ومناسبات تجمع العائلة والأصدقاء في أجواء دافئة.</p>
-          </div>
-        </article>
-        <article class="gallery-card">
-          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80" alt="مقاعد لأجواء الليل" loading="lazy">
-          <div>
-            <strong>ليلة دافئة</strong>
-            <p>إضاءة هادئة وجلسات مناسبة لليلة الباردة والراحة.</p>
-          </div>
-        </article>
-        <article class="gallery-card">
-          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80" alt="أطباق منتقاة" loading="lazy">
-          <div>
-            <strong>أطباق متنوعة</strong>
-            <p>منيو مختار يليق بتنوع الأذواق والطلبات الخاصة.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="booking">
-      <div class="section-head">
-        <div class="ornament">✦ ✦ ✦</div>
-        <h2>احجزوا جلستكم</h2>
-        <p class="sub">اكتب بياناتك، وارسال الحجز يتم إلى Webhook من Make، مع وجود نسخة احتياطية في واتساب.</p>
-      </div>
-      <div class="form-grid">
-        <form class="panel" id="bookingForm" novalidate>
-          <div class="field-group">
-            <label class="label" for="bookingName">الاسم</label>
-            <input class="field" id="bookingName" name="name" type="text" maxlength="80" required>
-          </div>
-
-          <div class="field-group">
-            <label class="label" for="bookingGuests">عدد الأشخاص</label>
-            <select class="field" id="bookingGuests" name="guests" required>
-              <option value="">اختر العدد</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7+">7 أو أكثر</option>
-            </select>
-          </div>
-
-          <div class="field-group">
-            <label class="label" for="bookingDate">التاريخ</label>
-            <input class="field" id="bookingDate" name="date" type="date" required>
-          </div>
-
-          <div class="field-group">
-            <label class="label" for="bookingTime">الوقت</label>
-            <input class="field" id="bookingTime" name="time" type="time" required>
-          </div>
-
-          <div class="field-group full">
-            <label class="label" for="bookingNote">ملاحظات (اختياري)</label>
-            <textarea class="field textarea" id="bookingNote" name="note" maxlength="300" placeholder="أي ملاحظات خاصة مثل طلب أجواء دافئة أو طاولة خاصة"></textarea>
-          </div>
-
-          <div class="full">
-            <button class="btn btn-submit" type="submit">إرسال الطلب</button>
-            <p class="status" id="bookingStatus" role="status" aria-live="polite"></p>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <section class="section" id="loyalty">
-      <div class="section-head">
-        <div class="ornament">✦ ✦ ✦</div>
-        <h2>بطاقة الولاء التجريبية</h2>
-        <p class="sub">هذه نسخة تجريبية فقط ولا تحفظ البيانات أو تحتسب زيارات فعلية في الوقت الحالي.</p>
-      </div>
-      <div class="loyalty-row">
-        <div class="panel loyalty-card">
-          <form id="loyaltyForm">
-            <div class="field-group">
-              <label class="label" for="loyaltyNameInput">الاسم</label>
-              <input class="field" id="loyaltyNameInput" name="name" type="text" maxlength="80" required>
-            </div>
-            <div class="field-group" style="margin-top:12px;">
-              <label class="label" for="loyaltyPhoneInput">رقم الهاتف</label>
-              <input class="field" id="loyaltyPhoneInput" name="phone" type="tel" inputmode="tel" maxlength="20" required>
-            </div>
-            <label class="small" style="display:flex;align-items:center;gap:8px;margin-top:16px;">
-              <input type="checkbox" id="consent" required>
-              أوافق على أن هذه بطاقة تجريبية فقط.
-            </label>
-            <button class="btn btn-submit" type="submit" style="margin-top:16px;">تسجيل بطاقة الولاء</button>
-            <p class="status" id="loyaltyStatus" role="status" aria-live="polite"></p>
-          </form>
-        </div>
-
-        <article class="loyalty-card">
-          <div class="card-head">
-            <span>AL BADYAH</span>
-            <span>بطاقة الولاء</span>
-          </div>
-          <p class="small" style="margin:14px 0 0;">اسم حامل البطاقة: <strong id="cardName">—</strong></p>
-          <div class="stamps">
-            <span class="stamp active">1</span>
-            <span class="stamp active">2</span>
-            <span class="stamp">3</span>
-            <span class="stamp">4</span>
-            <span class="stamp">5</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="location">
-      <div class="section-head">
-        <div class="ornament">✦ ✦ ✦</div>
-        <h2>موقعكم على الخريطة</h2>
-        <p class="sub">يمكنكم استخدام الزر لمعرفة موقعكم الحالي، ثم فتح اتجاهات جوجل لقرية البادية.</p>
-      </div>
-      <div class="location-box">
-        <div class="location-panel">
-          <button class="btn btn-gold" id="locateBtn" type="button">تحديد موقعي</button>
-          <p class="location-status" id="locationStatus" role="status" aria-live="polite">تأكد من إتاحة الموقع في الهاتف.</p>
-          <div class="location-result" id="locationResult"></div>
-        </div>
-        <div class="location-panel">
-          <p class="small">رابط سريع إلى خرائط Google:</p>
-          <p class="small"><a href="https://maps.app.goo.gl/rNbBHN1eVw8ZaQpr7" target="_blank" rel="noopener noreferrer">افتح خرائط قرية البادية</a></p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="wrap"><strong>قرية البادية</strong><br>أكل ومشروبات وجلسات نار للأجواء الباردة</div>
-  </footer>
+  <div class="site-app" id="siteApp" inert aria-hidden="true">
+    <header class="hero"><div class="wrap hero-inner"><div class="hero-content">
+      <div class="eyebrow">WELCOME TO AL BADYAH</div><h1 class="brand">قرية البادية</h1><div class="stars" aria-label="خمس نجوم تصميمية">★★★★★</div>
+      <p class="tagline">أكل ومشروبات · جلسات نار للأجواء الباردة</p><p class="intro">ضيافة بطابع راقٍ، وجلسات تجمع الأهل والأصحاب في أجواء دافئة. تواصلوا معنا لمعرفة القائمة والتوافر.</p>
+      <div class="actions"><a class="btn btn-gold" href="#booking">اطلب حجز جلستك</a><button class="btn btn-green" id="contactBtn" type="button">تواصل واتساب</button><button class="btn btn-outline hidden" id="installBtn" type="button">تثبيت التطبيق</button></div>
+    </div></div></header>
+    <nav class="wrap nav" aria-label="روابط الأقسام"><a href="#about">عن القرية</a><a href="#experience">تجربتنا</a><a href="#menu">الأقسام</a><a href="#gallery">المعرض</a><a href="#booking">الحجز</a><a href="#loyalty">بطاقة الولاء</a><a href="#location">الموقع</a></nav>
+    <main class="wrap main-wrap">
+      <section class="section" id="about"><div class="section-head"><div class="ornament">✦ ✦ ✦</div><h2>ضيافة تليق بزيارتكم</h2><p class="sub">قرية البادية وجهة للاجتماع والاسترخاء، تجمع بين أجواء الاحتفال والهدوء والدفء. نرحب بالأهل والأصحاب في مجلس يليق بكم.</p></div>
+        <div class="features"><article class="tile"><div class="tile-icon">🍽️</div><h3>مذاق مميز</h3><p>وجبات ومشروبات تناسب الأجواء العائلية والحميمية.</p></article><article class="tile"><div class="tile-icon">🔥</div><h3>جلسات نار</h3><p>أجواء دافئة في المساء مع جلسة مريحة ومميزة.</p></article><article class="tile"><div class="tile-icon">☕</div><h3>مشروبات متنوعة</h3><p>قهوة وشاي وعصائر ومشروبات تناسب الجلسات الطويلة.</p></article><article class="tile"><div class="tile-icon">🤝</div><h3>استقبال راقٍ</h3><p>روح ضيافة تجعل كل زيارة تجربة لا تُنسى.</p></article></div>
+      </section>
+      <section class="section" id="experience"><div class="section-head"><div class="ornament">✦ ✦ ✦</div><h2>تفاصيل التجربة</h2><p class="sub">اختاروا ما يناسبكم، واسألوا عن التوافر قبل الوصول. أجواء مميزة للأصدقاء والعائلات، ومذاق يكتمل به ليل الشتاء.</p></div></section>
+      <section class="section" id="menu"><div class="section-head"><div class="ornament">✦ ✦ ✦</div><h2>أقسام القرية</h2><p class="sub">الأقسام تعريفية، ويمكنكم الطلب أو الاستفسار مباشرة عبر واتساب حول المنيو والأسعار.</p></div>
+        <div class="menu-grid"><article class="menu-item"><div class="tile-icon">🍲</div><h3>مقبلات ومشويات</h3><p>أطباق متنوعة مناسبة للطلبات العائلية، بنكهات مختارة وتقديم يليق بأجوائكم.</p><div class="mini"><span>الأطباق</span><span>تواصل للمنيو</span></div></article><article class="menu-item"><div class="tile-icon">☕</div><h3>مشروبات ساخنة</h3><p>قهوة وشاي ومشروبات دافئة تناسب التجمعات الطويلة وجلسات المساء.</p><div class="mini"><span>المشروبات</span><span>سؤال سريع</span></div></article><article class="menu-item"><div class="tile-icon">🔥</div><h3>جلسات النار</h3><p>إعداد مناسب للأجواء الباردة مع جلسات مريحة وهوية أنيقة في الليل.</p><div class="mini"><span>الجلوس</span><span>احجز الآن</span></div></article></div>
+      </section>
+      <section class="section" id="gallery"><div class="section-head"><div class="ornament">✦ ✦ ✦</div><h2>لمحات من الأجواء</h2><p class="sub">الصور الحالية توضيحية فقط، ويمكن استبدالها بصور حقيقية للقرية عند توفرها.</p></div>
+        <div class="gallery-grid"><article class="gallery-card"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=80" alt="جلسة في مكان أنيق" loading="lazy"><div><strong>جلسة عائلية</strong><p>أجواء مريحة تجمع العائلة والأصدقاء في ليلة دافئة.</p></div></article><article class="gallery-card"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80" alt="مقاعد لأجواء الليل" loading="lazy"><div><strong>ليلة دافئة</strong><p>إضاءة هادئة وجلسات مناسبة لليلة الباردة والراحة.</p></div></article><article class="gallery-card"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80" alt="أطباق منتقاة" loading="lazy"><div><strong>أطباق متنوعة</strong><p>منيو مختار يليق بتنوع الأذواق والطلبات الخاصة.</p></div></article></div>
+      </section>
+      <section class="section" id="booking"><div class="section-head"><div class="ornament">✦ ✦ ✦</div><h2>احجزوا جلستكم</h2><p class="sub">اكتب بياناتك، وسيتم إرسال طلب الحجز إلى Make مع فتح نسخة احتياطية في واتساب.</p></div>
+        <div class="form-grid"><form class="panel" id="bookingForm" novalidate><div class="field-grid"><div class="field-group"><label for="bookingName">الاسم</label><input class="field" id="bookingName" name="name" type="text" maxlength="80" required></div><div class="field-group"><label for="bookingGuests">عدد الأشخاص</label><select class="field" id="bookingGuests" name="guests" required><option value="">اختر العدد</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7+">7 أو أكثر</option></select></div><div class="field-group"><label for="bookingDate">التاريخ</label><input class="field" id="bookingDate" name="date" type="date" required></div><div class="field-group"><label for="bookingTime">الوقت</label><input class="field" id="bookingTime" name="time" type="time" required></div><div class="field-group full"><label for="bookingNote">ملاحظات (اختياري)</label><textarea class="field textarea" id="bookingNote" name="note" maxlength="300" placeholder="أي ملاحظات خاصة مثل طلب أجواء دافئة أو طاولة خاصة"></textarea></div></div><button class="btn btn-submit" type="submit">إرسال الطلب</button><p class="status" id="bookingStatus" role="status" aria-live="polite"></p></form></div>
+      </section>
+      <section class="section" id="loyalty"><div class="section-head"><div class="ornament">✦ ✦ ✦</div><h2>بطاقة الولاء التجريبية</h2><p class="sub">هذه نسخة تجريبية فقط ولا تحفظ البيانات أو تحتسب زيارات فعلية في الوقت الحالي.</p></div>
+        <div class="loyalty-row"><div class="panel loyalty-card"><form id="loyaltyForm"><div class="field-group"><label for="loyaltyNameInput">الاسم</label><input class="field" id="loyaltyNameInput" name="name" type="text" maxlength="80" required></div><div class="field-group"><label for="loyaltyPhoneInput">رقم الهاتف</label><input class="field" id="loyaltyPhoneInput" name="phone" type="tel" inputmode="tel" maxlength="20" required></div><label class="small"><input type="checkbox" id="loyaltyConsent" required> أوافق على أن هذه بطاقة تجريبية فقط.</label><button class="btn btn-submit" type="submit">تسجيل بطاقة الولاء</button><p class="status" id="loyaltyStatus" role="status" aria-live="polite"></p></form></div>
+          <article class="loyalty-card"><div class="card-head"><span>AL BADYAH</span><span>بطاقة الولاء</span></div><p class="small">اسم حامل البطاقة: <strong id="cardName">—</strong></p><div class="stamps"><span class="stamp active">1</span><span class="stamp active">2</span><span class="stamp">3</span><span class="stamp">4</span><span class="stamp">5</span></div></article></div>
+      </section>
+      <section class="section" id="location"><div class="section-head"><div class="ornament">✦ ✦ ✦</div><h2>موقعكم على الخريطة</h2><p class="sub">تبدأ متابعة الموقع فقط بموافقتك الصريحة، ويمكنك إيقافها في أي وقت.</p></div>
+        <div class="location-box"><div class="location-panel"><button class="btn btn-gold" id="locateBtn" type="button">بدء متابعة الموقع</button><p class="location-status" id="locationStatus" role="status" aria-live="polite">لم تبدأ متابعة الموقع.</p><div class="location-result hidden" id="locationResult"></div></div><div class="location-panel"><p class="small">رابط سريع إلى خرائط Google:</p><p><a href="https://maps.app.goo.gl/rNbBHN1eVw8ZaQpr7" target="_blank" rel="noopener noreferrer">افتح خرائط قرية البادية</a></p></div></div>
+      </section>
+    </main>
+    <footer class="footer"><div class="wrap"><strong>قرية البادية</strong><br>أكل ومشروبات وجلسات نار للأجواء الباردة</div></footer>
+  </div>
 
   <script>
-    const VILLAGE_WHATSAPP_NUMBER = '201111815659';
-    const MAKE_WEBHOOK_URL = 'https://hook.eu1.make.com/pmtj8hmcen1m6chdyk9otwpykmqfu5p8';
-    const locateButton = document.getElementById('locateBtn');
-    const locationResult = document.getElementById('locationResult');
+    (() => {
+      'use strict';
+      const WHATSAPP_NUMBER = '201111815659';
+      const MAKE_BOOKING_WEBHOOK = 'https://hook.eu1.make.com/pmtj8hmcen1m6chdyk9otwpykmqfu5p8';
+      const overlay = document.getElementById('welcomeOverlay');
+      const siteApp = document.getElementById('siteApp');
+      const welcomeConsent = document.getElementById('welcomeConsent');
+      const activateButton = document.getElementById('activateVipBtn');
+      const welcomeStatus = document.getElementById('welcomeStatus');
+      let activationStarted = false;
 
-    function setStatus(id, message, color = '') {
-      const element = document.getElementById(id);
-      if (!element) return;
-      element.textContent = message;
-      if (color) element.style.color = color;
-    }
-
-    function localDate(date) {
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const day = String(date.getDate()).padStart(2, '0');
-      return `${year}-${month}-${day}`;
-    }
-
-    const dateInput = document.getElementById('bookingDate');
-    if (dateInput) {
-      const tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      dateInput.min = localDate(new Date());
-      dateInput.value = localDate(tomorrow);
-    }
-
-    function openWhatsApp(message) {
-      const url = `https://wa.me/${VILLAGE_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank', 'noopener,noreferrer');
-    }
-
-    document.getElementById('contactBtn').addEventListener('click', () => {
-      openWhatsApp('مرحبًا، أريد الاستفسار عن قرية البادية والأكل والمشروبات وجلسات النار.');
-    });
-
-    document.getElementById('bookingForm').addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const form = event.currentTarget;
-      if (!form.reportValidity()) return;
-
-      const data = new FormData(form);
-      const payload = {
-        name: String(data.get('name') || '').trim(),
-        guests: String(data.get('guests') || '').trim(),
-        date: String(data.get('date') || '').trim(),
-        time: String(data.get('time') || '').trim(),
-        note: String(data.get('note') || '').trim()
-      };
-
-      setStatus('bookingStatus', 'جارٍ إرسال الحجز...', '#d6b66f');
-
-      try {
-        const response = await fetch(MAKE_WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
-        }
-
-        setStatus('bookingStatus', 'تم إرسال الحجز بنجاح، وسيتم التواصل معكم.', '#7bdc96');
-
-        const whatsappMessage = [
-          'مرحبًا، أريد حجز جلسة',
-          `الاسم: ${payload.name}`,
-          `العدد: ${payload.guests}`,
-          `التاريخ: ${payload.date}`,
-          `الوقت: ${payload.time}`,
-          `ملاحظات: ${payload.note || 'لا توجد'}`
-        ].join('\n');
-
-        openWhatsApp(whatsappMessage);
-        form.reset();
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        dateInput.value = localDate(tomorrow);
-      } catch (error) {
-        console.error(error);
-        setStatus('bookingStatus', 'فشل إرسال الحجز مؤقتًا. حاول مرة أخرى أو استخدم واتساب مباشرة.', '#ff7a7a');
-        openWhatsApp([
-          'مرحبًا، أريد حجز جلسة',
-          `الاسم: ${payload.name || 'غير محدد'}`,
-          `العدد: ${payload.guests || 'غير محدد'}`,
-          `التاريخ: ${payload.date || 'غير محدد'}`,
-          `الوقت: ${payload.time || 'غير محدد'}`,
-          `ملاحظات: ${payload.note || 'لا توجد'}`
-        ].join('\n'));
-      }
-    });
-
-    document.getElementById('loyaltyForm').addEventListener('submit', (event) => {
-      event.preventDefault();
-      const name = document.getElementById('loyaltyNameInput').value.trim();
-      const phone = document.getElementById('loyaltyPhoneInput').value.trim().replace(/[^0-9+]/g, '');
-      if (!name || !/^[0-9+]{7,20}$/.test(phone)) {
-        setStatus('loyaltyStatus', 'يرجى إدخال اسم ورقم هاتف صحيح.', '#ff7a7a');
-        return;
-      }
-      if (!document.getElementById('consent').checked) {
-        setStatus('loyaltyStatus', 'يجب الموافقة على البطاقة التجريبية.', '#ff7a7a');
-        return;
-      }
-      document.getElementById('cardName').textContent = name;
-      setStatus('loyaltyStatus', 'تم تسجيل بطاقة الولاء التجريبية بنجاح.', '#7bdc96');
-      event.currentTarget.reset();
-    });
-
-    locateButton.addEventListener('click', () => {
-      locationResult.classList.add('hidden');
-      locationResult.replaceChildren();
-
-      if (!window.isSecureContext) {
-        setStatus('locationStatus', 'ميزة الموقع تتطلب اتصال HTTPS على الموقع المنشور. استخدم الرابط الرسمي.', '#ff7a7a');
-        return;
-      }
-
-      if (!('geolocation' in navigator)) {
-        setStatus('locationStatus', 'الموقع غير مدعوم في هذا المتصفح.', '#ff7a7a');
-        return;
-      }
-
-      setStatus('locationStatus', 'يتم تحديد موقعك الحالي...', '#d6b66f');
-      locateButton.disabled = true;
-
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude, accuracy } = position.coords;
-          const mapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}`;
-          const info = document.createElement('p');
-          info.innerHTML = `إحداثياتك: <strong>${latitude.toFixed(5)}</strong>, <strong>${longitude.toFixed(5)}</strong><br>الدقة: <strong>${Math.round(accuracy)} متر</strong>`;
-          const link = document.createElement('a');
-          link.href = mapsUrl;
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-          link.textContent = 'فتح الاتجاهات في جوجل مابس';
-          locationResult.append(info, document.createElement('br'), link);
-          locationResult.classList.remove('hidden');
-          setStatus('locationStatus', 'تم تحديد موقعك بنجاح.', '#7bdc96');
-          locateButton.disabled = false;
-        },
-        (error) => {
-          const messages = {
-            1: 'تم رفض الوصول إلى الموقع في جهازك. قم بتفعيل الموقع في إعدادات الهاتف.',
-            2: 'تعذر تحديد الموقع الآن. حاول مرة أخرى بعد قليل.',
-            3: 'انتهت مهلة الموقع. حاول مرة أخرى.',
-          };
-          setStatus('locationStatus', messages[error.code] || 'خطأ في تحديد الموقع.', '#ff7a7a');
-          locateButton.disabled = false;
-        },
-        { enableHighAccuracy: true, timeout: 15000, maximumAge: 300000 }
-      );
-    });
-
-    let installPrompt = null;
-    const installButton = document.getElementById('installBtn');
-    window.addEventListener('beforeinstallprompt', (event) => {
-      event.preventDefault();
-      installPrompt = event;
-      installButton.classList.remove('hidden');
-    });
-
-    installButton.addEventListener('click', async () => {
-      if (!installPrompt) {
-        setStatus('locationStatus', 'ميزة التثبيت غير متاحة الآن. جرب في متصفح يدعم PWA.', '#ff7a7a');
-        return;
-      }
-      installPrompt.prompt();
-      await installPrompt.userChoice;
-      installPrompt = null;
-      installButton.classList.add('hidden');
-    });
-
-    if ('serviceWorker' in navigator && location.protocol !== 'file:') {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch((error) => console.error('Service Worker registration failed:', error));
+      welcomeConsent.addEventListener('change', () => {
+        activateButton.disabled = !welcomeConsent.checked || activationStarted;
       });
-    }
+
+      activateButton.addEventListener('click', () => {
+        if (!welcomeConsent.checked || activationStarted) return;
+        activationStarted = true;
+        activateButton.disabled = true;
+        activateButton.textContent = 'جارٍ طلب إذن الموقع…';
+        welcomeStatus.textContent = 'وافق على طلب الموقع الذي سيظهر من المتصفح لفتح مجلسك.';
+        window.dispatchEvent(new CustomEvent('badyah:activate-vip', { detail: { consentGranted: true } }));
+      });
+
+      window.addEventListener('badyah:location-ready', () => {
+        overlay.classList.add('leaving');
+        siteApp.inert = false;
+        siteApp.setAttribute('aria-hidden', 'false');
+        siteApp.classList.add('unlocked');
+        window.setTimeout(() => { overlay.hidden = true; }, 900);
+      });
+
+      window.addEventListener('badyah:location-error', (event) => {
+        activationStarted = false;
+        activateButton.disabled = !welcomeConsent.checked;
+        activateButton.textContent = 'تفعيل بطاقة الـ VIP وتشغيل خدمات الموقع 📍';
+        welcomeStatus.textContent = event.detail?.message || 'تعذر تحديد موقعك. تحقق من الإذن وحاول مرة أخرى.';
+      });
+
+      function localDate(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      }
+      const dateInput = document.getElementById('bookingDate');
+      const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+      dateInput.min = localDate(new Date()); dateInput.value = localDate(tomorrow);
+
+      function openWhatsApp(message) {
+        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+      }
+      document.getElementById('contactBtn').addEventListener('click', () => openWhatsApp('مرحبًا، أريد الاستفسار عن قرية البادية والأكل والمشروبات وجلسات النار.'));
+
+      document.getElementById('bookingForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        if (!form.reportValidity()) return;
+        const formData = new FormData(form);
+        const booking = Object.fromEntries(['name','guests','date','time','note'].map((key) => [key, String(formData.get(key) || '').trim()]));
+        const status = document.getElementById('bookingStatus');
+        status.textContent = 'جارٍ إرسال الحجز…'; status.style.color = '#d6b66f';
+        try {
+          const response = await fetch(MAKE_BOOKING_WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(booking) });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          status.textContent = 'تم إرسال الحجز بنجاح، وسيتم التواصل معكم.'; status.style.color = '#7bdc96';
+          openWhatsApp(['مرحبًا، أريد حجز جلسة', `الاسم: ${booking.name}`, `العدد: ${booking.guests}`, `التاريخ: ${booking.date}`, `الوقت: ${booking.time}`, `ملاحظات: ${booking.note || 'لا توجد'}`].join('\n'));
+          form.reset(); dateInput.value = localDate(tomorrow);
+        } catch (error) {
+          console.error(error); status.textContent = 'تعذر تأكيد إرسال الحجز. يمكنك إكمال الطلب عبر واتساب.'; status.style.color = '#ff7a7a';
+          openWhatsApp(['مرحبًا، أريد حجز جلسة', `الاسم: ${booking.name}`, `العدد: ${booking.guests}`, `التاريخ: ${booking.date}`, `الوقت: ${booking.time}`, `ملاحظات: ${booking.note || 'لا توجد'}`].join('\n'));
+        }
+      });
+
+      document.getElementById('loyaltyForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        if (!form.reportValidity()) return;
+        const name = document.getElementById('loyaltyNameInput').value.trim();
+        const phone = document.getElementById('loyaltyPhoneInput').value.trim().replace(/[^0-9+]/g, '');
+        const status = document.getElementById('loyaltyStatus');
+        if (!name || !/^[0-9+]{7,20}$/.test(phone)) { status.textContent = 'يرجى إدخال اسم ورقم هاتف صحيح.'; status.style.color = '#ff7a7a'; return; }
+        document.getElementById('cardName').textContent = name;
+        status.textContent = 'تم تسجيل بطاقة الولاء التجريبية بنجاح.'; status.style.color = '#7bdc96';
+        form.reset();
+      });
+
+      let installPrompt = null;
+      const installButton = document.getElementById('installBtn');
+      window.addEventListener('beforeinstallprompt', (event) => { event.preventDefault(); installPrompt = event; installButton.classList.remove('hidden'); });
+      installButton.addEventListener('click', async () => {
+        if (!installPrompt) return;
+        installPrompt.prompt(); await installPrompt.userChoice; installPrompt = null; installButton.classList.add('hidden');
+      });
+      if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+        window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch((error) => console.error('Service Worker registration failed:', error)));
+      }
+    })();
   </script>
   <script src="./location-tracker.js"></script>
 </body>
