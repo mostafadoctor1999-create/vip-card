@@ -1,6 +1,7 @@
 /*
- * Opt-in geolocation tracking and local departure alerts.
- * External alert delivery is disabled until this endpoint is configured.
+ * Opt-in geolocation tracking and local departure/approach alerts.
+ * Location alerts are sent to the configured Make webhook only after the visitor
+ * explicitly consents and starts tracking.
  */
 (() => {
   'use strict';
@@ -8,9 +9,9 @@
   const RESTAURANT_LAT = 28.3095;
   const RESTAURANT_LNG = 30.7123;
   const DEPARTURE_RADIUS_METERS = 100;
-  // Replace only with the public URL of your deployed Cloudflare Worker.
-  // Never put the Make webhook URL or its secret token in this public file.
-  const LOCATION_ALERT_ENDPOINT = 'PLACEHOLDER_URL';
+  // Public Make webhook. Treat this URL as a credential: rotate it if exposed
+  // and restrict the Make scenario to the expected event/data where possible.
+  const LOCATION_ALERT_ENDPOINT = 'https://hook.eu1.make.com/pmtj8hmcen1m6chdyk9otwpykmqfu5p8';
 
   const originalLocateButton = document.getElementById('locateBtn');
   const locationResult = document.getElementById('locationResult');
@@ -21,8 +22,7 @@
     return;
   }
 
-  // Replace the existing button to remove its one-shot geolocation handler while
-  // preserving its markup, appearance, and all unrelated page functionality.
+  // Replace the page's one-shot location handler while preserving its markup.
   const locateButton = originalLocateButton.cloneNode(true);
   originalLocateButton.replaceWith(locateButton);
 
@@ -37,7 +37,7 @@
 
   const consentText = document.createElement('span');
   consentText.id = 'locationConsentText';
-  consentText.textContent = 'أوافق على متابعة موقعي أثناء بقاء الصفحة مفتوحة. عند الابتعاد المؤكد أكثر من 100 متر، سيظهر تنبيه محلي، وقد تُرسل إحداثياتي إلى المطعم لإشعاره إذا تم إعداد الوسيط الآمن. يمكنني إيقاف المتابعة في أي وقت.';
+  consentText.textContent = 'أوافق على متابعة موقعي أثناء بقاء الصفحة مفتوحة وإرسال المسافة والإحداثيات إلى قرية البادية عبر النظام. عند الابتعاد المؤكد أكثر من 100 متر أو العودة إلى النطاق، سيتم إرسال إشعار. يمكنني إيقاف المتابعة في أي وقت.';
   consentLabel.append(consentCheckbox, consentText);
   locateButton.insertAdjacentElement('afterend', consentLabel);
 
@@ -49,7 +49,7 @@
   consentLabel.insertAdjacentElement('afterend', stopButton);
 
   let watchId = null;
-  let departureAlertSent = false;
+  let lastConfirmedState = null;
   let notificationPermissionRequested = false;
 
   function setLocationStatus(message, color) {
@@ -62,11 +62,8 @@
     const earthRadiusMeters = 6371000;
     const dLat = radians(lat2 - lat1);
     const dLon = radians(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) ** 2 +
-      Math.cos(radians(lat1)) * Math.cos(radians(lat2)) *
-      Math.sin(dLon / 2) ** 2;
-
+    const a = Math.sin(dLat / 2) ** 2 +
+      Math.cos(radians(lat1)) * Math.cos(radians(lat2)) * Math.sin(dLon / 2) ** 2;
     return 2 * earthRadiusMeters * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   }
 
@@ -92,14 +89,10 @@
     }
   }
 
-  function notifyDeparture(message) {
+  function notifyUser(title, message) {
     if ('Notification' in window && Notification.permission === 'granted') {
       try {
-        new Notification('تنبيه موقع المطعم', {
-          body: message,
-          icon: './icon.svg',
-          tag: 'restaurant-departure'
-        });
+        new Notification(title, { body: message, icon: './icon.svg', tag: 'restaurant-location-alert' });
       } catch (error) {
         console.warn('Could not display notification:', error);
       }
@@ -122,47 +115,30 @@
     locationResult.classList.remove('hidden');
   }
 
-  async function sendExternalAlert(position, distance) {
-    if (
-      !LOCATION_ALERT_ENDPOINT ||
-      LOCATION_ALERT_ENDPOINT === 'PLACEHOLDER_URL'
-    ) {
-      return;
-    }
-
-    let endpoint;
-    try {
-      endpoint = new URL(LOCATION_ALERT_ENDPOINT);
-      if (endpoint.protocol !== 'https:') {
-        throw new Error('The location alert endpoint must use HTTPS.');
-      }
-    } catch (error) {
-      console.error('Invalid location alert endpoint:', error);
-      setLocationStatus('عنوان وسيط التنبيه غير صالح؛ تم عرض التنبيه المحلي فقط.', '#ff7a7a');
-      return;
-    }
-
+  async function sendExternalAlert(eventName, position, distance) {
     const { latitude, longitude, accuracy } = position.coords;
-    try {
-      const response = await fetch(endpoint.href, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          event: 'left_restaurant_radius',
-          latitude,
-          longitude,
-          accuracyMeters: accuracy,
-          distanceFromRestaurantMeters: Math.round(distance),
-          occurredAt: new Date(position.timestamp).toISOString()
-        })
-      });
+    // Use a simple form POST so the browser can send it cross-origin without a
+    // JSON CORS preflight. Make receives these fields as form data.
+    const payload = new URLSearchParams({
+      event: eventName,
+      latitude: String(latitude),
+      longitude: String(longitude),
+      accuracyMeters: String(Math.round(accuracy)),
+      distanceFromRestaurantMeters: String(Math.round(distance)),
+      occurredAt: new Date(position.timestamp).toISOString()
+    });
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
+    try {
+      await fetch(LOCATION_ALERT_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: payload,
+        keepalive: true
+      });
+      // no-cors responses are opaque, so the browser cannot verify Make's result.
     } catch (error) {
       console.error('Could not send external location alert:', error);
-      setLocationStatus('تم عرض التنبيه المحلي، لكن تعذر إرسال التنبيه الخارجي.', '#ff7a7a');
+      setLocationStatus('تعذر إرسال الإشعار الخارجي؛ تحقق من اتصال الإنترنت وإعدادات Make.', '#ff7a7a');
     }
   }
 
@@ -178,25 +154,37 @@
       distanceFromRestaurantMeters: Math.round(distance)
     });
 
-    // Account for GPS uncertainty to avoid acting on an imprecise boundary reading.
-    if (distance + accuracy <= DEPARTURE_RADIUS_METERS) {
-      departureAlertSent = false;
-      setLocationStatus(`أنت داخل نطاق المطعم (100 متر). دقة القراءة: نحو ${Math.round(accuracy)} متر.`, '#7bdc96');
-      return;
-    }
+    // Ignore readings whose uncertainty overlaps the 100 m boundary.
+    let currentState = null;
+    if (distance + accuracy <= DEPARTURE_RADIUS_METERS) currentState = 'inside';
+    else if (distance - accuracy > DEPARTURE_RADIUS_METERS) currentState = 'outside';
 
-    if (distance - accuracy <= DEPARTURE_RADIUS_METERS) {
+    if (currentState === null) {
       setLocationStatus(`الموقع قرب حد النطاق، لكن دقة GPS الحالية (${Math.round(accuracy)} متر) لا تكفي للتأكد.`, '#d6b66f');
       return;
     }
 
-    if (departureAlertSent) return;
-    departureAlertSent = true;
+    if (currentState === 'inside') {
+      setLocationStatus(`أنت داخل نطاق المطعم (100 متر). دقة القراءة: نحو ${Math.round(accuracy)} متر.`, '#7bdc96');
+    } else {
+      setLocationStatus(`أنت خارج نطاق المطعم بأكثر من 100 متر. المسافة التقريبية ${Math.round(distance)} متر.`, '#ff7a7a');
+    }
 
-    const message = `ابتعدت عن المطعم أكثر من ${DEPARTURE_RADIUS_METERS} متر. المسافة التقريبية ${Math.round(distance)} متر.`;
-    setLocationStatus(message, '#ff7a7a');
-    notifyDeparture(message);
-    await sendExternalAlert(position, distance);
+    // Send only when a confirmed state is first determined or changes, avoiding
+    // repeated webhook notifications for every GPS update.
+    if (lastConfirmedState === currentState) return;
+    const previousState = lastConfirmedState;
+    lastConfirmedState = currentState;
+
+    if (currentState === 'outside') {
+      const message = `ابتعدت عن المطعم أكثر من 100 متر. المسافة التقريبية ${Math.round(distance)} متر.`;
+      notifyUser('تنبيه موقع المطعم', message);
+      await sendExternalAlert('left_restaurant_radius', position, distance);
+    } else if (previousState === 'outside') {
+      const message = `عدت إلى نطاق المطعم (100 متر). المسافة التقريبية ${Math.round(distance)} متر.`;
+      notifyUser('العودة إلى نطاق المطعم', message);
+      await sendExternalAlert('entered_restaurant_radius', position, distance);
+    }
   }
 
   function handlePositionError(error) {
@@ -219,7 +207,7 @@
       return;
     }
     if (!consentCheckbox.checked) {
-      setLocationStatus('يرجى الموافقة على متابعة الموقع قبل بدء التتبع.', '#ff7a7a');
+      setLocationStatus('يرجى الموافقة على متابعة الموقع وإرسال بياناته قبل بدء التتبع.', '#ff7a7a');
       return;
     }
     if (watchId !== null) {
@@ -228,10 +216,10 @@
     }
 
     await requestNotificationPermission();
-    departureAlertSent = false;
+    lastConfirmedState = null;
     locateButton.disabled = true;
     stopButton.disabled = false;
-    setLocationStatus('تتم متابعة موقعك بأفضل دقة متاحة. اترك الصفحة مفتوحة، ويمكنك إيقاف المتابعة في أي وقت.', '#d6b66f');
+    setLocationStatus('تتم متابعة موقعك بعد موافقتك. اترك الصفحة مفتوحة، ويمكنك إيقاف المتابعة في أي وقت.', '#d6b66f');
 
     watchId = navigator.geolocation.watchPosition(
       handlePosition,
