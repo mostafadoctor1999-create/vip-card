@@ -1,6 +1,6 @@
 /*
  * Opt-in geolocation tracking with Haversine distance calculation.
- * Sends a Make webhook alert when the visitor is confirmed more than 5 km
+ * Sends a Make webhook alert when the visitor is confirmed more than 100 m
  * from the restaurant, and a return event when they are confirmed back within
  * that radius. Tracking runs only after explicit user consent.
  */
@@ -9,7 +9,7 @@
 
   const RESTAURANT_LAT = 28.3095;
   const RESTAURANT_LNG = 30.7123;
-  const ALERT_RADIUS_METERS = 5000;
+  const ALERT_RADIUS_METERS = 100;
   const LOCATION_ALERT_ENDPOINT = 'https://hook.eu1.make.com/pmtj8hmcen1m6chdyk9otwpykmqfu5p8';
 
   const originalLocateButton = document.getElementById('locateBtn');
@@ -36,7 +36,7 @@
 
   const consentText = document.createElement('span');
   consentText.id = 'locationConsentText';
-  consentText.textContent = 'أوافق على متابعة موقعي أثناء بقاء الصفحة مفتوحة وإرسال إحداثياتي والمسافة إلى قرية البادية. سيُرسل تنبيه عند الابتعاد المؤكد أكثر من 5 كم أو العودة إلى النطاق. يمكنني إيقاف المتابعة في أي وقت.';
+  consentText.textContent = 'أوافق على متابعة موقعي أثناء بقاء الصفحة مفتوحة وإرسال إحداثياتي والمسافة إلى قرية البادية. سيُرسل تنبيه عند الابتعاد المؤكد أكثر من 100 متر أو العودة إلى النطاق. يمكنني إيقاف المتابعة في أي وقت.';
   consentLabel.append(consentCheckbox, consentText);
   locateButton.insertAdjacentElement('afterend', consentLabel);
 
@@ -169,7 +169,7 @@
       distanceFromRestaurantMeters: Math.round(distance)
     });
 
-    // Account for GPS uncertainty; do not trigger near the 5 km boundary.
+    // Account for GPS uncertainty; do not trigger near the 100 m boundary.
     let currentState = null;
     if (distance - accuracy > ALERT_RADIUS_METERS) {
       currentState = 'outside';
@@ -178,14 +178,14 @@
     }
 
     if (currentState === null) {
-      setLocationStatus(`الموقع قرب حد ${ALERT_RADIUS_METERS / 1000} كم، ودقة GPS الحالية (${Math.round(accuracy)} متر) لا تكفي للتأكد.`, '#d6b66f');
+      setLocationStatus(`الموقع قرب حد ${ALERT_RADIUS_METERS} متر، ودقة GPS الحالية (${Math.round(accuracy)} متر) لا تكفي للتأكد.`, '#d6b66f');
       return;
     }
 
     if (currentState === 'inside') {
-      setLocationStatus(`أنت داخل نطاق ${ALERT_RADIUS_METERS / 1000} كم. المسافة التقريبية ${Math.round(distance)} متر.`, '#7bdc96');
+      setLocationStatus(`أنت داخل نطاق المطعم (${ALERT_RADIUS_METERS} متر). المسافة التقريبية ${Math.round(distance)} متر.`, '#7bdc96');
     } else {
-      setLocationStatus(`تم تأكيد الابتعاد أكثر من ${ALERT_RADIUS_METERS / 1000} كم. المسافة التقريبية ${Math.round(distance)} متر.`, '#ff7a7a');
+      setLocationStatus(`تم تأكيد الابتعاد أكثر من ${ALERT_RADIUS_METERS} متر. المسافة التقريبية ${Math.round(distance)} متر.`, '#ff7a7a');
     }
 
     // Notify only on a confirmed state transition, not on every GPS update.
@@ -194,13 +194,13 @@
     lastConfirmedState = currentState;
 
     if (currentState === 'outside') {
-      const message = `تم تجاوز نطاق ${ALERT_RADIUS_METERS / 1000} كم عن المطعم. المسافة التقريبية ${Math.round(distance)} متر.`;
+      const message = `تم تجاوز نطاق ${ALERT_RADIUS_METERS} متر عن المطعم. المسافة التقريبية ${Math.round(distance)} متر.`;
       notifyUser('تنبيه الابتعاد عن المطعم', message);
-      await sendExternalAlert('exceeded_5km_radius', position, distance);
+      await sendExternalAlert('exceeded_100m_radius', position, distance);
     } else if (previousState === 'outside') {
-      const message = `عاد الموقع إلى نطاق ${ALERT_RADIUS_METERS / 1000} كم عن المطعم. المسافة التقريبية ${Math.round(distance)} متر.`;
+      const message = `عاد الموقع إلى نطاق ${ALERT_RADIUS_METERS} متر عن المطعم. المسافة التقريبية ${Math.round(distance)} متر.`;
       notifyUser('العودة إلى نطاق المطعم', message);
-      await sendExternalAlert('returned_within_5km_radius', position, distance);
+      await sendExternalAlert('returned_within_100m_radius', position, distance);
     }
   }
 
