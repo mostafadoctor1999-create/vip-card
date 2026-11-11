@@ -1,16 +1,15 @@
 /*
- * Opt-in geolocation tracking and local departure/approach alerts.
- * Location alerts are sent to the configured Make webhook only after the visitor
- * explicitly consents and starts tracking.
+ * Opt-in geolocation tracking with Haversine distance calculation.
+ * Sends a Make webhook alert when the visitor is confirmed more than 100 km
+ * from the restaurant, and a return event when they are confirmed back within
+ * that radius. Tracking runs only after explicit user consent.
  */
 (() => {
   'use strict';
 
   const RESTAURANT_LAT = 28.3095;
   const RESTAURANT_LNG = 30.7123;
-  const DEPARTURE_RADIUS_METERS = 100;
-  // Public Make webhook. Treat this URL as a credential: rotate it if exposed
-  // and restrict the Make scenario to the expected event/data where possible.
+  const ALERT_RADIUS_METERS = 100000;
   const LOCATION_ALERT_ENDPOINT = 'https://hook.eu1.make.com/pmtj8hmcen1m6chdyk9otwpykmqfu5p8';
 
   const originalLocateButton = document.getElementById('locateBtn');
@@ -22,7 +21,7 @@
     return;
   }
 
-  // Replace the page's one-shot location handler while preserving its markup.
+  // Replace the page's original one-shot handler while preserving the button UI.
   const locateButton = originalLocateButton.cloneNode(true);
   originalLocateButton.replaceWith(locateButton);
 
@@ -37,7 +36,7 @@
 
   const consentText = document.createElement('span');
   consentText.id = 'locationConsentText';
-  consentText.textContent = 'أوافق على متابعة موقعي أثناء بقاء الصفحة مفتوحة وإرسال المسافة والإحداثيات إلى قرية البادية عبر النظام. عند الابتعاد المؤكد أكثر من 100 متر أو العودة إلى النطاق، سيتم إرسال إشعار. يمكنني إيقاف المتابعة في أي وقت.';
+  consentText.textContent = 'أوافق على متابعة موقعي أثناء بقاء الصفحة مفتوحة وإرسال إحداثياتي والمسافة إلى قرية البادية. سيُرسل تنبيه عند الابتعاد المؤكد أكثر من 100 كم أو العودة إلى النطاق. يمكنني إيقاف المتابعة في أي وقت.';
   consentLabel.append(consentCheckbox, consentText);
   locateButton.insertAdjacentElement('afterend', consentLabel);
 
@@ -57,14 +56,25 @@
     if (color) locationStatus.style.color = color;
   }
 
+  // Haversine formula: returns the great-circle distance in meters.
   function distanceInMeters(lat1, lon1, lat2, lon2) {
-    const radians = (degrees) => degrees * Math.PI / 180;
+    const toRadians = (degrees) => degrees * Math.PI / 180;
     const earthRadiusMeters = 6371000;
-    const dLat = radians(lat2 - lat1);
-    const dLon = radians(lon2 - lon1);
-    const a = Math.sin(dLat / 2) ** 2 +
-      Math.cos(radians(lat1)) * Math.cos(radians(lat2)) * Math.sin(dLon / 2) ** 2;
-    return 2 * earthRadiusMeters * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const latitudeDelta = toRadians(lat2 - lat1);
+    const longitudeDelta = toRadians(lon2 - lon1);
+    const latitude1 = toRadians(lat1);
+    const latitude2 = toRadians(lat2);
+
+    const haversine =
+      Math.sin(latitudeDelta / 2) ** 2 +
+      Math.cos(latitude1) * Math.cos(latitude2) *
+      Math.sin(longitudeDelta / 2) ** 2;
+    const boundedHaversine = Math.min(1, Math.max(0, haversine));
+
+    return 2 * earthRadiusMeters * Math.atan2(
+      Math.sqrt(boundedHaversine),
+      Math.sqrt(1 - boundedHaversine)
+    );
   }
 
   function stopWatching(message = 'تم إيقاف متابعة الموقع.') {
@@ -92,7 +102,11 @@
   function notifyUser(title, message) {
     if ('Notification' in window && Notification.permission === 'granted') {
       try {
-        new Notification(title, { body: message, icon: './icon.svg', tag: 'restaurant-location-alert' });
+        new Notification(title, {
+          body: message,
+          icon: './icon.svg',
+          tag: 'restaurant-distance-alert'
+        });
       } catch (error) {
         console.warn('Could not display notification:', error);
       }
@@ -103,7 +117,7 @@
   function renderCoordinates(position, distance) {
     const { latitude, longitude, accuracy } = position.coords;
     const info = document.createElement('p');
-    info.textContent = `إحداثياتك: ${latitude.toFixed(5)}, ${longitude.toFixed(5)} — الدقة التقريبية: ${Math.round(accuracy)} متر — البعد عن المطعم: ${Math.round(distance)} متر`;
+    info.textContent = `إحداثياتك: ${latitude.toFixed(5)}, ${longitude.toFixed(5)} — دقة الموقع: نحو ${Math.round(accuracy)} متر — البعد عن المطعم: ${Math.round(distance)} متر`;
 
     const mapLink = document.createElement('a');
     mapLink.href = `https://www.google.com/maps?q=${latitude},${longitude}`;
@@ -117,10 +131,9 @@
 
   async function sendExternalAlert(eventName, position, distance) {
     const { latitude, longitude, accuracy } = position.coords;
-    // Use a simple form POST so the browser can send it cross-origin without a
-    // JSON CORS preflight. Make receives these fields as form data.
     const payload = new URLSearchParams({
       event: eventName,
+      thresholdMeters: String(ALERT_RADIUS_METERS),
       latitude: String(latitude),
       longitude: String(longitude),
       accuracyMeters: String(Math.round(accuracy)),
@@ -129,13 +142,14 @@
     });
 
     try {
+      // no-cors permits the browser to POST a simple form without a CORS preflight.
+      // Its opaque response cannot confirm whether Make processed the request.
       await fetch(LOCATION_ALERT_ENDPOINT, {
         method: 'POST',
         mode: 'no-cors',
         body: payload,
         keepalive: true
       });
-      // no-cors responses are opaque, so the browser cannot verify Make's result.
     } catch (error) {
       console.error('Could not send external location alert:', error);
       setLocationStatus('تعذر إرسال الإشعار الخارجي؛ تحقق من اتصال الإنترنت وإعدادات Make.', '#ff7a7a');
@@ -151,39 +165,42 @@
       latitude,
       longitude,
       accuracyMeters: accuracy,
+      thresholdMeters: ALERT_RADIUS_METERS,
       distanceFromRestaurantMeters: Math.round(distance)
     });
 
-    // Ignore readings whose uncertainty overlaps the 100 m boundary.
+    // Account for GPS uncertainty; do not trigger near the 100 km boundary.
     let currentState = null;
-    if (distance + accuracy <= DEPARTURE_RADIUS_METERS) currentState = 'inside';
-    else if (distance - accuracy > DEPARTURE_RADIUS_METERS) currentState = 'outside';
+    if (distance - accuracy > ALERT_RADIUS_METERS) {
+      currentState = 'outside';
+    } else if (distance + accuracy <= ALERT_RADIUS_METERS) {
+      currentState = 'inside';
+    }
 
     if (currentState === null) {
-      setLocationStatus(`الموقع قرب حد النطاق، لكن دقة GPS الحالية (${Math.round(accuracy)} متر) لا تكفي للتأكد.`, '#d6b66f');
+      setLocationStatus(`الموقع قرب حد 100 كم، ودقة GPS الحالية (${Math.round(accuracy)} متر) لا تكفي للتأكد.`, '#d6b66f');
       return;
     }
 
     if (currentState === 'inside') {
-      setLocationStatus(`أنت داخل نطاق المطعم (100 متر). دقة القراءة: نحو ${Math.round(accuracy)} متر.`, '#7bdc96');
+      setLocationStatus(`أنت داخل نطاق ${ALERT_RADIUS_METERS / 1000} كم. المسافة التقريبية ${Math.round(distance)} متر.`, '#7bdc96');
     } else {
-      setLocationStatus(`أنت خارج نطاق المطعم بأكثر من 100 متر. المسافة التقريبية ${Math.round(distance)} متر.`, '#ff7a7a');
+      setLocationStatus(`تم تأكيد الابتعاد أكثر من ${ALERT_RADIUS_METERS / 1000} كم. المسافة التقريبية ${Math.round(distance)} متر.`, '#ff7a7a');
     }
 
-    // Send only when a confirmed state is first determined or changes, avoiding
-    // repeated webhook notifications for every GPS update.
+    // Notify only on a confirmed state transition, not on every GPS update.
     if (lastConfirmedState === currentState) return;
     const previousState = lastConfirmedState;
     lastConfirmedState = currentState;
 
     if (currentState === 'outside') {
-      const message = `ابتعدت عن المطعم أكثر من 100 متر. المسافة التقريبية ${Math.round(distance)} متر.`;
-      notifyUser('تنبيه موقع المطعم', message);
-      await sendExternalAlert('left_restaurant_radius', position, distance);
+      const message = `تم تجاوز نطاق ${ALERT_RADIUS_METERS / 1000} كم عن المطعم. المسافة التقريبية ${Math.round(distance)} متر.`;
+      notifyUser('تنبيه الابتعاد عن المطعم', message);
+      await sendExternalAlert('exceeded_100km_radius', position, distance);
     } else if (previousState === 'outside') {
-      const message = `عدت إلى نطاق المطعم (100 متر). المسافة التقريبية ${Math.round(distance)} متر.`;
+      const message = `عاد الموقع إلى نطاق ${ALERT_RADIUS_METERS / 1000} كم عن المطعم. المسافة التقريبية ${Math.round(distance)} متر.`;
       notifyUser('العودة إلى نطاق المطعم', message);
-      await sendExternalAlert('entered_restaurant_radius', position, distance);
+      await sendExternalAlert('returned_within_100km_radius', position, distance);
     }
   }
 
