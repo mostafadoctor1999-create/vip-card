@@ -2,7 +2,7 @@
   'use strict';
 
   // ضع رمز APP_ID هنا
-  const ONESIGNAL_APP_ID = 'YOUR_ONESIGNAL_APP_ID';
+  const ONESIGNAL_APP_ID = '0adbfbd2-0f76-494a-9be3-6507eb7eaae4';
   const SDK_URL = 'https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js';
 
   let oneSignal = null;
