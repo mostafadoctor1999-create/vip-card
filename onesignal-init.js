@@ -1,9 +1,10 @@
 (() => {
   'use strict';
 
-  // ضع رمز APP_ID هنا
   const ONESIGNAL_APP_ID = '0adbfbd2-0f76-494a-9be3-6507eb7eaae4';
   const SDK_URL = 'https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js';
+  const BUTTON_ID = 'onesignalEnableNotifications';
+  const BUTTON_LABEL = 'تفعيل إشعارات العروض';
 
   let oneSignal = null;
   let initPromise = null;
@@ -33,35 +34,141 @@
     return initPromise;
   }
 
-  function addPermissionButton() {
-    if (document.getElementById('onesignalEnableNotifications')) return;
+  function findPermissionButton() {
+    const byId = document.getElementById(BUTTON_ID);
+    if (byId) return byId;
 
-    const button = document.createElement('button');
-    button.id = 'onesignalEnableNotifications';
-    button.type = 'button';
-    button.textContent = 'تفعيل إشعارات العروض';
-    button.setAttribute('aria-label', 'تفعيل إشعارات العروض');
-    button.style.cssText = [
-      'position:fixed', 'z-index:999', 'inset-inline-end:16px', 'bottom:16px',
-      'padding:11px 16px', 'border:1px solid #ffe9ad', 'border-radius:999px',
-      'background:linear-gradient(135deg,#f6e5b2,#d6b66f)', 'color:#19160a',
-      'font:700 14px Cairo,Tahoma,sans-serif', 'box-shadow:0 6px 24px #0008',
-      'cursor:pointer'
-    ].join(';');
+    return Array.from(document.querySelectorAll('button')).find((button) =>
+      button.textContent.trim().includes(BUTTON_LABEL)
+    ) || null;
+  }
+
+  function showToast(message) {
+    let toast = document.getElementById('onesignalNotificationToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'onesignalNotificationToast';
+      toast.setAttribute('role', 'status');
+      toast.setAttribute('aria-live', 'polite');
+      toast.style.cssText = 'position:fixed;z-index:1001;inset-inline:16px;bottom:76px;margin-inline:auto;width:max-content;max-width:calc(100% - 32px);padding:11px 16px;border:1px solid #73d39a;border-radius:12px;background:#153b27;color:#e5ffed;font:600 14px/1.6 Cairo,Tahoma,sans-serif;box-shadow:0 6px 24px #0008;opacity:0;transform:translateY(8px);transition:opacity .2s,transform .2s';
+      document.body.appendChild(toast);
+    }
+
+    toast.textContent = message;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateY(0)';
+    window.clearTimeout(toast.hideTimer);
+    toast.hideTimer = window.setTimeout(() => {
+      toast.style.opacity = '0';
+      toast.style.transform = 'translateY(8px)';
+    }, 3500);
+  }
+
+  function setButtonState(button, state) {
+    if (state === 'success') {
+      button.textContent = '✅ تم تفعيل إشعارات العروض بنجاح';
+      button.disabled = true;
+      button.style.background = 'linear-gradient(135deg,#73d39a,#2e9b60)';
+      button.style.borderColor = '#73d39a';
+      button.style.color = '#102417';
+      button.style.cursor = 'default';
+      return;
+    }
+
+    if (state === 'active') {
+      button.textContent = '✅ الإشعارات مفعلة';
+      button.disabled = true;
+      button.style.background = 'linear-gradient(135deg,#73d39a,#2e9b60)';
+      button.style.borderColor = '#73d39a';
+      button.style.color = '#102417';
+      button.style.cursor = 'default';
+      return;
+    }
+
+    if (state === 'blocked') {
+      button.textContent = '⚠️ الإشعارات محظورة من إعدادات المتصفح';
+      button.disabled = true;
+      button.style.background = '#7a302d';
+      button.style.borderColor = '#ff8580';
+      button.style.color = '#fff7e6';
+      button.style.cursor = 'not-allowed';
+      return;
+    }
+
+    if (state === 'loading') {
+      button.textContent = 'جاري التفعيل...';
+      button.disabled = true;
+      button.style.cursor = 'wait';
+      return;
+    }
+
+    button.textContent = BUTTON_LABEL;
+    button.disabled = false;
+    button.style.background = 'linear-gradient(135deg,#f6e5b2,#d6b66f)';
+    button.style.borderColor = '#ffe9ad';
+    button.style.color = '#19160a';
+    button.style.cursor = 'pointer';
+  }
+
+  async function isSubscribed(OneSignal) {
+    try {
+      return (await OneSignal.User.PushSubscription.optedIn) === true;
+    } catch (error) {
+      console.warn('Could not read OneSignal subscription state:', error);
+      return false;
+    }
+  }
+
+  function addPermissionButton() {
+    let button = findPermissionButton();
+    if (!button) {
+      button = document.createElement('button');
+      button.id = BUTTON_ID;
+      button.type = 'button';
+      button.setAttribute('aria-label', BUTTON_LABEL);
+      button.style.cssText = [
+        'position:fixed', 'z-index:999', 'inset-inline-end:16px', 'bottom:16px',
+        'padding:11px 16px', 'border:1px solid #ffe9ad', 'border-radius:999px',
+        'background:linear-gradient(135deg,#f6e5b2,#d6b66f)', 'color:#19160a',
+        'font:700 14px Cairo,Tahoma,sans-serif', 'box-shadow:0 6px 24px #0008',
+        'cursor:pointer'
+      ].join(';');
+      document.body.appendChild(button);
+    }
+
+    if (button.dataset.oneSignalClickBound === 'true') return button;
+    if (!button.id) button.id = BUTTON_ID;
+    button.dataset.oneSignalClickBound = 'true';
 
     button.addEventListener('click', async () => {
-      button.disabled = true;
+      setButtonState(button, 'loading');
       try {
         const OneSignal = await loadOneSignal();
         await OneSignal.Slidedown.promptPush();
+
+        if (await isSubscribed(OneSignal)) {
+          setButtonState(button, 'success');
+          showToast('مرحبًا بك! تم تفعيل إشعارات العروض بنجاح.');
+          return;
+        }
+
+        if ('Notification' in window && Notification.permission === 'denied') {
+          setButtonState(button, 'blocked');
+          return;
+        }
+
+        setButtonState(button, 'ready');
       } catch (error) {
         console.error('OneSignal permission prompt failed:', error);
-      } finally {
-        button.disabled = false;
+        if ('Notification' in window && Notification.permission === 'denied') {
+          setButtonState(button, 'blocked');
+        } else {
+          setButtonState(button, 'ready');
+        }
       }
     });
 
-    document.body.appendChild(button);
+    return button;
   }
 
   function addOptionalCustomerTagConsent() {
@@ -78,7 +185,7 @@
     checkbox.style.cssText = 'margin-top:5px;accent-color:#e4c47d';
 
     const text = document.createElement('span');
-    text.textContent = 'أوافق اختياريًا على استخدام اسمي ورقم هاتفي كوسوم في OneSignal لتخصيص الإشعارات. عدم الموافقة لا يؤثر على تفعيل البطاقة.';
+    text.textContent = 'أوافق اختياريًا على استخدام اسمي ورقم هاتفي كوسوم في OneSignal لتخصيص الإشعارات. عدم الموافقة لا يؤثر على تفعيل بطاقة VIP.';
     label.append(checkbox, text);
 
     const submitButton = form.querySelector('button[type="submit"]');
@@ -103,15 +210,20 @@
     });
   }
 
-  function start() {
-    addPermissionButton();
+  async function start() {
+    const button = addPermissionButton();
     addOptionalCustomerTagConsent();
 
-    // Displays OneSignal's soft prompt on entry. The visitor can still decline;
-    // the persistent button remains available to opt in later.
-    loadOneSignal()
-      .then((OneSignal) => OneSignal.Slidedown.promptPush())
-      .catch((error) => console.warn('OneSignal initialization failed:', error));
+    try {
+      const OneSignal = await loadOneSignal();
+      if (await isSubscribed(OneSignal)) {
+        setButtonState(button, 'active');
+      } else if ('Notification' in window && Notification.permission === 'denied') {
+        setButtonState(button, 'blocked');
+      }
+    } catch (error) {
+      console.warn('OneSignal initialization failed:', error);
+    }
   }
 
   if (document.readyState === 'loading') {
