@@ -16,12 +16,11 @@
       window.OneSignalDeferred = window.OneSignalDeferred || [];
       window.OneSignalDeferred.push(async (OneSignal) => {
         try {
-await OneSignal.init({
-        appId: ONESIGNAL_APP_ID,
-        serviceWorkerPath: '/vip-card/OneSignalSDKWorker.js',
-        serviceWorkerParam: { scope: '/vip-card/' }
-      });
-      oneSignal = OneSignal;
+          await OneSignal.init({
+            appId: ONESIGNAL_APP_ID,
+            serviceWorkerPath: '/vip-card/OneSignalSDKWorker.js',
+            serviceWorkerParam: { scope: '/vip-card/' }
+          });
           oneSignal = OneSignal;
           resolve(OneSignal);
         } catch (error) {
@@ -48,25 +47,24 @@ await OneSignal.init({
     ) || null;
   }
 
-  function showToast(message) {
+  function showToast(message, isError = false) {
     let toast = document.getElementById('onesignalNotificationToast');
     if (!toast) {
       toast = document.createElement('div');
       toast.id = 'onesignalNotificationToast';
       toast.setAttribute('role', 'status');
       toast.setAttribute('aria-live', 'polite');
-      toast.style.cssText = 'position:fixed;z-index:1001;inset-inline:16px;bottom:76px;margin-inline:auto;width:max-content;max-width:calc(100% - 32px);padding:11px 16px;border:1px solid #73d39a;border-radius:12px;background:#153b27;color:#e5ffed;font:600 14px/1.6 Cairo,Tahoma,sans-serif;box-shadow:0 6px 24px #0008;opacity:0;transform:translateY(8px);transition:opacity .2s,transform .2s';
       document.body.appendChild(toast);
     }
 
+    toast.style.cssText = position:fixed;z-index:1001;inset-inline:16px;bottom:76px;margin-inline:auto;width:max-content;max-width:calc(100% - 32px);padding:11px 16px;border:1px solid ${isError ? '#ff8580' : '#73d39a'};border-radius:12px;background:${isError ? '#7a302d' : '#153b27'};color:#fff;font:600 14px/1.6 Cairo,Tahoma,sans-serif;box-shadow:0 6px 24px #0008;opacity:1;transform:translateY(0);transition:opacity .2s,transform .2s;
     toast.textContent = message;
-    toast.style.opacity = '1';
-    toast.style.transform = 'translateY(0)';
+
     window.clearTimeout(toast.hideTimer);
     toast.hideTimer = window.setTimeout(() => {
       toast.style.opacity = '0';
       toast.style.transform = 'translateY(8px)';
-    }, 3500);
+    }, 4500);
   }
 
   function setButtonState(button, state) {
@@ -91,7 +89,7 @@ await OneSignal.init({
     }
 
     if (state === 'blocked') {
-      button.textContent = '⚠️ الإشعارات محظورة من إعدادات المتصفح';
+      button.textContent = '⚠️ الإشعارات محظورة من المتصفح';
       button.disabled = true;
       button.style.background = '#7a302d';
       button.style.borderColor = '#ff8580';
@@ -117,9 +115,8 @@ await OneSignal.init({
 
   async function isSubscribed(OneSignal) {
     try {
-      return (await OneSignal.User.PushSubscription.optedIn) === true;
+      return OneSignal.User.PushSubscription.optedIn === true;
     } catch (error) {
-      console.warn('Could not read OneSignal subscription state:', error);
       return false;
     }
   }
@@ -146,10 +143,22 @@ await OneSignal.init({
     button.dataset.oneSignalClickBound = 'true';
 
     button.addEventListener('click', async () => {
+      if (!('Notification' in window)) {
+        showToast('متصفحك الحالي لا يدعم الإشعارات، افتح الموقع من Chrome أو Safari.', true);
+        return;
+      }
+
       setButtonState(button, 'loading');
       try {
         const OneSignal = await loadOneSignal();
-        await OneSignal.Slidedown.promptPush();
+        
+        // استدعاء نافذة الإذن الأصلية للمتصفح مباشرة
+        await OneSignal.Notifications.requestPermission();
+        
+        // التأكد من تفعيل الاشتراك
+        if (Notification.permission === 'granted') {
+          await OneSignal.User.PushSubscription.optIn();
+        }
 
         if (await isSubscribed(OneSignal)) {
           setButtonState(button, 'success');
@@ -157,19 +166,17 @@ await OneSignal.init({
           return;
         }
 
-        if ('Notification' in window && Notification.permission === 'denied') {
+        if (Notification.permission === 'denied') {
           setButtonState(button, 'blocked');
+          showToast('تم رفض الإشعارات، يرجى السماح بها من إعدادات المتصفح.', true);
           return;
         }
 
         setButtonState(button, 'ready');
       } catch (error) {
-        console.error('OneSignal permission prompt failed:', error);
-        if ('Notification' in window && Notification.permission === 'denied') {
-          setButtonState(button, 'blocked');
-        } else {
-          setButtonState(button, 'ready');
-        }
+        console.error('OneSignal error:', error);
+        showToast('حدث خطأ أثناء التفعيل، تأكد من إعدادات OneSignal.', true);
+        setButtonState(button, 'ready');
       }
     });
 
@@ -190,7 +197,7 @@ await OneSignal.init({
     checkbox.style.cssText = 'margin-top:5px;accent-color:#e4c47d';
 
     const text = document.createElement('span');
-    text.textContent = 'أوافق اختياريًا على استخدام اسمي ورقم هاتفي كوسوم في OneSignal لتخصيص الإشعارات. عدم الموافقة لا يؤثر على تفعيل بطاقة VIP.';
+    text.textContent = 'أوافق اختياريًا على استخدام اسمي ورقم هاتفي كوسوم في OneSignal لتخصيص الإشعارات.';
     label.append(checkbox, text);
 
     const submitButton = form.querySelector('button[type="submit"]');
@@ -209,7 +216,6 @@ await OneSignal.init({
         if (name) await OneSignal.User.addTag('customer_name', name);
         if (phone) await OneSignal.User.addTag('customer_phone', phone);
       } catch (error) {
-        // Notification tags are optional and must never disrupt the existing form submission.
         console.warn('Could not add optional OneSignal customer tags:', error);
       }
     });
