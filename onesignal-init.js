@@ -16,7 +16,12 @@
       window.OneSignalDeferred = window.OneSignalDeferred || [];
       window.OneSignalDeferred.push(async (OneSignal) => {
         try {
-          await OneSignal.init({ appId: ONESIGNAL_APP_ID });
+await OneSignal.init({
+        appId: ONESIGNAL_APP_ID,
+        serviceWorkerPath: '/vip-card/OneSignalSDKWorker.js',
+        serviceWorkerParam: { scope: '/vip-card/' }
+      });
+      oneSignal = OneSignal;
           oneSignal = OneSignal;
           resolve(OneSignal);
         } catch (error) {
